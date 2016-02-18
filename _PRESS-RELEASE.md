@@ -22,14 +22,31 @@ Once the project moves into development, the press release can be used as a touc
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
+  Product is specifically targeted for developers.
+
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+
+  - Organizational tool for job hunt
+  - stay organized
+  - Track next steps in the job hunt
+  - Overview of process
+  - one stop location for all documents info
 
 ## Problem ##
   > Describe the problem your product solves.
 
+  - Job hunt process is messy
+  - hard to stay on top of dates/schedules, contact info, your application and status, your to-dos.
+  - hard to gt the word out about where you're applying and your status, connect with your network and share info.
+
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+
+  - Dashboard platform that organizes app status/data
+  - facilitates connections between users in similar app stage & target company
+
+  - (later implementation) provide employers a view to anonymous user data
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
@@ -39,6 +56,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+	- This app helped me view my friend's job process to see what company they interviewed for which let me connect with them and get tips on how to succeed in the interview process.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
