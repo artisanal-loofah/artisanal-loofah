@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Albert Huynh
+  - __Scrum Master__: Akshay Buddiga
+  - __Development Team Members__: Gar Lee, Alex Chou
 
 ## Table of Contents
 
