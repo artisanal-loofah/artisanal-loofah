@@ -5,7 +5,6 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/hu
 var sequelize = new Sequelize(connectionString);
 
 var Backlog = db.define('Backlog', {
-  id: Sequelize.INTEGER,
   application_id: Sequelize.INTEGER,
   notes: Sequelize.TEXT,
   status: Sequelize.String
