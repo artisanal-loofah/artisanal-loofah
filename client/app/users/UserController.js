@@ -18,12 +18,6 @@ angular.module('hunt.users', [])
 
 .factory('UserFactory', function ($http) {
 
-  var signIn = function () {
-    $http({
-      method = 'POST',
-
-    })
-  }
 
 
 

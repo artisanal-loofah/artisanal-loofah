@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html ng-app='main'>
+<html>
   <head>
     <meta charset="utf-8" />
     <title> Greenfield project </title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  </head>
-    <body>
 
-    <div ng-view></div>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
 
 <!--     Insert factory locations here  -->
-  <script src="app/users/Authenticate.js"></script>
-  <script src="app/users/UserController.js"></script>
 
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      //here goes the api key, and the callback function
+      api_key: 75hjn5k2loenpm
+      onLoad: onLinkedInLoad
+      authorize: true
+    </script>
 
-<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-  //here goes the api key, and the callback function
-  api_key: 75hjn5k2loenpm
-  onLoad: onLinkedInLoad
-  authorize: true
-</script>
+    <script src="app/users/Authenticate.js"></script>
+    <script src="app/users/UserController.js"></script>
+    <script src="app/users/linkedin.js"></script>
 
+  </head>
+ 
+  <body>
+    <body ng-controller="app", id="appBody">
 
+      <ng:include src="'home/header.html'"></ng:include>
 
+      <div class="container">
+        
+        <ng:view></ng:view>
+      
+
+      </div>
 
 
 

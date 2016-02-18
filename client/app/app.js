@@ -1,4 +1,5 @@
-angular.module('hunt', [])
+angular.module('hunt', [
+  'hunt.users'])
 
 
 .config(['$routeProvider', '$locationProvider', '$httpProvider', 
