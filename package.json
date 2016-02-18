@@ -2,7 +2,7 @@
   "name": "techDaddy",
   "version": "1.0.0",
   "description": "App to organize job hunt",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "test"
   },
