@@ -55,14 +55,66 @@ AppSubmit.belongsTo(Application, {
 
 Application.hasMany(AppSubmit, {foreignKey: 'application_id'});
 
+var Offer = db.define('Offers', {
+  application_id: Sequelize.INTEGER,
+  salary: Sequelize.INTEGER,
+  deadline: Sequelize.STRING,
+  status: Sequelize.STRING,
+  notes: Sequelize.TEXT
+});
+
+Offer.belongsTo(Application, {
+  foreignKey: application_id,
+  constraints: false
+});
+Application.hasMany(Offer);
+
+
+var OnSite = db.define('OnSites', {
+  application_id: Sequelize.INTEGER,
+  interviewer: Sequelize.STRING,
+  date_time: Sequelize.DATE,
+  location: Sequelize.STRING,
+  status:Sequelize.STRING,
+  notes: Sequelize.TEXT
+});
+
+OnSite.belongsTo(Application, {
+  foreignKey: application_id,
+  constraints: false
+});
+
+Application.hasMany(OnSite);
+
+var PhoneScreen = db.define('PhoneScreens', {
+  application_id: Sequelize.INTEGER,
+  interviewer: Sequelize.STRING,
+  date_time: Sequelize.STRING,
+  status:Sequelize.STRING,
+  notes: Sequelize.TEXT
+});
+
+PhoneScreen.belongsTo(Application, {
+  foreignKey: application_id,
+  constraints: false
+});
+
+Application.hasMany(PhoneScreen);
+
 User.sync();
 Company.sync();
 Application.sync();
 Backlog.sync();
-AppSubmit.sync()
+AppSubmit.sync();
+PhoneScreen.sync();
+OnSite.sync();
+Offer.sync();
 
 module.exports.User = User;
 module.exports.Company = Company;
 module.exports.Application = Application;
 module.exports.Backlog = Backlog;
 module.exports.AppSubmit = AppSubmit;
+module.exports.PhoneScreen = PhoneScreen;
+module.exports.OnSite = OnSite;
+module.exports.Offer = Offer;
