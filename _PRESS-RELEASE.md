@@ -38,14 +38,33 @@ Once the project moves into development, the press release can be used as a touc
 
   - Job hunt process is messy
   - hard to stay on top of dates/schedules, contact info, your application and status, your to-dos.
+  
   - hard to gt the word out about where you're applying and your status, connect with your network and share info.
 
+
+>>>>>>> update press release file with senior comments
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
   - Dashboard platform that organizes app status/data
   - facilitates connections between users in similar app stage & target company
 
+  - Managing funnel over every step
+  - #Apps
+  - # Onsites
+  - # Phone Interviews
+
+  - Managing the data over every step
+
+  - Providing user feedback/tips
+
+  - Resume Templates
+
+  - Resource hub for users
+
+
+
+>>>>>>> update press release file with senior comments
   - (later implementation) provide employers a view to anonymous user data
 
 ## Quote from You ##
@@ -56,7 +75,11 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+<<<<<<< d2aef7ad757239851357cdf98c53b6d4da2cbb4f
 	- This app helped me view my friend's job process to see what company they interviewed for which let me connect with them and get tips on how to succeed in the interview process.
+=======
+  - This app helped me view my friend's job process to see what company they interviewed for which let me connect with them and get tips on how to succeed in the interview process.
+>>>>>>> update press release file with senior comments
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
