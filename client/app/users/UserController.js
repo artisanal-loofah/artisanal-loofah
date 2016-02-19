@@ -25,5 +25,4 @@ angular.module('huntCtrl', [])
     $rootScope.loggedUser = false;
     $location.path('/signin');
   }
-
 })
