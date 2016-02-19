@@ -79,5 +79,14 @@ angular.module('hunt.services', [])
   return {
     getUser: getUser,
     createUser: createUser
-  }
+  };
+})
+.factory('Application', function($http){
+  var addApplication = function(){
+    console.log('in services');
+  };
+
+  return {
+    addApplication: addApplication
+  };
 });

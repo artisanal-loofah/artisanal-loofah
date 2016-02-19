@@ -5,6 +5,13 @@
 
 <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
 
+<div ng-controller="ApplicationController">
+	<input type="text" ng-model="jobTitle">
+	<input type="text" ng-model="company">
+	<button ng-click="addApplication()">Submit</button>
+</div>
+
+
 <div class="container">
   <h1>You are now logged in as {{userprofile.firstName}} {{userprofile.lastName}}</h1>
 
@@ -14,6 +21,9 @@
 </div>
 
 
+
 <div class='backlog' ng-controller="BacklogController" id="backlog">
   <ng:include src="'app/dashboard/dashboard.html'"></ng:include>
 </div>
+
+<hr>
