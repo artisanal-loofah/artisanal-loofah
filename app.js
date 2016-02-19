@@ -4,7 +4,7 @@ var express = require('express');
 var db = require('./server/db/db');
 
 // Load schemas & relations
-var relations = require('./server/db/relations')
+var relations = require('./server/db/relations');
 
 // Middleware
 var morgan = require('morgan');
@@ -17,14 +17,15 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
+app.use(morgan('dev'));
+app.use(parser.urlencoded({extended: true}));
+app.use(parser.json());
+
 // Router
 var router = require('./server/routes');
 app.use(router);
 
 // Logging and parsing
-app.use(morgan('dev'));
-app.use(parser.urlencoded({extended: true}));
-app.use(parser.json());
 
 // Set up our routes
 // app.use('/classes', router);
