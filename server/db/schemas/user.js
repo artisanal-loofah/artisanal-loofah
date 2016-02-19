@@ -1,6 +1,5 @@
 var db = require('../db');
 var Sequelize = require('sequelize');
-var Application = require('./application');
 
 // Most fields populated from LinkedIn API
 var User = db.define('Users', {
@@ -12,9 +11,4 @@ var User = db.define('Users', {
 	picture_url: Sequelize.STRING
 });
 
-User.hasMany(Application, {
-  foreignKey: 'user_id'
-});
-
-User.sync();
 module.exports = User;

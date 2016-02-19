@@ -1,6 +1,5 @@
 var db = require('../db');
 var Sequelize = require('sequelize');
-var Application = require('./application');
 
 var OnSite = db.define('OnSites', {
   application_id: Sequelize.INTEGER,
@@ -11,10 +10,4 @@ var OnSite = db.define('OnSites', {
   notes: Sequelize.TEXT
 });
 
-OnSite.belongsTo(Application, {
-  foreignKey: application_id,
-  constraints: false
-});
-
-OnSite.sync();
 module.exports = OnSite;

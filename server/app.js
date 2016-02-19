@@ -1,17 +1,10 @@
 var express = require('express');
 
 // Database
-var db = require('./db');
+var db = require('./db/db');
 
-// Load models
-var User = require('./models/user');
-var Company = require('./models/company');
-var Application = require('./models/application');
-var Backlog = require('./models/backlog');
-var AppSubmit = require('./models/appsubmit');
-var PhoneScreen = require('./models/phonescreen');
-var OnSite = require('./models/onsite');
-var Offer = require('./models/Offer');
+// Load schemas & relations
+var relations = require('./db/relations')
 
 // Middleware
 var morgan = require('morgan');
