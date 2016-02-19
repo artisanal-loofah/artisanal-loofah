@@ -21,7 +21,7 @@ var Company = db.define('Companies', {
 var Application = db.define('Applications', {
 	user_id: Sequelize.INTEGER,
 	company_id: Sequelize.INTEGER,
-  	job_title: Sequelize.STRING
+  job_title: Sequelize.STRING
 });
 
 var Backlog = db.define('Backlog', {
@@ -36,25 +36,6 @@ var AppSubmit = db.define('AppSubmit', {
   status: Sequelize.String
 });
 
-User.hasMany(Application, {foreignKey: 'user_id'});
-Application.belongsTo(User, {foreignKey: 'user_id'});
-
-Company.hasMany(Application, {foreignKey: 'company_id'});
-Application.belongsTo(Company, {foreignKey: 'company_id'});
-
-Backlog.belongsTo(Application, {
-  foreignKey: 'application_id',
-  constraints: false
-});
-Application.hasMany(Backlog, {foreignKey: 'application_id'});
-
-AppSubmit.belongsTo(Application, {
-  foreignKey: 'application_id',
-  constraints: false
-});
-
-Application.hasMany(AppSubmit, {foreignKey: 'application_id'});
-
 var Offer = db.define('Offers', {
   application_id: Sequelize.INTEGER,
   salary: Sequelize.INTEGER,
@@ -62,13 +43,6 @@ var Offer = db.define('Offers', {
   status: Sequelize.STRING,
   notes: Sequelize.TEXT
 });
-
-Offer.belongsTo(Application, {
-  foreignKey: application_id,
-  constraints: false
-});
-Application.hasOne(Offer);
-
 
 var OnSite = db.define('OnSites', {
   application_id: Sequelize.INTEGER,
@@ -79,13 +53,6 @@ var OnSite = db.define('OnSites', {
   notes: Sequelize.TEXT
 });
 
-OnSite.belongsTo(Application, {
-  foreignKey: application_id,
-  constraints: false
-});
-
-Application.hasMany(OnSite);
-
 var PhoneScreen = db.define('PhoneScreens', {
   application_id: Sequelize.INTEGER,
   interviewer: Sequelize.STRING,
@@ -93,6 +60,54 @@ var PhoneScreen = db.define('PhoneScreens', {
   status:Sequelize.STRING,
   notes: Sequelize.TEXT
 });
+
+User.hasMany(Application, {
+  foreignKey: 'user_id'
+});
+
+Application.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+Company.hasMany(Application, {
+  foreignKey: 'company_id'
+});
+
+Application.belongsTo(Company, {
+  foreignKey: 'company_id'
+});
+
+Backlog.belongsTo(Application, {
+  foreignKey: 'application_id',
+  constraints: false
+});
+
+Application.hasOne(Backlog, {
+  foreignKey: 'application_id'
+});
+
+AppSubmit.belongsTo(Application, {
+  foreignKey: 'application_id',
+  constraints: false
+});
+
+Application.hasOne(AppSubmit, {
+  foreignKey: 'application_id'
+});
+
+Offer.belongsTo(Application, {
+  foreignKey: application_id,
+  constraints: false
+});
+
+Application.hasOne(Offer);
+
+OnSite.belongsTo(Application, {
+  foreignKey: application_id,
+  constraints: false
+});
+
+Application.hasMany(OnSite);
 
 PhoneScreen.belongsTo(Application, {
   foreignKey: application_id,
