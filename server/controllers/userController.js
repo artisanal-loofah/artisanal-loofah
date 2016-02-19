@@ -23,13 +23,16 @@ module.exports = {
           linkedin_id: userData.id,
           picture_url: userData.pictureUrl
         };
+
+        var username = newUser.firstName + ' ' + newUser.lastName
         
         console.log('i should already exist but im getting called wtf man')
 
-        User.post(newUser, function () {
+        User.post(username, function () {
+          console.log('username be lookin like: ', username);
           res.statusCode = 201;
           res.end();
-        });
+        })
       } else {
         console.log('okay its actually stored somewhere')
         res.statusCode = 404;
