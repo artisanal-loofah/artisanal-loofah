@@ -1,4 +1,6 @@
-angular.module('huntApp', ['huntCtrl', 'ngRoute'])
+angular.module('huntApp', [
+  'hunt.users',
+  'ngRoute'])
 
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -7,7 +9,7 @@ angular.module('huntApp', ['huntCtrl', 'ngRoute'])
     })
     .when('/main', {
       templateUrl: 'app/home/main.html',
-      controller: 'huntCtrl'
+      controller: 'UserController'
     })
     .otherwise({
       redirectTo: '/main'

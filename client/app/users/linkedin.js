@@ -12,7 +12,7 @@ function onLinkedInLogout() {
 }
 
 function onLinkedInLogin() {
-  angular.element(document.getElementById("appBody")).scope().$apply(
+  angular.element(document.getElementById("userBody")).scope().$apply(
     function($scope) {
       $scope.getLinkedInData();
     }
