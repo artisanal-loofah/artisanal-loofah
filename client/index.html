@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="huntApp" xmlns:ng="http://angularjs.org">
+<html ng-app="huntApp">
   <head>
     <meta charset="utf-8" />
     <title> Greenfield project </title>
@@ -16,21 +16,18 @@
     <script src="app/users/linkedin.js"></script>
     
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-      api_key: 98eeeu4fd587w4
-      onLoad: onLinkedInLoad
+      api_key: 75hjn5k2loenpm
       authorize: true
+      onLoad: onLinkedInLoad
     </script>
   </head>
  
-    <body ng-controller="huntCtrl", id="appBody">
+  <body ng-controller="huntCtrl", id="appBody">
 
-      <ng:include src="app/home/header.html"></ng:include>
+      <ng:include src="'app/home/header.html'"></ng:include>
 
       <div class="container">
-        
         <ng:view></ng:view>
-      
-
       </div>
 
 

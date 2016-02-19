@@ -1,24 +1,23 @@
 angular.module('huntCtrl', [])
 
 .controller('huntCtrl', function HuntCtrl($scope, $location, $rootScope, $http) {
+  
   $scope.getLinkedInData = function () {
-    if (!$scope.hasOwnProperty('userprofile')) {
-      IN.API.Profile("user").fields(
-        ['id', 'firstName', 'lastName', 'pictureUrl'])
-      .result(function (result) {
-        $rootScope.apply(function () {
-          var userprofile = result.value[0];
+    if(!$scope.hasOwnProperty("userprofile")){
+      IN.API.Profile("me").fields(
+          [ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl" ])
+        .result(function(result) {
+        $rootScope.$apply(function() {
+          var userprofile =result.values[0]
           $rootScope.userprofile = userprofile;
           $rootScope.loggedUser = true;
-          $location.path('/main');
-
+          $location.path("/main");
         });
-      }).error(function (error) {
-        $scope.error = error;
-        console.error(error);
-      })
+      }).error(function(err) {
+        $scope.error = err;
+      });
     }
-  }
+  };
 
   $scope.logoutLinkedIn = function () {
     IN.User.logout();
