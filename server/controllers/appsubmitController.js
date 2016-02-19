@@ -16,6 +16,13 @@ module.exports = {
     });
   },
 
+  editApp: function (request, response, next) {
+    AppSubmit.modify(request.body.application_id, function () {
+      response.statusCode = 201;
+      response.end();
+    })
+  },
+
   getApp: function (request, response, next) {
     AppSubmit.getInfo(request.body.application_id, function (data) {
       response.statusCode = 201;
@@ -23,11 +30,11 @@ module.exports = {
     });
   },
 
-  editApp: function (request, response, next) {
-    AppSubmit.modify(request.body.application_id, function () {
+  getAllApps: function (request, response, next) {
+    AppSubmit.getAllApps({}, function (data) {
       response.statusCode = 201;
-      response.end();
+      response.send(data);
     })
   }
-
+  
 };
