@@ -3,8 +3,8 @@ var AppSubmit = require('../db/schemas/appsubmit');
 module.exports = {
 
   createNew: function (data, callback) {
-    AppSubmit.create(data).then(function (app) {
-      callback(app.get('application_id'))
+    AppSubmit.create(data).then(function (appSubmit) {
+      callback(appSubmit.get('id'))
     })
   },
 
@@ -13,6 +13,24 @@ module.exports = {
     .then(function (app) {
       callback(app);
     });
+  },
+
+  getAllApps: function (callback) {
+
+  },
+
+  modify: function (data, callback) {
+    AppSubmit.find({ where: {application_id: data.application_id}})
+    .on('success', function (appsubmit) {
+      if (appsubmit) {
+        appsubmit.updateAttributes({
+          notes: data.notes,
+          status: data.status
+        }).success(function () {
+          console.log("appsubmit successfully updated");
+        });
+      }
+    })
   }
 
 };
