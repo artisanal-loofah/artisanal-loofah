@@ -16,7 +16,6 @@ module.exports = {
     User.get(userData.id, function (user) {
 
       if (user.length === 0) {
-
         var newUser = {
           first_name: userData.firstName,
           last_name: userData.lastName,
@@ -36,29 +35,5 @@ module.exports = {
         res.end();
       }
     });
-
-    // res.statusCode =201;
-    // res.end();
-
-  //   User.get(req.body.linkedin_id, function (user) {
-  //     if (user.length === 0) {
-
-
-  //       // var newUser = {
-  //       //   firstName: req.body.firstName,
-  //       //   lastName: req.body.lastName,
-  //       //   linkedin_id: req.body.linkedin_id,
-  //       //   picture_url: req.body.picture_url
-  //       // };
-
-		// 		// User.post(username, function() {
-		// 		// 	res.statusCode = 201;
-		// 		// 	res.end(); 
-		// 		// });
-		// 	} else {
-		// 		res.statusCode = 409;
-		// 		res.end();
-		// 	}
-		// });	
 	}
 };
