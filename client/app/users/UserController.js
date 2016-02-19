@@ -21,6 +21,7 @@ angular.module('hunt.users', [])
   };
 
   $scope.logoutLinkedIn = function () {
+    console.log('what the fuck man')
     IN.User.logout();
     delete $rootScope.userprofile;
     $rootScope.loggedUser = false;
