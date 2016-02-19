@@ -8,7 +8,7 @@ angular.module('huntApp', [
   'hunt.offers',
   'ngRoute'])
 
-.config(function ($routeProvider, $locationProvider) {
+.config(function ($routeProvider, $locationProvider, $httpProvider) {
    $routeProvider
    .when('/signin', {
      templateUrl: 'app/users/signin.html'
@@ -20,5 +20,22 @@ angular.module('huntApp', [
    .otherwise({
      redirectTo: '/signin'
    });
- }
-);
+
+   $httpProvider.interceptors.push('AttachTokens');
+ 
+})
+
+.factory('AttachTokens', function ($window) {
+    var attach = {
+    request: function (object) {
+      console.log('are we attaching tokens? :', object);
+      var jwt = $window.localStorage.getItem('com.token');
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+  return attach;
+})
