@@ -15,8 +15,10 @@ module.exports = {
     });
   },
 
-  getAllApps: function (callback) {
-
+  getAllApps: function (data, callback) {
+    AppSubmit.findAll({}).then(function (appsubmits) {
+      callback(appsubmits);
+    })
   },
 
   modify: function (data, callback) {
