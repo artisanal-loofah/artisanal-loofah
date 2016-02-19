@@ -5,7 +5,7 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/hu
 var sequelize = new Sequelize(connectionString);
 
 // Most fields populated from LinkedIn API
-var User = db.define('users', {
+var User = db.define('Users', {
 	first_name: Sequelize.STRING,
 	last_name: Sequelize.STRING,
 	email: Sequelize.STRING,
@@ -14,11 +14,11 @@ var User = db.define('users', {
 	picture_url: Sequelize.STRING
 });
 
-var Company = db.define('companies', {
+var Company = db.define('Companies', {
 	name: Sequelize.STRING
 });
 
-var Application = db.define('applications', {
+var Application = db.define('Applications', {
 	user_id: Sequelize.INTEGER,
 	company_id: Sequelize.INTEGER,
   	job_title: Sequelize.STRING
@@ -42,12 +42,16 @@ Backlog.belongsTo(Application, {
 });
 Application.hasMany(Backlog, {foreignKey: 'application_id'});
 
+Application.hasMany(AppSubmit, {foreignKey: 'application_id'});
+
 User.sync();
 Company.sync();
 Application.sync();
 Backlog.sync();
+AppSubmit.sync()
 
 module.exports.User = User;
 module.exports.Company = Company;
 module.exports.Application = Application;
 module.exports.Backlog = Backlog;
+module.exports.AppSubmit = AppSubmit;
