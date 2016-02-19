@@ -2,7 +2,7 @@ var pg = require('pg');
 var Sequelize = require('sequelize');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/hunt';
 
-var sequelize = new Sequelize(connectionString);
+var db = new Sequelize(connectionString);
 
 // Most fields populated from LinkedIn API
 var User = db.define('Users', {
@@ -67,7 +67,7 @@ Offer.belongsTo(Application, {
   foreignKey: application_id,
   constraints: false
 });
-Application.hasMany(Offer);
+Application.hasOne(Offer);
 
 
 var OnSite = db.define('OnSites', {
