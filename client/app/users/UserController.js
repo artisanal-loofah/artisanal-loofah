@@ -8,7 +8,7 @@ $scope.userData = {};
 
    if(!$scope.hasOwnProperty("userprofile")){
      IN.API.Profile("me").fields(
-         [ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl" ])
+         [ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
        .result(function(result) {
          $window.localStorage.setItem('com.token', null);
        $rootScope.$apply(function() {

@@ -21,7 +21,8 @@ module.exports = {
           first_name: userData.firstName,
           last_name: userData.lastName,
           linkedin_id: userData.id,
-          picture_url: userData.pictureUrl
+          picture_url: userData.pictureUrl,
+          headline: userData.headline
         };
 
         User.post(newUser, function () {

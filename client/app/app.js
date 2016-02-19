@@ -28,7 +28,7 @@ angular.module('huntApp', [
 .factory('AttachTokens', function ($window) {
     var attach = {
     request: function (object) {
-      console.log('are we attaching tokens? :', object);
+     // console.log('are we attaching tokens? :', object);
       var jwt = $window.localStorage.getItem('com.token');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
