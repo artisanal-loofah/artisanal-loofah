@@ -22,7 +22,6 @@ angular.module('huntApp', [
    });
 
    $httpProvider.interceptors.push('AttachTokens');
- 
 })
 
 .factory('AttachTokens', function ($window) {
