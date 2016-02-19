@@ -1,5 +1,6 @@
 var User = require('../models/user');
 
+
 module.exports = {
 	get: function (req, res) {
 		var linkedin_id = req.body.linkedin_id;
@@ -8,10 +9,36 @@ module.exports = {
 		});
 	},
 	post: function (req, res) {
-    console.log('body--->', req.body);
-    console.log('data--->', req.data);
-    res.statusCode =201;
-    res.end();
+    var userData = req.body;
+
+    console.log('userdata: ', userData);
+
+    User.get(userData.id, function (user) {
+
+      if (user.length === 0) {
+
+        var newUser = {
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          linkedin_id: userData.id,
+          picture_url: userData.pictureUrl
+        };
+        
+        console.log('i should already exist but im getting called wtf man')
+
+        User.post(newUser, function () {
+          res.statusCode = 201;
+          res.end();
+        });
+      } else {
+        console.log('okay its actually stored somewhere')
+        res.statusCode = 404;
+        res.end();
+      }
+    });
+
+    // res.statusCode =201;
+    // res.end();
 
   //   User.get(req.body.linkedin_id, function (user) {
   //     if (user.length === 0) {
