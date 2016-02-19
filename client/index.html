@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="huntApp">
+<html ng-app="huntApp" xmlns:ng="http://angularjs.org">
   <head>
     <meta charset="utf-8" />
     <title> Greenfield project </title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
-
 <!--     Insert factory locations here  -->
 
     <script src="app/app.js"></script>
@@ -16,20 +16,15 @@
     <script src="app/users/linkedin.js"></script>
     
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-      //here goes the api key, and the callback function
-      //api_key: mk7d07jliqob
-      api_key: '75hjn5k2loenpm'
-      onLoad: 'onLinkedInLoad'
+      api_key: 98eeeu4fd587w4
+      onLoad: onLinkedInLoad
       authorize: true
     </script>
-
-
   </head>
  
-  <body>
     <body ng-controller="huntCtrl", id="appBody">
 
-      <ng:include src="home/header.html"></ng:include>
+      <ng:include src="app/home/header.html"></ng:include>
 
       <div class="container">
         
@@ -37,8 +32,6 @@
       
 
       </div>
-
-
 
 
   </body>
