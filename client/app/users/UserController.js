@@ -4,6 +4,8 @@ angular.module('hunt.users', [])
  
  $scope.getLinkedInData = function () {
 
+$scope.userData = {};
+
    if(!$scope.hasOwnProperty("userprofile")){
      IN.API.Profile("me").fields(
          [ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl" ])
@@ -11,7 +13,9 @@ angular.module('hunt.users', [])
          $window.localStorage.setItem('com.token', null);
        $rootScope.$apply(function() {
          $rootScope.userprofile = result.values[0];
+         $scope.userData = result.values[0];
          $rootScope.loggedUser = true;
+         $scope.saveUser();
          $location.path("/main");
        });
      }).error(function(err) {
@@ -27,4 +31,14 @@ angular.module('hunt.users', [])
    $window.localStorage.removeItem('com.token');
    $location.path('/signin');
  }
+
+ $scope.saveUser = function () {
+  $http({
+    method: 'POST',
+    url: 'api/users',
+    data: $scope.userData
+  }).then(function (error) {
+    console.error(error);
+  });
+ } 
 })
