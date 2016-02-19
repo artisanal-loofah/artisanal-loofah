@@ -30,6 +30,12 @@ var Backlog = db.define('Backlog', {
   status: Sequelize.String
 });
 
+var AppSubmit = db.define('AppSubmit', {
+  application_id: Sequelize.INTEGER,
+  notes: Sequelize.TEXT,
+  status: Sequelize.String
+});
+
 User.hasMany(Application, {foreignKey: 'user_id'});
 Application.belongsTo(User, {foreignKey: 'user_id'});
 
@@ -41,6 +47,11 @@ Backlog.belongsTo(Application, {
   constraints: false
 });
 Application.hasMany(Backlog, {foreignKey: 'application_id'});
+
+AppSubmit.belongsTo(Application, {
+  foreignKey: 'application_id',
+  constraints: false
+});
 
 Application.hasMany(AppSubmit, {foreignKey: 'application_id'});
 
