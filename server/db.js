@@ -58,7 +58,7 @@ Application.hasMany(AppSubmit, {foreignKey: 'application_id'});
 var Offer = db.define('Offers', {
   application_id: Sequelize.INTEGER,
   salary: Sequelize.INTEGER,
-  deadline: Sequelize.STRING,
+  deadline: Sequelize.DATE,
   status: Sequelize.STRING,
   notes: Sequelize.TEXT
 });
@@ -89,7 +89,7 @@ Application.hasMany(OnSite);
 var PhoneScreen = db.define('PhoneScreens', {
   application_id: Sequelize.INTEGER,
   interviewer: Sequelize.STRING,
-  date_time: Sequelize.STRING,
+  date_time: Sequelize.DATE,
   status:Sequelize.STRING,
   notes: Sequelize.TEXT
 });
