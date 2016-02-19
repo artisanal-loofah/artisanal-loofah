@@ -17,14 +17,15 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
-// Router
-var router = require('./server/routes');
-app.use(router);
-
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
+
+// Router
+var router = require('./server/routes');
+app.use(router);
+
 
 // Set up our routes
 // app.use('/classes', router);
