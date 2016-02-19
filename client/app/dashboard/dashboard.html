@@ -1,1 +1,23 @@
 <!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
+
+
+
+
+
+
+
+<div id="appsubmit" ng-controller="AppSubmitController">
+    <ul class="appsubmitList">
+      <li ng-repeat="apps in appSubmitList track by $index">
+        <div class='info'>
+
+        <div class='appId'></div>
+        <div class='company'></div>
+        <div class='position'></div>
+        <div class='status'></div>
+        <div class='notes'></div>
+
+        </div>
+      </li>
+    </ul>
+</div>
