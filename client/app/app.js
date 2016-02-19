@@ -9,6 +9,8 @@ angular.module('huntApp', [
   'hunt.onSite',
   'hunt.offers',
   'ngRoute'])
+ 'hunt.users',
+ 'ngRoute'])
 
 .config(function ($routeProvider, $locationProvider) {
    $routeProvider
