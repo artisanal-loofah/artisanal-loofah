@@ -37,7 +37,7 @@ $scope.userData = {};
     method: 'POST',
     url: 'api/users',
     data: $scope.userData
-  }).then(function (error) {
+  }).catch(function (error) {
     console.error(error);
   });
  } 
