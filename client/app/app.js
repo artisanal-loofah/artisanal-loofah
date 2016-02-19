@@ -1,6 +1,4 @@
 angular.module('huntApp', [
- 'hunt.users',
- 'ngRoute'])
   'hunt.users',
   'hunt.services',
   'hunt.backlog',
@@ -9,8 +7,6 @@ angular.module('huntApp', [
   'hunt.onSite',
   'hunt.offers',
   'ngRoute'])
- 'hunt.users',
- 'ngRoute'])
 
 .config(function ($routeProvider, $locationProvider) {
    $routeProvider
