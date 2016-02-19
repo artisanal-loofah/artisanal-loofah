@@ -11,8 +11,6 @@ module.exports = {
 	post: function (req, res) {
     var userData = req.body;
 
-    console.log('userdata: ', userData);
-
     User.get(userData.id, function (user) {
 
       if (user.length === 0) {
