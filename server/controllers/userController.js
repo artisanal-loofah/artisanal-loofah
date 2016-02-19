@@ -23,7 +23,6 @@ module.exports = {
         };
 
         User.post(newUser, function () {
-          console.log('newuser should be sent to models...')
           res.statusCode = 201;
           res.end();
         })

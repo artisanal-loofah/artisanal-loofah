@@ -1,7 +1,6 @@
 angular.module('hunt.users', [])
 
 .controller('UserController', function huntUsers($scope, $location, $rootScope, $http, $window) {
- 
 
   $scope.getLinkedInData = function () {
     $scope.userData = {};
@@ -39,5 +38,7 @@ angular.module('hunt.users', [])
     }).catch(function (error) {
       console.error(error);
     });
-  } 
+  }
+
+   
 });
