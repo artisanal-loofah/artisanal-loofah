@@ -8,8 +8,8 @@ module.exports = {
       callback(user);
     });
   },
-  post: function (username, callback) {
-    User.create({name: username}).then(function(user){
+  post: function (user, callback) {
+    User.create(user).then(function(user){
       callback(user.get('id'));
     });
   }

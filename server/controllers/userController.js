@@ -18,24 +18,20 @@ module.exports = {
       if (user.length === 0) {
 
         var newUser = {
-          firstName: userData.firstName,
-          lastName: userData.lastName,
+          first_name: userData.firstName,
+          last_name: userData.lastName,
           linkedin_id: userData.id,
           picture_url: userData.pictureUrl
         };
 
-        var username = newUser.firstName + ' ' + newUser.lastName
-        
-        console.log('i should already exist but im getting called wtf man')
-
-        User.post(username, function () {
-          console.log('username be lookin like: ', username);
+        User.post(newUser, function () {
+          console.log('newuser should be sent to models...')
           res.statusCode = 201;
           res.end();
         })
       } else {
-        console.log('okay its actually stored somewhere')
-        res.statusCode = 404;
+        console.log('user already exists')
+        res.statusCode = 409;
         res.end();
       }
     });
