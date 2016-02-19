@@ -1,11 +1,8 @@
-// var controller = require('./controllers');
 var router = require('express').Router();
+var userController = require('./controllers/userController');
 
 //Connect controller methods to their corresponding routes
-// router.get('/users', controller.users.get);
-
-// router.post('/users', controller.users.post);
-
+router.get('/api/users', userController.get);
+router.post('/api/users', userController.post);
 
 module.exports = router;
-

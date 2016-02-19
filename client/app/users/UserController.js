@@ -33,9 +33,10 @@ $scope.userData = {};
  }
 
  $scope.saveUser = function () {
+  console.log('USER DATA--->', $scope.userData);
   $http({
     method: 'POST',
-    url: 'api/users',
+    url: '/api/users',
     data: $scope.userData
   }).catch(function (error) {
     console.error(error);
