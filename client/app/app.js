@@ -1,4 +1,4 @@
-angular.module('hunt', [
+var huntApp = angular.module('hunt', [
   'hunt.users'])
 
 
