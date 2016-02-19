@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="huntApp">
   <head>
     <meta charset="utf-8" />
     <title> Greenfield project </title>
@@ -11,23 +11,25 @@
 
 <!--     Insert factory locations here  -->
 
-    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-      //here goes the api key, and the callback function
-      api_key: 75hjn5k2loenpm
-      onLoad: onLinkedInLoad
-      authorize: true
-    </script>
-
     <script src="app/app.js"></script>
     <script src="app/users/UserController.js"></script>
     <script src="app/users/linkedin.js"></script>
+    
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      //here goes the api key, and the callback function
+      //api_key: mk7d07jliqob
+      api_key: '75hjn5k2loenpm'
+      onLoad: 'onLinkedInLoad'
+      authorize: true
+    </script>
+
 
   </head>
  
   <body>
-    <body ng-controller="appCtrl", id="appBody">
+    <body ng-controller="huntCtrl", id="appBody">
 
-      <ng:include src="'home/header.html'"></ng:include>
+      <ng:include src="home/header.html"></ng:include>
 
       <div class="container">
         

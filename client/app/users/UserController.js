@@ -1,24 +1,30 @@
-angular.module('hunt.users', [])
+angular.module('huntCtrl', [])
 
-.controller('UserController', function ($scope, $window, $location, UserFactory) {
+.controller('huntCtrl', function HuntCtrl($scope, $location, $rootScope, $http) {
+  $scope.getLinkedInData = function () {
+    if (!$scope.hasOwnProperty('userprofile')) {
+      IN.API.Profile("user").fields(
+        ['id', 'firstName', 'lastName', 'pictureUrl'])
+      .result(function (result) {
+        $rootScope.apply(function () {
+          var userprofile = result.value[0];
+          $rootScope.userprofile = userprofile;
+          $rootScope.loggedUser = true;
+          $location.path('/main');
 
-  $scope.linkedinMsg = {};
-  $scope.showLinkedinLogin = true;
-  $scope.showEmailForm = true;
+        });
+      }).error(function (error) {
+        $scope.error = error;
+        console.error(error);
+      })
+    }
+  }
 
-  $scope.signIn = function (data) {
-    console.log('profile data from cb: ', data);
-  };
-
-  $scope.signOut = function () {
-    UserFactory.signOut();
-  };
-
-})
-
-.factory('UserFactory', function ($http) {
-
-
-
+  $scope.logoutLinkedIn = function () {
+    IN.User.logout();
+    delete $rootScope.userprofile;
+    $rootScope.loggedUser = false;
+    $location.path('/signin');
+  }
 
 })

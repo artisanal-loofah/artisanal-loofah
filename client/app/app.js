@@ -1,19 +1,16 @@
-var huntApp = angular.module('hunt', [
-  'hunt.users'])
+angular.module('huntApp', ['huntCtrl', 'ngRoute'])
 
-
-.config(['$routeProvider', '$locationProvider', '$httpProvider', 
-  function ($routerProvider, $locationProvider) {
-    $routerProvider
+.config(function ($routeProvider, $locationProvider) {
+    $routeProvider
     .when('/signin', {
-      templateUrl: 'users/signin.html'
+      templateUrl: 'app/users/signin.html'
     })
     .when('/main', {
-      templateUrl: 'home/main.html',
-      controller: 'UserController'
+      templateUrl: 'app/home/main.html',
+      controller: 'huntCtrl'
     })
     .otherwise({
-      redirectTo: '/signin'
+      redirectTo: '/main'
     });
   }
-]);
+);
