@@ -9,8 +9,8 @@ module.exports = {
     });
   },
   post: function (username, callback) {
-    User.create({name: username}).then(function(user){
-      callback(user.get('id'));
-    });
+    // User.create({name: username}).then(function(user){
+    //   callback(user.get('id'));
+    // });
   }
 };
