@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html ng-app='main'>
+<html ng-app="huntApp">
   <head>
     <meta charset="utf-8" />
     <title> Greenfield project </title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  </head>
-    <body>
 
-    <div ng-view></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
-
 <!--     Insert factory locations here  -->
+    <script src="app/users/UserController.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/users/UserController.js"></script>
+    <script src="app/users/linkedin.js"></script>
+    
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      api_key: 75hjn5k2loenpm
+      authorize: true
+      onLoad: onLinkedInLoad
+    </script>
+  </head>
+ 
+  <body>
+   <div class='users' ng-controller="UserController" id="userBody">
+      <ng:include src="'app/home/header.html'"></ng:include>
+    </div>
+
+      <div class="container">
+        <ng:view></ng:view>
+      </div>
 
 
   </body>
