@@ -3,6 +3,16 @@ var express = require('express');
 // Database
 var db = require('./db');
 
+// Load models
+var User = require('./models/user');
+var Company = require('./models/company');
+var Application = require('./models/application');
+var Backlog = require('./models/backlog');
+var AppSubmit = require('./models/appsubmit');
+var PhoneScreen = require('./models/phonescreen');
+var OnSite = require('./models/onsite');
+var Offer = require('./models/Offer');
+
 // Middleware
 var morgan = require('morgan');
 var parser = require('body-parser');
