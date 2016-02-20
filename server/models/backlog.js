@@ -5,17 +5,25 @@ module.exports = {
 
   get: function (callback) {
     Backlog.findAll({})
-      .then(function(backlogs) {
+      .then(function (backlogs) {
         callback(backlogs);
       });
   },
 
   post: function (backlog, callback) {
     Backlog.create(backlog)
-      .then(function(backlog){
+      .then(function (backlog) {
         console.log('Backlog post function ran in backlog models, successfully created backlog!');
         callback();
-    });
+      });
+  },
+
+  update: function (backlog, callback) {
+    Backlog.update(backlog)
+      .then(function (backlog) {
+        console.log('Backlog update function ran in backlog models, successfully updated backlog!');
+        callback();
+      });
   }
   
 };

@@ -25,6 +25,21 @@ module.exports = {
 
   removeBacklog: function () {
 
+  },
+
+  updateBacklog: function (req, res) {
+    var userData = req.body;
+
+    var updatedBacklog = {
+      notes: userData.notes,
+      status: userData.status
+    }
+
+    Backlog.update(updatedBacklog, function () {
+      console.log('updatedBacklog function in server ctrl executed..');
+      res.statusCode = 201;
+      res.end();
+    });
   }
 
 };

@@ -16,9 +16,21 @@ angular.module('hunt.services', [])
       console.log('GET request to /api/backlogs/ successful! The response is: ', resp.data);
       return resp.data;
     });
-  }
+  };
 
   var submitBacklogChanges = function (backlog) {
+    return $http({
+      method: 'PUT',
+      url: '/api/backlogs',
+      data: backlog
+    })
+    .then(function (resp) {
+      console.log('PUT request to /api/backlogs successful! The response is: ', resp);
+      return resp;
+    });
+  };
+
+  var addBacklog = function (backlog) {
     return $http({
       method: 'POST',
       url: '/api/backlogs',
@@ -28,11 +40,12 @@ angular.module('hunt.services', [])
       console.log('POST request to /api/backlogs successful! The response is: ', resp);
       return resp;
     });
-  }
+  };
 
   return {
     getBacklogs: getBacklogs,
-    submitBacklogChanges: submitBacklogChanges
+    submitBacklogChanges: submitBacklogChanges,
+    addBacklog: addBacklog
   }
 })
 
