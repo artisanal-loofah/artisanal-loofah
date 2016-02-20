@@ -28,7 +28,7 @@ angular.module('hunt.backlog', [])
       status: $scope.backlogStatus
     };
 
-    Backlog.submitBacklogChanges(backlogChanges)
+    Backlog.submitBacklogChanges($scope.backlogChanges)
       .then(function () {
         console.log('Backlog changes submitted!');
         $location.path('/main');

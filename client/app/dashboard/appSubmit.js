@@ -20,7 +20,6 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     AppSubmitFactory.removeApp(target);
   };
 
-
   $scope.getAppSubmits();
 })
 
