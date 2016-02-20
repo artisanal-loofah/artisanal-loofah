@@ -1,20 +1,23 @@
 angular.module('hunt.services', [])
-  .factory('Application', function($http) {
-    var addApplication = function(appData) {
-      console.log('in services');
-      return $http({
-          method: 'POST',
-          url: '/api/application',
-          data: appData
-        })
-        .then(function(resp) {
-          return resp.data;
-        });
-    };
-
-<<<<<<< 2993cad214ab1230b6ba38ddedf6d1467fe5884e
 .factory('Dashboard', function($http) {
 
+})
+.factory('Application', function($http) {
+  var addApplication = function(appData) {
+    console.log('in services');
+    return $http({
+        method: 'POST',
+        url: '/api/application',
+        data: appData
+      })
+      .then(function(resp) {
+        return resp.data;
+      });
+  };
+
+  return {
+    addApplication: addApplication
+  };
 })
 
 .factory('Backlog', function ($http) {
@@ -93,19 +96,5 @@ angular.module('hunt.services', [])
     getUser: getUser,
     createUser: createUser
   };
-})
-.factory('Application', function($http){
-  var addApplication = function(){
-    console.log('in services');
-  };
-
-  return {
-    addApplication: addApplication
-  };
 });
-=======
-    return {
-      addApplication: addApplication
-    };
-  });
->>>>>>> add additional routes to routes.js and add applicationController to handle post request coming from the jobSearch bar
+
