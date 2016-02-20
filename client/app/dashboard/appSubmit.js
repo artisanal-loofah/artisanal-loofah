@@ -6,7 +6,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
   $scope.getAppSubmits = function () {
     AppSubmitFactory.findAll().then(function (data) {
-      $scope.appSubmistList = data;
+      $scope.appSubmitList = data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -17,7 +17,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.removeApp = function (target) {
-    AppSubmitFactory.removeApp(target);
+    AppSubmitFactory.edit(target);
   };
 
   $scope.getAppSubmits();
