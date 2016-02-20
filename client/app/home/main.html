@@ -2,33 +2,17 @@
   Logged in as <a ng-href="{{userprofile.publicProfileUrl}}" 
   class="navbar-link">{{userprofile.firstName}} {{userprofile.lastName}}</a>
 </span>
-
 <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
-
-<div ng-controller="ApplicationController">
-	<input type="text" ng-model="jobTitle">
-	<input type="text" ng-model="company">
-	<button ng-click="addApplication()">Submit</button>
-
-	<h1>test</h1>
-	<h2>{{company}}</h2>
-	<h1>this should say {{user}}</h1>
-</div>
-
-
 <div class="container">
   <h1>You are now logged in as {{userprofile.firstName}} {{userprofile.lastName}}</h1>
-
-  <a href="{{userprofile.publicProfileUrl}}" target="_blank"> 
-    <img class="userimage" ng-src="{{userprofile.pictureUrl}}"/>
+  <br>
+  <div class='applicationInputBar' ng-controller="ApplicationController" id="applicationInputsBar">
+    <ng:include src="'app/dashboard/jobBar.html'"></ng:include>
+  </div>
+  <div class='backlog' ng-controller="BacklogController" id="backlog">
+    <ng:include src="'app/dashboard/dashboard.html'"></ng:include>
+  </div>
+  <a href="{{userprofile.publicProfileUrl}}" target="_blank">
+    <img class="userimage" ng-src="{{userprofile.pictureUrl}}" />
   </a>
-</div>
-
-
-
-<div class='backlog' ng-controller="BacklogController" id="backlog">
-  <ng:include src="'app/dashboard/dashboard.html'"></ng:include>
-</div>
-
-<hr>
 </div>
