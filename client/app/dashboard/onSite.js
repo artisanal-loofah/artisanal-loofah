@@ -14,5 +14,20 @@ angular.module('hunt.onSite', [])
 })
 
 .factory('OnSiteFactory', function ($http) {
+  var findAll = function (callback) {
+    return $http({
+      method: 'GET',
+      url: '/api/onsites'
+    }).then(function (response) {
+      if (callback) {
+        return callback(response.data);
+      } else {
+        return response.data;
+      }
+    })
+  };
 
+  return {
+    findAll: findAll
+  }
 });
