@@ -12,7 +12,7 @@ module.exports = {
     PhoneScreen.findOne({ where: {application_id: data.application_id}})
     .on('success', function (phoneScreen) {
       if (phoneScreen) {
-        phoneScreen.updateAttributes(data)
+        phoneScreen.update(data)
         .success(function () {
           console.log("phoneScreen successfully updated");
           callback();

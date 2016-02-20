@@ -25,7 +25,7 @@ module.exports = {
     AppSubmit.findOne({ where: {application_id: data.application_id}})
     .on('success', function (appsubmit) {
       if (appsubmit) {
-        appsubmit.updateAttributes(data)
+        appsubmit.update(data)
         .success(function () {
           console.log("appsubmit successfully updated");
           callback();
