@@ -5,7 +5,7 @@ angular.module('hunt.users', [])
 
   $scope.getLinkedInData = function () {
     $scope.userData = {};
-    $scope.user = {};
+    $rootScope.user = {};
 
     if(!$scope.hasOwnProperty("userprofile")){
       IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
@@ -21,15 +21,15 @@ angular.module('hunt.users', [])
           .then(function(res) {
             // test if user is empty object
             if (res.data) {
-              $scope.user = res.data;
+              $rootScope.user = res.data;
             } else {
-              $scope.user = User.createUser($scope.userData);
+              $rootScope.user = User.createUser($scope.userData);
             }
             $location.path("/main");
           })
           .catch(function(err) {
             console.error(err);
-          })
+          });
 
         });
       }).error(function(err) {
