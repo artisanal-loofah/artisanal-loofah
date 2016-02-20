@@ -41,20 +41,9 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 201
+      response.status = 200
       return response;
     });
-  };
-
-  var removeApp = function (data) {
-    return $http({
-      method: 'POST',
-      url: 'api/appsubmits',
-      data: data
-    }).then(function (response) {
-      response.status = 201
-      return response;
-    })
   };
 
   var edit = function (data) {
@@ -63,7 +52,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 201
+      response.status = 200
       return response;
     })
   }
@@ -71,7 +60,6 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   return {
     findAll: findAll,
     addNew: addNew,
-    remove: remove,
     edit: edit
   }
 
