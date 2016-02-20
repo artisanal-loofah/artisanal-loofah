@@ -20,8 +20,8 @@ angular.module('hunt.services', [])
 
   var submitBacklogChanges = function (backlog) {
     return $http({
-      method: 'POST',
-      url: '/api/backlogs/edit',
+      method: 'PUT',
+      url: '/api/backlogs',
       data: backlog
     })
     .then(function (resp) {

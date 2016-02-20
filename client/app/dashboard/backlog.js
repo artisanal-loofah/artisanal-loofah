@@ -3,7 +3,7 @@ angular.module('hunt.backlog', [])
 .controller('BacklogController', function ($scope, $location, Backlog) {
 
   $scope.backlog = {};
-  $scope.backlogs = '';
+  $scope.backlogs = [];
 
   var initializeBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
@@ -18,12 +18,12 @@ angular.module('hunt.backlog', [])
   }
 
   $scope.addBacklog = function () {
-    $scope.newBacklog = {
+    var newBacklog = {
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
 
-    Backlog.addBacklog($scope.newBacklog)
+    Backlog.addBacklog(newBacklog)
       .then(function () {
         console.log('Backlog changes submitted!');
         $location.path('/main');
@@ -44,12 +44,12 @@ angular.module('hunt.backlog', [])
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
 
-    $scope.backlogChanges = {
+    var backlogChanges = {
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
 
-    Backlog.submitBacklogChanges($scope.backlogChanges)
+    Backlog.submitBacklogChanges(backlogChanges)
       .then(function () {
         console.log('Backlog changes submitted!');
         $location.path('/main');
