@@ -1,3 +1,10 @@
+<span class="navbar-text ">
+  Logged in as <a ng-href="{{userprofile.publicProfileUrl}}" 
+  class="navbar-link">{{userprofile.firstName}} {{userprofile.lastName}}</a>
+</span>
+
+<button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
+
 <div class="container">
   <h1>You are now logged in as {{userprofile.firstName}} {{userprofile.lastName}}</h1>
 
