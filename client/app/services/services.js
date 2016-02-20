@@ -4,7 +4,6 @@ angular.module('hunt.services', [])
 })
 .factory('Application', function($http) {
   var addApplication = function(appData) {
-    console.log('in services');
     return $http({
         method: 'POST',
         url: '/api/application',

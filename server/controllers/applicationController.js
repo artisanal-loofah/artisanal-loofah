@@ -1,6 +1,16 @@
 var Application = require('../models/application');
 var Company = require('../models/company');
 
+//Application response is needed twice in the create App function, depending on how company_id is set to the 
+//applicationData object
+var applicationResponse = function(applicationData, res) {
+  Application.post(applicationData, function(application){
+    res.statusCode = 201;
+    //server sends the client back the new application that was created in the database
+    res.json(application);
+  });
+};
+
 module.exports = {
   createApp: function(req, res) {
     console.log(req.body.company);
@@ -17,25 +27,16 @@ module.exports = {
         var newCompany = {
           name: companyName,
         };
-
         Company.post(newCompany, function(companyId) {
           //adding company_id property must be added to create an application, but is dependent on the Company query
           applicationData.company_id = companyId;
-
-          Application.post(applicationData, function(application) {
-            res.statusCode = 201;
-            res.json(application);
-          });
+          applicationResponse(applicationData, res);
         });
-
       } else {
         //Company.get returns the row from the query which contains the ID that must be added onto the applicationData object
         //to create a new application in the databse
         applicationData.company_id = company.id;
-        Application.post(applicationData, function(application) {
-          res.statusCode = 201;
-          res.json(application);
-        });
+        applicationResponse(applicationData, res);
       }
     });
   }

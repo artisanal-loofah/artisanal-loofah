@@ -8,6 +8,8 @@ angular.module('hunt.application', ['hunt.users'])
       jobTitle: $scope.jobTitle,
       company: $scope.company
     };
+    //sends applicationData Object to the Application Factory defined in the services folder which will 
+    //send a HTTP request to the server
     Application.addApplication(applicationData);
 
   };
