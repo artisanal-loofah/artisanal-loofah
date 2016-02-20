@@ -22,13 +22,11 @@ module.exports = {
   },
 
   modify: function (data, callback) {
-    AppSubmit.find({ where: {application_id: data.application_id}})
+    AppSubmit.findOne({ where: {application_id: data.application_id}})
     .on('success', function (appsubmit) {
       if (appsubmit) {
-        appsubmit.updateAttributes({
-          notes: data.notes,
-          status: data.status
-        }).success(function () {
+        appsubmit.updateAttributes(data)
+        .success(function () {
           console.log("appsubmit successfully updated");
           callback();
         });
