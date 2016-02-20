@@ -44,7 +44,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 200
+      // not sure if return needed; we'll see when called from backlogController
       return response;
     });
   };
@@ -55,7 +55,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 200
+      // not sure if return needed
       return response;
     })
   }
