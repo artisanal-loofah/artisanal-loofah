@@ -54,7 +54,7 @@ angular.module('hunt.onSite', [])
 
   var edit = function (onSiteListItem) {
     return $http({
-      method: 'POST',
+      method: 'PUT',
       url: 'api/onsites',
       data: onSiteListItem
     }).then(function (response) {

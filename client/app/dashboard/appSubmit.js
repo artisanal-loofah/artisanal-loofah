@@ -55,7 +55,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
   var edit = function (data) {
     return $http({
-      method: 'POST',
+      method: 'PUT',
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
