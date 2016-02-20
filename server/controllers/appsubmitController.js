@@ -17,7 +17,7 @@ module.exports = {
   },
 
   editApp: function (request, response, next) {
-    AppSubmit.modify(request.body.application_id, function () {
+    AppSubmit.modify(request.body, function () {
       response.statusCode = 204;
       response.end();
     })
