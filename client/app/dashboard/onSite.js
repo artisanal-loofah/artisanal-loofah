@@ -34,10 +34,40 @@ angular.module('hunt.onSite', [])
       } else {
         return response.data;
       }
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
+
+  var addNew = function (onSiteListItem) {
+    return $http({
+      method: 'POST',
+      url: 'api/onesites',
+      data: onSiteListItem
+    }).then(function (response) {
+      // not sure if return needed; we'll see when called from backlogController
+      return response;
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
+
+  var edit = function (onSiteListItem) {
+    return $http({
+      method: 'POST',
+      url: 'api/onsites',
+      data: onSiteListItem
+    }).then(function (response) {
+      // not sure if return needed
+      return response;
+    }).catch(function (error) {
+      console.error(error);
     })
   };
 
   return {
-    findAll: findAll
+    findAll: findAll,
+    addNew: addNew,
+    edit: edit
   }
 });
