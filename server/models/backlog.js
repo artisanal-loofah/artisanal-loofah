@@ -18,11 +18,21 @@ module.exports = {
       });
   },
 
-  update: function (backlog, callback) {
-    Backlog.update(backlog)
+  update: function (newProps, callback) {
+    console.log('hitting update');
+    Backlog.find({ where: { notes: newProps.notes } })
       .then(function (backlog) {
-        console.log('Backlog update function ran in backlog models, successfully updated backlog!');
-        callback();
+        if (backlog) {
+          console.log('update found');
+          backlog.update(newProps)
+            .then(function (backlog) {
+              console.log('Backlog update function ran in backlog models, successfully updated backlog!');
+              callback();
+            });
+        }
+      })
+      .catch(function (error) {
+        console.error('Error from udpate:', error);
       });
   }
   

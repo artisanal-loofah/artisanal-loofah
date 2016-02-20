@@ -8,6 +8,6 @@ router.post('/api/users', userController.post);
 
 router.get('/api/backlogs', backlogController.allBacklogs);
 router.post('/api/backlogs', backlogController.newBacklog);
-router.put('/api/backlogs', backlogController.updateBacklog);
+router.post('/api/backlogs/edit', backlogController.updateBacklog);
 
 module.exports = router;
