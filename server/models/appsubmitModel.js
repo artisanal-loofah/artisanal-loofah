@@ -9,7 +9,7 @@ module.exports = {
   },
 
   getInfo: function (application_id, callback) {
-    AppSubmit.findAll({ where: {application_id: application_id}})
+    AppSubmit.findOne({ where: {application_id: application_id}})
     .then(function (app) {
       callback(app);
     });

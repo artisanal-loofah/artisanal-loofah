@@ -9,7 +9,7 @@ module.exports = {
   },
 
   modify: function (data, callback) {
-    PhoneScreen.find({ where: {application_id: data.application_id}})
+    PhoneScreen.findOne({ where: {application_id: data.application_id}})
     .on('success', function (phoneScreen) {
       if (phoneScreen) {
         phoneScreen.updateAttributes({
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   getOne: function (data, callback) {
-    PhoneScreen.find({ where: {application_id: data.application_id}})
+    PhoneScreen.findOne({ where: {application_id: data.application_id}})
     .on('success', function (phoneScreen) {
       callback(phoneScreen);
     }) 
