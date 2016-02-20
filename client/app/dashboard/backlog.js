@@ -3,10 +3,18 @@ angular.module('hunt.backlog', [])
 .controller('BacklogController', function ($scope, $location, Backlog) {
 
   $scope.backlog = {};
+  $scope.backlogs = '';
 
-  $scope.initializeBacklog = function () {
+  var initializeBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlog to the data returned from query
+    Backlog.getBacklogs()
+      .then(function (data) {
+        $scope.backlogs = data;
+      })
+      .catch(function (error) {
+        console.log('Error initializing backlogs: ', error);
+      });
   }
 
   $scope.addBacklog = function () {
@@ -19,7 +27,7 @@ angular.module('hunt.backlog', [])
 
   $scope.moveToAppSubmitted = function () {
 
-  }
+  };
 
   $scope.submitChanges = function () {
 
@@ -37,4 +45,6 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog.", error);
       });
   };
+
+  initializeBacklogs();
 });

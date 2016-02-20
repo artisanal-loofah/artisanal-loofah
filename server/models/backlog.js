@@ -4,7 +4,7 @@ var Backlog = require('../db/schemas/backlog');
 module.exports = {
 
   get: function (callback) {
-    Backlog.find({})
+    Backlog.findAll({})
       .then(function(backlogs) {
         callback(backlogs);
       });

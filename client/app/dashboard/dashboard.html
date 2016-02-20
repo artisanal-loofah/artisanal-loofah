@@ -31,7 +31,13 @@
       </form>
     </div>
 
-    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <div><h1>Backlogs</h1></div>
+      <ol>
+        <li ng-repeat='backlog in backlogs'>{{ backlog }}</li>
+      </ol>
+    </div>
+
   </div>
 </div>
 
