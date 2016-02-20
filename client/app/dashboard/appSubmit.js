@@ -5,7 +5,11 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $scope.appSubmitList = [];
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll();
+    AppSubmitFactory.findAll().then(function (data) {
+      $scope.appSubmistList = data;
+    }).catch(function (error) {
+      console.error(error);
+    });
   };
 
   $scope.modify = function (target) {
