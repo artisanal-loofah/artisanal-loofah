@@ -35,7 +35,9 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       } else {
         return response.data;
       }
-    })
+    }).catch(function (error) {
+      console.error(error);
+    });
   };
 
   var addNew = function (data) {
@@ -46,6 +48,8 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     }).then(function (response) {
       // not sure if return needed; we'll see when called from backlogController
       return response;
+    }).catch(function (error) {
+      console.error(error);
     });
   };
 
@@ -57,8 +61,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     }).then(function (response) {
       // not sure if return needed
       return response;
-    })
-  }
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
 
   return {
     findAll: findAll,
