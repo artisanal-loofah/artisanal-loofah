@@ -5,12 +5,22 @@ angular.module('hunt.onSite', [])
 
   $scope.getOnSites = function () {
     OnSiteFactory.findAll()
-    .then(function (onSites) {
-      $scope.onSiteList = onSites;
+    .then(function (onSiteList) {
+      $scope.onSiteList = onSiteList;
     }).catch(function (error) {
       console.error(error);
     });
   };
+
+  $scope.modify = function (onSiteListItem) {
+    OnSiteFactory.edit(onSiteListItem);
+  };
+
+  $scope.removeOnSite = function (onSiteListItem) {
+    OnSiteFactory.edit(onSiteListItem);
+  };
+
+  $scope.getOnSites();
 })
 
 .factory('OnSiteFactory', function ($http) {
