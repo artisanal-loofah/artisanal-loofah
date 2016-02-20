@@ -6,7 +6,7 @@ var applicationController = require('./controllers/applicationController');
 //Connect controller methods to their corresponding routes
 router.get('/api/users', userController.get);
 router.post('/api/users', userController.post);
-router.post('/api/application', applicationController.post);
+router.post('/api/application', applicationController.createApp);
 
 router.get('/api/backlogs', backlogController.allBacklogs);
 router.post('/api/backlogs', backlogController.newBacklog);
