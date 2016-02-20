@@ -13,7 +13,7 @@ module.exports = {
 
     PhoneScreen.createNew(newPhoneScreen, function () {
       console.log('a new phonescreen was added');
-      response.statusCode = 200;
+      response.statusCode = 201;
       response.end();
     });
   },

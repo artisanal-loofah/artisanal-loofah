@@ -30,7 +30,7 @@ module.exports = {
           status: data.status
         }).success(function () {
           console.log("appsubmit successfully updated");
-          callback(appsubmit);
+          callback();
         });
       }
     })

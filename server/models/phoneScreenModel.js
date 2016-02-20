@@ -19,7 +19,7 @@ module.exports = {
           interviewer: data.interviewer
         }).success(function () {
           console.log("phoneScreen successfully updated");
-          callback(phoneScreen);
+          callback();
         });
       }
     })
