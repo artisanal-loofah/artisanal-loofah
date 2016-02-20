@@ -4,6 +4,51 @@ angular.module('hunt.services', [])
 
 })
 
+.factory('Backlog', function ($http) {
+
+  // Retrieves all backlogs stored in database
+  var getBacklogs = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/backlogs'
+    })
+    .then(function (resp) {
+      console.log('GET request to /api/backlogs/ successful! The response is: ', resp.data);
+      return resp.data;
+    });
+  };
+
+  var submitBacklogChanges = function (backlog) {
+    return $http({
+      method: 'PUT',
+      url: '/api/backlogs',
+      data: backlog
+    })
+    .then(function (resp) {
+      console.log('PUT request to /api/backlogs successful! The response is: ', resp);
+      return resp;
+    });
+  };
+
+  var addBacklog = function (backlog) {
+    return $http({
+      method: 'POST',
+      url: '/api/backlogs',
+      data: backlog
+    })
+    .then(function (resp) {
+      console.log('POST request to /api/backlogs successful! The response is: ', resp);
+      return resp;
+    });
+  };
+
+  return {
+    getBacklogs: getBacklogs,
+    submitBacklogChanges: submitBacklogChanges,
+    addBacklog: addBacklog
+  }
+})
+
 .factory('User', function($http) {
   var getUser = function(id) {
     return $http({
