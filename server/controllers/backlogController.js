@@ -3,17 +3,16 @@ var Backlog = require('../models/backlog')
 module.exports = {
 
   allBacklogs: function (req, res, next) {
-    Backlog.get(function (backlogs) {
+    Backlog.get(req.query.userId, function (backlogs) {
       res.json(backlogs);
     });
   },
 
   newBacklog: function (req, res) {
-    var userData = req.body;
-
     var newBacklog = {
-      notes: userData.notes,
-      status: userData.status
+      user_id: req.body.userId,
+      notes: req.body.notes,
+      status: req.body.status
     }
 
     Backlog.post(newBacklog, function () {

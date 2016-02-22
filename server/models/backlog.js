@@ -3,8 +3,8 @@ var Backlog = require('../db/schemas/backlog');
 
 module.exports = {
 
-  get: function (callback) {
-    Backlog.findAll({})
+  get: function (user_id, callback) {
+    Backlog.findAll({ where: {user_id: user_id}})
       .then(function (backlogs) {
         callback(backlogs);
       });
