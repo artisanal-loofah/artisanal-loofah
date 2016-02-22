@@ -6,6 +6,7 @@ angular.module('huntApp', [
   'hunt.phoneScreen',
   'hunt.onSite',
   'hunt.offers',
+  'hunt.application',
   'ngRoute'])
 
 .config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -37,4 +38,4 @@ angular.module('huntApp', [
     }
   };
   return attach;
-})
+});
