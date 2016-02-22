@@ -15,8 +15,8 @@ module.exports = {
     });
   },
 
-  getAllOnSites: function (callback) {
-    OnSite.findAll({}).then(function (onSites) {
+  getAllOnSites: function (user_id, callback) {
+    OnSite.findAll({ where: {user_id: user_id}}).then(function (onSites) {
       callback(onSites);
     });
   },

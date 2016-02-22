@@ -4,6 +4,7 @@ module.exports = {
 
   addOnSite: function (request, response, next) {
     var newOnSite = {
+      user_id: request.body.user_id,
       application_id: request.body.application_id,
       interviewer: request.body.interviewer,
       date_time: request.body.date_time,
@@ -34,7 +35,7 @@ module.exports = {
   },
 
   getAllOnSites: function (request, response, next) {
-    OnSite.getAllOnSites(function (data) {
+    OnSite.getAllOnSites(request.query.userId, function (data) {
       response.statusCode = 200;
       response.send(data);
     })
