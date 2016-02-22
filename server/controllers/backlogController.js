@@ -1,9 +1,15 @@
-var Backlog = require('../models/backlog')
+var Backlog = require('../models/backlog');
 
 module.exports = {
 
   allBacklogs: function (req, res, next) {
     Backlog.get(function (backlogs) {
+      res.json(backlogs);
+    });
+  },
+
+  pendingBacklogs: function (req, res, next) {
+    Backlog.getPending(function(backlogs){
       res.json(backlogs);
     });
   },
@@ -14,7 +20,7 @@ module.exports = {
     var newBacklog = {
       notes: userData.notes,
       status: userData.status
-    }
+    };
 
     Backlog.post(newBacklog, function () {
       console.log('newBacklog function in server ctrl executed...');
@@ -33,7 +39,7 @@ module.exports = {
     var updatedBacklog = {
       notes: userData.notes,
       status: userData.status
-    }
+    };
 
     Backlog.update(updatedBacklog, function () {
       console.log('updatedBacklog function in server ctrl executed..');

@@ -1,7 +1,5 @@
 <!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
 
-<!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
-
 <div class='container' ng-controller='BacklogController'>
   <div class="heading"><h1>Application Backlogs</h1></div>
   <br>
@@ -47,6 +45,7 @@
 
     <div class="col-sm-6">
       <div><h1>Backlogs</h1></div>
+      <h1>{{applicationBacklog}}</h1>
       <ol>
         <li ng-repeat='backlog in backlogs track by $index'>{{ backlog }}</li>
       </ol>
@@ -55,7 +54,6 @@
   </div>
 
 </div>
-
 
 <div id="appsubmit" ng-controller="AppSubmitController">
   <div class="heading"><h1>Application Submitted</h1></div>
@@ -85,4 +83,8 @@
     
   </div>
 
+</div>
+        </div>
+      </li>
+    </ul>
 </div>
