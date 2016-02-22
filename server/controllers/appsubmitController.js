@@ -11,7 +11,7 @@ module.exports = {
 
     AppSubmit.createNew(newAppSubmit, function () {
       console.log('new appsubmit was made')
-      response.statusCode = 200;
+      response.statusCode = 201;
       response.end();
     });
   },

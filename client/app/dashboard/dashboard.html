@@ -84,5 +84,20 @@
     </div>
     
   </div>
+</div>
 
+<div id="onSite" ng-controller="OnSiteController">
+  <ul class="onSiteList">
+    <li ng-repeat="onSites in onSiteList track by $index">
+      <div class='info'></div>
+
+      <div class='interviewer'></div>
+      <div class='datetime'></div>
+      <div class='location'></div>
+      <div class='status'></div>
+      <div class='notes'></div>
+
+
+    </li>
+  </ul>
 </div>
