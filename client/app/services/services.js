@@ -7,10 +7,13 @@ angular.module('hunt.services', [])
 .factory('Backlog', function ($http) {
 
   // Retrieves all backlogs stored in database
-  var getBacklogs = function () {
+  var getBacklogs = function (userId) {
     return $http({
       method: 'GET',
-      url: '/api/backlogs'
+      url: '/api/backlogs',
+      params: {
+        userId: userId
+      }
     })
     .then(function (resp) {
       console.log('GET request to /api/backlogs/ successful! The response is: ', resp.data);
