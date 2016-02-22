@@ -13,9 +13,9 @@ angular.module('hunt.application', ['hunt.users'])
       var newBacklog = {
         application_id: application.id,
         status: 'Pending'
-      }
+      };
       Backlog.addBacklog(newBacklog);
-    })
+    });
   };
 
   // $scope.fakeData = Application.backlog;
@@ -33,7 +33,7 @@ angular.module('hunt.application', ['hunt.users'])
       return res.data;
     }).catch(function(error) {
       console.error(error);
-    })
+    });
   };
 
   var createApplication = function(app) {
@@ -45,11 +45,11 @@ angular.module('hunt.application', ['hunt.users'])
       return res.data;
     }).catch(function (error) {
       console.error(error);
-    })
+    });
   };
 
   return {
     getApplications: getApplications,
     createApplication: createApplication
-  }
+  };
 });
