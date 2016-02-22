@@ -1,6 +1,6 @@
 angular.module('hunt.application', ['hunt.users'])
 
-.controller('ApplicationController', function ($scope, Application, $rootScope) {
+.controller('ApplicationController', function ($scope, $rootScope, Application) {
 
   $scope.addApplication = function (){
     var applicationData = {
@@ -8,13 +8,41 @@ angular.module('hunt.application', ['hunt.users'])
       jobTitle: $scope.jobTitle,
       company: $scope.company
     };
-    //sends applicationData Object to the Application Factory defined in the services folder which will 
-    //send a HTTP request to the server
-    Application.addApplication(applicationData);
-
+    Application.createApplication(applicationData);
   };
 
+  // $scope.fakeData = Application.backlog;
+})
 
-  $scope.fakeData = Application.backlog;
+.factory('Application', function ($http) {
+  var getApplications = function(userId) {
+    return $http({
+      method: 'GET',
+      url: '/api/applications',
+      params: {
+        userId: userId
+      }
+    }).then(function(res) {
+      return res.data;
+    }).catch(function(error) {
+      console.error(error);
+    })
+  };
 
+  var createApplication = function(app) {
+    return $http({
+      method: 'POST',
+      url: '/api/applications',
+      data: app
+    }).then(function(res) {
+      return res.data;
+    }).catch(function (error) {
+      console.error(error);
+    })
+  };
+
+  return {
+    getApplications: getApplications,
+    createApplication: createApplication
+  }
 });
