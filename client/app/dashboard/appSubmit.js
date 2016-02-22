@@ -1,11 +1,11 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, AppSubmitFactory) {
+.controller('AppSubmitController', function ($scope, $rootScope, AppSubmitFactory) {
   $scope.appSubmitInfo = {};
   $scope.appSubmitList = [];
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll().then(function (data) {
+    AppSubmitFactory.findAll($rootScope.user.id).then(function (data) {
       $scope.appSubmitList = data;
     }).catch(function (error) {
       console.error(error);
@@ -25,10 +25,13 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .factory('AppSubmitFactory', function ($http) {
 
-  var findAll = function (callback) {
+  var findAll = function (userId, callback) {
     return $http({
       method: 'GET',
-      url: '/api/appsubmits'
+      url: '/api/appsubmits',
+      params: {
+        userId: userId
+      }
     }).then(function (response) {
       if (callback) {
         return callback(response.data);
