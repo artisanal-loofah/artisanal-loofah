@@ -1,19 +1,26 @@
 var Application = require('../models/application');
 var Company = require('../models/company');
+var Backlog = require('../models/backlog.js');
 
 //Application response is needed twice in the create App function, depending on how company_id is set to the 
 //applicationData object
 var applicationResponse = function(applicationData, res) {
   Application.post(applicationData, function(application){
-    res.statusCode = 201;
     //server sends the client back the new application that was created in the database
-    res.json(application);
+    var backlogObject = {
+      application_id: application.id,
+      status: 'Pending'
+    };
+    
+    Backlog.post(backlogObject, function(backlog){
+      res.statusCode = 201;
+      res.json(backlog);
+    });
   });
 };
 
 module.exports = {
   createApp: function(req, res) {
-    console.log(req.body.company);
     var companyName = req.body.company;
     var applicationData = {
       user_id: req.body.userId,

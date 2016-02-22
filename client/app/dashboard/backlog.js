@@ -1,9 +1,8 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $location, Backlog) {
+.controller('BacklogController', function ($scope, $location, Backlog, Application) {
 
-  $scope.backlog = {};
-  $scope.backlogs = [];
+  $scope.backlogs = Application.backlogs.data;
 
   var initializeBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
@@ -15,7 +14,7 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log('Error initializing backlogs: ', error);
       });
-  }
+  };
 
   $scope.addBacklog = function () {
     var newBacklog = {
@@ -59,5 +58,5 @@ angular.module('hunt.backlog', [])
       });
   };
 
-  initializeBacklogs();
+  // initializeBacklogs();
 });

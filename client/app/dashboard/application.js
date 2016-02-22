@@ -14,4 +14,7 @@ angular.module('hunt.application', ['hunt.users'])
 
   };
 
+
+  $scope.fakeData = Application.backlog;
+
 });

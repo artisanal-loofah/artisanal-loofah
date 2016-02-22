@@ -14,7 +14,7 @@ module.exports = {
     var newBacklog = {
       notes: userData.notes,
       status: userData.status
-    }
+    };
 
     Backlog.post(newBacklog, function () {
       console.log('newBacklog function in server ctrl executed...');
@@ -33,7 +33,7 @@ module.exports = {
     var updatedBacklog = {
       notes: userData.notes,
       status: userData.status
-    }
+    };
 
     Backlog.update(updatedBacklog, function () {
       console.log('updatedBacklog function in server ctrl executed..');
