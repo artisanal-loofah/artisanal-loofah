@@ -8,6 +8,12 @@ module.exports = {
     });
   },
 
+  pendingBacklogs: function (req, res, next) {
+    Backlog.getPending(function(backlogs){
+      res.json(backlogs);
+    });
+  },
+
   newBacklog: function (req, res) {
     var userData = req.body;
 

@@ -22,7 +22,8 @@ angular.module('hunt.services', [])
   var getBacklogs = function () {
     return $http({
       method: 'GET',
-      url: '/api/backlogs'
+      // url: '/api/Backlogs'
+      url: '/api/pendingBacklogs'
     })
     .then(function (resp) {
       backlogs.data = resp.data;
