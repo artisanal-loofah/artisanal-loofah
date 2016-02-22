@@ -1,6 +1,6 @@
 angular.module('hunt.application', ['hunt.users'])
 
-.controller('ApplicationController', function ($scope, $rootScope, Application) {
+.controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
 
   $scope.addApplication = function (){
     var applicationData = {
@@ -8,7 +8,14 @@ angular.module('hunt.application', ['hunt.users'])
       jobTitle: $scope.jobTitle,
       company: $scope.company
     };
-    Application.createApplication(applicationData);
+    Application.createApplication(applicationData)
+    .then(function(application) {
+      var newBacklog = {
+        application_id: application.id,
+        status: 'Pending'
+      }
+      Backlog.addBacklog(newBacklog);
+    })
   };
 
   // $scope.fakeData = Application.backlog;
