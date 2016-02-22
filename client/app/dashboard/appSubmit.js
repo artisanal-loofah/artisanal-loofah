@@ -25,7 +25,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .factory('AppSubmitFactory', function ($http) {
 
-  var findAll = function (userId, callback) {
+  var findAll = function (userId) {
     return $http({
       method: 'GET',
       url: '/api/appsubmits',
@@ -33,11 +33,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
         userId: userId
       }
     }).then(function (response) {
-      if (callback) {
-        return callback(response.data);
-      } else {
-        return response.data;
-      }
+      return response.data;
     }).catch(function (error) {
       console.error(error);
     });
