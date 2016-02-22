@@ -8,6 +8,9 @@ var onSiteController = require('./controllers/onSiteController');
 router.get('/api/users', userController.get);
 router.post('/api/users', userController.post);
 
+router.get('/api/applications', applicationController.getAll);
+router.post('/api/applications', applicationController.create);
+
 router.get('/api/backlogs', backlogController.allBacklogs);
 router.post('/api/backlogs', backlogController.newBacklog);
 router.put('/api/backlogs', backlogController.updateBacklog);
