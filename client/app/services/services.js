@@ -3,8 +3,32 @@ angular.module('hunt.services', [])
 
 })
 .factory('Application', function($http) {
+/*backlogs CURRENTLY stores all the backlogs in the database, it MUST be tailored to the user though, and only display 
+  backlogs that are specific to the user and that are pending or not submitted. The sql query that does this is located in
+  Server/models/backlog.js in the getPending method.  There are 3 methods. The first method gets ALL backlogs, including
+  other users, the second method gets only the backlogs specific to a designated user but still grabs the completed
+  or null values.
+*/  
   var backlogs = {data: []};
 
+  var getBacklogs = function () {
+    return $http({
+      method: 'GET',
+      /*FOllOW this trail!!!!!!!!!!!!!!!!!!!!! go to routes.js in the server folder */
+      url: '/api/pendingBacklogs'
+    })
+    .then(function (resp) {
+      backlogs.data = resp.data;
+      console.log("this is the backlogs object initialized", backlogs);
+    });
+  };
+
+  /*Add Application is the reason why we need to have the backlogs variable inside the Application Factory
+    instead of the backlog controller, every time an application is added the Company, Application, and Backlog
+    Tables are being modified. 
+
+
+  */
   var addApplication = function(appData) {
     return $http({
         method: 'POST',
@@ -17,18 +41,6 @@ angular.module('hunt.services', [])
         console.log("this is the updated backlogs object", backlogs);
         return resp.data;
       });
-  };
-
-  var getBacklogs = function () {
-    return $http({
-      method: 'GET',
-      // url: '/api/Backlogs'
-      url: '/api/pendingBacklogs'
-    })
-    .then(function (resp) {
-      backlogs.data = resp.data;
-      console.log("this is the backlogs object initialized", backlogs);
-    });
   };
 
   getBacklogs();

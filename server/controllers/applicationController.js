@@ -11,10 +11,17 @@ var applicationResponse = function(applicationData, res) {
       application_id: application.id,
       status: 'Pending'
     };
-    
+
     Backlog.post(backlogObject, function(backlog){
       res.statusCode = 201;
-      res.json(backlog);
+      var customObj = {
+        id: backlog.id,
+        application_id: backlog.application_id,
+        status: backlog.status
+        // companyName:
+        // jobTitle:
+      };
+      res.json(customObj);
     });
   });
 };

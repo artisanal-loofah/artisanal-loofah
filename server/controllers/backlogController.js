@@ -1,4 +1,4 @@
-var Backlog = require('../models/backlog')
+var Backlog = require('../models/backlog');
 
 module.exports = {
 

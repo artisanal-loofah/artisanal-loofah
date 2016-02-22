@@ -9,7 +9,10 @@ router.post('/api/users', userController.post);
 router.post('/api/application', applicationController.createApp);
 
 router.get('/api/backlogs', backlogController.allBacklogs);
+
+//FIX ME GO TO THE BACKLOG CONTROLLER!!!!
 router.get('/api/pendingBacklogs', backlogController.pendingBacklogs);
+
 router.post('/api/backlogs', backlogController.newBacklog);
 router.put('/api/backlogs', backlogController.updateBacklog);
 
