@@ -21,8 +21,8 @@ module.exports = {
     })
   },
 
-  getAllPhoneScreens: function (callback) {
-    PhoneScreen.findAll({}).then(function (phoneScreens) {
+  getAllPhoneScreens: function (user_id, callback) {
+    PhoneScreen.findAll({ where: {user_id: user_id}}).then(function (phoneScreens) {
       callback(phoneScreens);
     });
   },
