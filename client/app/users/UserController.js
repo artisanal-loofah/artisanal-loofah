@@ -4,8 +4,8 @@ angular.module('hunt.users', [])
  
 
   $scope.getLinkedInData = function () {
-    $scope.userData = {};
-    $scope.user = {};
+    // $scope.userData = {};
+    // $scope.user = {};
 
     if(!$scope.hasOwnProperty("userprofile")){
       IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
@@ -14,16 +14,16 @@ angular.module('hunt.users', [])
         $rootScope.$apply(function() {
 
           $rootScope.userprofile = result.values[0];
-          $scope.userData = result.values[0];
+          // $scope.userData = result.values[0];
           $rootScope.loggedUser = true;
 
-          User.getUser($scope.userData.id)
+          User.getUser($rootScope.userprofile.id)
           .then(function(res) {
             // test if user is empty object
             if (res.data) {
-              $scope.user = res.data;
+              $rootScope.user = res.data;
             } else {
-              $scope.user = User.createUser($scope.userData);
+              $rootScope.user = User.createUser($rootScope.userprofile);
             }
             $location.path("/main");
           })
@@ -41,6 +41,7 @@ angular.module('hunt.users', [])
   $scope.logoutLinkedIn = function () {
     IN.User.logout();
     delete $rootScope.userprofile;
+    delete $rootScope.user;
     $rootScope.loggedUser = false;
     $window.localStorage.removeItem('com.token');
     $location.path('/signin');
