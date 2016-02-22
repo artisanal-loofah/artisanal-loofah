@@ -36,11 +36,11 @@ angular.module('hunt.application', ['hunt.users'])
     });
   };
 
-  var createApplication = function(app) {
+  var createApplication = function(application) {
     return $http({
       method: 'POST',
       url: '/api/applications',
-      data: app
+      data: application
     }).then(function(res) {
       return res.data;
     }).catch(function (error) {
