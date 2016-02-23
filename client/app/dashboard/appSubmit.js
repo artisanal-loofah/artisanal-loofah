@@ -1,11 +1,12 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, $rootScope, AppSubmitFactory) {
+.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmitFactory) {
   $scope.appSubmitInfo = {};
   $scope.appSubmitList = [];
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll($rootScope.user.id).then(function (data) {
+    AppSubmitFactory.findAll($window.localStorage.getItem('user_id'))
+    .then(function (data) {
       $scope.appSubmitList = data;
     }).catch(function (error) {
       console.error(error);
@@ -19,8 +20,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $scope.removeApp = function (target) {
     AppSubmitFactory.edit(target);
   };
-
-  $rootScope.initializeAppSubmits = $scope.getAppSubmits;
+  $scope.getAppSubmits();
 })
 
 .factory('AppSubmitFactory', function ($http) {

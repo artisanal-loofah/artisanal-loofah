@@ -1,10 +1,10 @@
 angular.module('hunt.phoneScreen', [])
 
-.controller('PhoneScreenController', function ($scope, PhoneScreenFactory) {
+.controller('PhoneScreenController', function ($scope, $window, PhoneScreenFactory) {
   $scope.phoneScreenList = [];
 
   $scope.getPhoneScreens = function () {
-    PhoneScreenFactory.findAll($rootScope.user.id)
+    PhoneScreenFactory.findAll($window.localStorage.getItem('user_id'))
     .then(function (phoneScreenList) {
       $scope.phoneScreenList = phoneScreenList;
     }).catch(function (error) {
@@ -19,8 +19,7 @@ angular.module('hunt.phoneScreen', [])
   $scope.removePhoneScreen = function (phoneScreenListItem) {
     PhoneScreenFactory.edit(phoneScreenListItem);
   };
-  debugger;
-  $rootScope.initializePhoneScreens = $scope.getPhoneScreens;
+  $scope.getPhoneScreens();
 })
 
 .factory('PhoneScreenFactory', function ($http) {
