@@ -16,26 +16,18 @@ angular.module('huntApp', [
    })
    .when('/main', {
      templateUrl: 'app/home/main.html',
-     controller: 'UserController'
+     controller: 'UserController',
+     authenticate: true
    })
    .otherwise({
-     redirectTo: '/signin'
+     redirectTo: '/main'
    });
-
-   $httpProvider.interceptors.push('AttachTokens');
 })
 
-.factory('AttachTokens', function ($window) {
-    var attach = {
-    request: function (object) {
-     // console.log('are we attaching tokens? :', object);
-      var jwt = $window.localStorage.getItem('com.token');
-      if (jwt) {
-        object.headers['x-access-token'] = jwt;
-      }
-      object.headers['Allow-Control-Allow-Origin'] = '*';
-      return object;
+.run(function ($rootScope, $location, $window) {
+  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    if (next.$$route && next.$$route.authenticate && !isLoggedIn()) {
+      $location.path('/signin');
     }
-  };
-  return attach;
+  });
 });
