@@ -2,8 +2,8 @@ var User = require('../db/schemas/user');
 
 
 module.exports = {
-  get: function (linkedin_id, callback) {
-    User.findOne({ where: {linkedin_id: linkedin_id}})
+  get: function (query, callback) {
+    User.findOne({ where: query})
     .then(function(user) {
       callback(user);
     });
