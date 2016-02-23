@@ -6,10 +6,10 @@ angular.module('hunt.backlog', [])
   $scope.backlogs = [];
 
   var initializeBacklogs = function () {
-    console.log('rootscope is : ', $scope);
+    console.log('rootscope is : ', $rootScope);
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
-    Backlog.getBacklogs($scope.user.id)
+    Backlog.getBacklogs($rootScope.user.id)
       .then(function (data) {
         $scope.backlogs = data;
       })
