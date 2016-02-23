@@ -11,7 +11,7 @@ module.exports = {
 
     AppSubmit.createNew(newAppSubmit, function () {
       console.log('new appsubmit was made')
-      response.statusCode = 200;
+      response.statusCode = 201;
       response.end();
     });
   },
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   getAllApps: function (request, response, next) {
-    AppSubmit.getAllApps(function (data) {
+    AppSubmit.getAllApps(request.query.userId, function (data) {
       response.statusCode = 200;
       response.send(data);
     })

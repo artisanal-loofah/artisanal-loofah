@@ -1,12 +1,12 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, AppSubmitFactory) {
+.controller('AppSubmitController', function ($scope, $rootScope, AppSubmitFactory) {
   $scope.appSubmitInfo = {};
   $scope.appSubmitList = [];
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll().then(function (data) {
-      $scope.appSubmistList = data;
+    AppSubmitFactory.findAll($rootScope.user.id).then(function (data) {
+      $scope.appSubmitList = data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -17,7 +17,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.removeApp = function (target) {
-    AppSubmitFactory.removeApp(target);
+    AppSubmitFactory.edit(target);
   };
 
   $scope.getAppSubmits();
@@ -25,17 +25,18 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .factory('AppSubmitFactory', function ($http) {
 
-  var findAll = function (callback) {
+  var findAll = function (userId) {
     return $http({
       method: 'GET',
-      url: '/api/appsubmits'
-    }).then(function (response) {
-      if (callback) {
-        return callback(response.data);
-      } else {
-        return response.data;
+      url: '/api/appsubmits',
+      params: {
+        userId: userId
       }
-    })
+    }).then(function (response) {
+      return response.data;
+    }).catch(function (error) {
+      console.error(error);
+    });
   };
 
   var addNew = function (data) {
@@ -44,21 +45,25 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 200
+      // not sure if return needed; we'll see when called from backlogController
       return response;
+    }).catch(function (error) {
+      console.error(error);
     });
   };
 
   var edit = function (data) {
     return $http({
-      method: 'POST',
+      method: 'PUT',
       url: 'api/appsubmits',
       data: data
     }).then(function (response) {
-      response.status = 200
+      // not sure if return needed
       return response;
-    })
-  }
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
 
   return {
     findAll: findAll,
