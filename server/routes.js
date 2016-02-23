@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var userController = require('./controllers/userController');
+var applicationController = require('./controllers/applicationController')
 var backlogController = require('./controllers/backlogController');
 var appSubmitController = require('./controllers/appsubmitController');
 var onSiteController = require('./controllers/onSiteController');

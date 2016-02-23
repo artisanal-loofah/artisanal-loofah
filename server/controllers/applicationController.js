@@ -16,7 +16,7 @@ module.exports = {
     Company.getOrCreate(companyName, function(company) {
       Application.create({
         user_id: req.body.userId,
-        job_title: jobTitle,
+        job_title: req.body.jobTitle,
         company_id: company.id
       }, function(application) {
         res.statusCode = 201;
