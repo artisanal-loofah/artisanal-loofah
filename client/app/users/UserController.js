@@ -6,6 +6,8 @@ angular.module('hunt.users', [])
   $scope.getLinkedInData = function () {
     // $scope.userData = {};
     // $scope.user = {};
+    console.log('getting linkedin data, check rootscope');
+    console.log($rootScope);
 
     if(!$scope.hasOwnProperty("userprofile")){
       IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
@@ -25,6 +27,11 @@ angular.module('hunt.users', [])
             } else {
               $rootScope.user = User.createUser($rootScope.userprofile);
             }
+            $rootScope.initializeBacklogs();
+            $rootScope.initializeAppSubmits();
+            // $rootScope.initializePhoneScreens();
+            // $rootScope.initializeOnSites();
+            // $rootScope.initializeOffers();
             $location.path("/main");
           })
           .catch(function(err) {

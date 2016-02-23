@@ -5,8 +5,7 @@ angular.module('hunt.backlog', [])
   $scope.backlog = {};
   $scope.backlogs = [];
 
-  var initializeBacklogs = function () {
-    console.log('rootscope is : ', $rootScope);
+  $scope.getBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
     Backlog.getBacklogs($rootScope.user.id)
@@ -61,8 +60,7 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog.", error);
       });
   };
-
-  initializeBacklogs();
+  $rootScope.initializeBacklogs = $scope.getBacklogs;
 })
 
 .factory('Backlog', function ($http) {

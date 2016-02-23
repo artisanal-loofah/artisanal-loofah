@@ -20,7 +20,7 @@ angular.module('hunt.onSite', [])
     OnSiteFactory.edit(onSiteListItem);
   };
 
-  $scope.getOnSites();
+  $rootScope.initializeOnSites = $scope.getOnSites;
 })
 
 .factory('OnSiteFactory', function ($http) {

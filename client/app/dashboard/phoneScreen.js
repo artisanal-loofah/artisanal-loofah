@@ -19,8 +19,8 @@ angular.module('hunt.phoneScreen', [])
   $scope.removePhoneScreen = function (phoneScreenListItem) {
     PhoneScreenFactory.edit(phoneScreenListItem);
   };
-
-  $scope.getPhoneScreens();
+  debugger;
+  $rootScope.initializePhoneScreens = $scope.getPhoneScreens;
 })
 
 .factory('PhoneScreenFactory', function ($http) {

@@ -20,7 +20,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     AppSubmitFactory.edit(target);
   };
 
-  $scope.getAppSubmits();
+  $rootScope.initializeAppSubmits = $scope.getAppSubmits;
 })
 
 .factory('AppSubmitFactory', function ($http) {
@@ -69,6 +69,5 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     findAll: findAll,
     addNew: addNew,
     edit: edit
-  }
-
+  };
 });
