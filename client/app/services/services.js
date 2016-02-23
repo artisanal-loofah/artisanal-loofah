@@ -29,7 +29,7 @@ angular.module('hunt.services', [])
     })
     .then(function (resp) {
       console.log('PUT request to /api/backlogs successful! The response is: ', resp);
-      return resp;
+      return resp.data;
     });
   };
 

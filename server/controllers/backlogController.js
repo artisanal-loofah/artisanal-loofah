@@ -34,10 +34,10 @@ module.exports = {
       status: userData.status
     }
 
-    Backlog.update(updatedBacklog, function () {
+    Backlog.update(updatedBacklog, function (backlog) {
       console.log('updatedBacklog function in server ctrl executed..');
       res.statusCode = 201;
-      res.end();
+      res.json(backlog);
     });
   }
 

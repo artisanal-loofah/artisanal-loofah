@@ -51,8 +51,9 @@ angular.module('hunt.backlog', [])
     };
 
     Backlog.submitBacklogChanges(backlogChanges)
-      .then(function () {
+      .then(function (backlog) {
         console.log('Backlog changes submitted!');
+        // do something with appsubmit using backlog.application_id
         $location.path('/main');
       })
       .catch(function (error) {

@@ -28,7 +28,7 @@ module.exports = {
           backlog.update(newProps)
             .then(function (backlog) {
               console.log('Backlog update function ran in backlog models, successfully updated backlog!');
-              callback();
+              callback(backlog);
             });
         }
       })
