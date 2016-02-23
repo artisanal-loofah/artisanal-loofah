@@ -22,6 +22,7 @@ angular.module('hunt.services', [])
   };
 
   var submitBacklogChanges = function (backlog) {
+    console.log('clientside backlog: ', backlog);
     return $http({
       method: 'PUT',
       url: '/api/backlogs',

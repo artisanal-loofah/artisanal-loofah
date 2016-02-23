@@ -28,6 +28,7 @@ module.exports = {
   },
 
   updateBacklog: function (req, res) {
+    console.log('user data from update: ', req.body);
     var userData = req.body;
 
     var updatedBacklog = {
