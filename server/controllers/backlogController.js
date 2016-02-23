@@ -10,7 +10,8 @@ module.exports = {
 
   newBacklog: function (req, res) {
     var newBacklog = {
-      user_id: req.body.userId,
+      user_id: req.body.user_id,
+      application_id: req.body.application_id,
       notes: req.body.notes,
       status: req.body.status
     }

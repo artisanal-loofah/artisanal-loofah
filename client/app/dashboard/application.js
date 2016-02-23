@@ -11,6 +11,7 @@ angular.module('hunt.application', ['hunt.users'])
     Application.createApplication(applicationData)
     .then(function(application) {
       var newBacklog = {
+        user_id: $rootScope.user.id,
         application_id: application.id,
         status: 'Pending'
       };
