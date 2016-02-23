@@ -16,7 +16,7 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log('Error initializing backlogs: ', error);
       });
-  }
+  };
 
   $scope.addBacklog = function () {
     var newBacklog = {
