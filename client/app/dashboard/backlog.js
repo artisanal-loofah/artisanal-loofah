@@ -10,6 +10,7 @@ angular.module('hunt.backlog', [])
     //  On success, assign $scope.backlogs to the data returned from query
     Backlog.getBacklogs($rootScope.user.id)
       .then(function (data) {
+        $rootScope.backlogdata = data;
         $scope.backlogs = data;
       })
       .catch(function (error) {
