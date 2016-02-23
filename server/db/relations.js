@@ -10,6 +10,22 @@ var Offer = require('./schemas/offer');
 User.hasMany(Application, {
   foreignKey: 'user_id'
 });
+User.hasMany(Backlog, {
+  foreignKey: 'user_id'
+});
+User.hasMany(AppSubmit, {
+  foreignKey: 'user_id'
+});
+User.hasMany(PhoneScreen, {
+  foreignKey: 'user_id'
+});
+User.hasMany(OnSite, {
+  foreignKey: 'user_id'
+});
+User.hasMany(Offer, {
+  foreignKey: 'user_id'
+});
+
 
 Company.hasMany(Application, {
   foreignKey: 'company_id'
@@ -38,6 +54,27 @@ Application.hasMany(OnSite, {
 });
 Application.hasMany(PhoneScreen, {
   foreignKey: 'application_id'
+});
+
+Backlog.belongsTo(User, {
+  foreignKey: 'user_id',
+  constraints: false
+});
+AppSubmit.belongsTo(User, {
+  foreignKey: 'user_id',
+  constraints: false
+});
+PhoneScreen.belongsTo(User, {
+  foreignKey: 'user_id',
+  constraints: false
+});
+OnSite.belongsTo(User, {
+  foreignKey: 'user_id',
+  constraints: false
+});
+Offer.belongsTo(User, {
+  foreignKey: 'user_id',
+  constraints: false
 });
 
 
