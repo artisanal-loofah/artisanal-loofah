@@ -15,8 +15,8 @@ module.exports = {
     });
   },
 
-  getAllApps: function (callback) {
-    AppSubmit.findAll({}).then(function (appsubmits) {
+  getAllApps: function (user_id, callback) {
+    AppSubmit.findAll({ where: {user_id: user_id}}).then(function (appsubmits) {
       callback(appsubmits);
     });
   },

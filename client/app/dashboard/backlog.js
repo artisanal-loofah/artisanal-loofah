@@ -1,6 +1,6 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $location, Backlog) {
+.controller('BacklogController', function ($scope, $rootScope, $location, Backlog) {
 
   $scope.backlog = {};
   $scope.backlogs = [];
@@ -8,7 +8,7 @@ angular.module('hunt.backlog', [])
   var initializeBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
-    Backlog.getBacklogs()
+    Backlog.getBacklogs($rootScope.user.id)
       .then(function (data) {
         $scope.backlogs = data;
       })
@@ -19,6 +19,7 @@ angular.module('hunt.backlog', [])
 
   $scope.addBacklog = function () {
     var newBacklog = {
+      userId: $rootScope.user.id,
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
@@ -50,8 +51,9 @@ angular.module('hunt.backlog', [])
     };
 
     Backlog.submitBacklogChanges(backlogChanges)
-      .then(function () {
+      .then(function (backlog) {
         console.log('Backlog changes submitted!');
+        // do something with appsubmit using backlog.application_id
         $location.path('/main');
       })
       .catch(function (error) {

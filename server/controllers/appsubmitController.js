@@ -31,7 +31,7 @@ module.exports = {
   },
 
   getAllApps: function (request, response, next) {
-    AppSubmit.getAllApps(function (data) {
+    AppSubmit.getAllApps(request.query.userId, function (data) {
       response.statusCode = 200;
       response.send(data);
     })

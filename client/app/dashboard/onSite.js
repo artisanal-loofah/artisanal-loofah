@@ -1,10 +1,10 @@
 angular.module('hunt.onSite', [])
 
-.controller('OnSiteController', function ($scope, OnSiteFactory) {
+.controller('OnSiteController', function ($scope, $rootScope, OnSiteFactory) {
   $scope.onSiteList = [];
 
   $scope.getOnSites = function () {
-    OnSiteFactory.findAll()
+    OnSiteFactory.findAll($rootScope.user.id)
     .then(function (onSiteList) {
       $scope.onSiteList = onSiteList;
     }).catch(function (error) {
@@ -24,16 +24,15 @@ angular.module('hunt.onSite', [])
 })
 
 .factory('OnSiteFactory', function ($http) {
-  var findAll = function (callback) {
+  var findAll = function (userId) {
     return $http({
       method: 'GET',
-      url: '/api/onsites'
-    }).then(function (response) {
-      if (callback) {
-        return callback(response.data);
-      } else {
-        return response.data;
+      url: '/api/onsites',
+      params: {
+        userId: userId
       }
+    }).then(function (response) {
+      return response.data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -46,7 +45,7 @@ angular.module('hunt.onSite', [])
       data: onSiteListItem
     }).then(function (response) {
       // not sure if return needed; we'll see when called from backlogController
-      return response;
+      return response.data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -59,7 +58,7 @@ angular.module('hunt.onSite', [])
       data: onSiteListItem
     }).then(function (response) {
       // not sure if return needed
-      return response;
+      return response.data;
     }).catch(function (error) {
       console.error(error);
     })

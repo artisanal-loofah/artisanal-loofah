@@ -4,6 +4,7 @@ module.exports = {
 
   addPhoneScreen: function (request, response, next) {
     var newPhoneScreen = {
+      user_id: request.body.user_id,
       application_id: request.body.application_id,
       interviewer: request.body.interviewer,
       date_time: request.body.date_time,
@@ -26,7 +27,7 @@ module.exports = {
   },
 
   getAllPhoneScreens: function (request, response, next) {
-    PhoneScreen.getAllPhoneScreens(function (data) {
+    PhoneScreen.getAllPhoneScreens(request.query.userId, function (data) {
       response.statusCode = 200;
       response.send(data);
     });
