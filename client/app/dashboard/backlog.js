@@ -111,5 +111,5 @@ angular.module('hunt.backlog', [])
     getBacklogs: getBacklogs,
     submitBacklogChanges: submitBacklogChanges,
     addBacklog: addBacklog
-  }
-})
+  };
+});
