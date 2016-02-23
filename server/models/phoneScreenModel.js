@@ -4,8 +4,8 @@ module.exports = {
 
   createNew: function (data, callback) {
     PhoneScreen.create(data).then(function (phoneScreen) {
-      callback(phoneScreen.get('id'))
-    })
+      callback(phoneScreen.get('id'));
+    });
   },
 
   modify: function (data, callback) {
@@ -18,7 +18,7 @@ module.exports = {
           callback();
         });
       }
-    })
+    });
   },
 
   getAllPhoneScreens: function (user_id, callback) {
@@ -31,7 +31,7 @@ module.exports = {
     PhoneScreen.findOne({ where: {application_id: data.application_id}})
     .on('success', function (phoneScreen) {
       callback(phoneScreen);
-    }) 
+    }); 
   }
 
 };

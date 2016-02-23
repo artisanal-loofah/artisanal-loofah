@@ -3,7 +3,9 @@ var userController = require('./controllers/userController');
 var applicationController = require('./controllers/applicationController')
 var backlogController = require('./controllers/backlogController');
 var appSubmitController = require('./controllers/appsubmitController');
+var phoneScreenController = require('./controllers/phoneScreenController');
 var onSiteController = require('./controllers/onSiteController');
+var applicationController = require('./controllers/applicationController');
 
 //Connect controller methods to their corresponding routes
 router.get('/api/users', userController.get);
@@ -22,6 +24,10 @@ router.put('/api/backlogs', backlogController.updateBacklog);
 router.get('/api/appsubmits', appSubmitController.getAllApps);
 router.post('/api/appsubmits', appSubmitController.addApp);
 router.put('/api/appsubmits', appSubmitController.editApp);
+
+router.get('/api/phonescreens', phoneScreenController.getAllPhoneScreens);
+router.post('/api/phonescreens', phoneScreenController.addPhoneScreen);
+router.put('/api/phonescreens', phoneScreenController.editPhoneScreen);
 
 router.get('/api/onsites', onSiteController.getAllOnSites);
 router.post('/api/onsites', onSiteController.addOnSite);

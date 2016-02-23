@@ -33,6 +33,7 @@ module.exports = {
   getAllApps: function (request, response, next) {
     AppSubmit.getAllApps(request.query.userId, function (data) {
       response.statusCode = 200;
+      console.log('function getallappsubmitted: ', data);
       response.send(data);
     })
   }
