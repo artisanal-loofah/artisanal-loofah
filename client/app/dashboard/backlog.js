@@ -39,7 +39,13 @@ angular.module('hunt.backlog', [])
   };
 
   $scope.moveToAppSubmitted = function () {
-
+    Backlog.getBacklogs()
+    .then(function (data) {
+      $rootScope.backlogs = data;
+    })
+    .catch(function (error) {
+      console.log('error moving to appsubmitted, ', error);
+    })
   };
 
   // Function for submitting any updated changes to a specific backlog
