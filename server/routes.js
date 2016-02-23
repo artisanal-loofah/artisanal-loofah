@@ -4,6 +4,7 @@ var applicationController = require('./controllers/applicationController')
 var backlogController = require('./controllers/backlogController');
 var appSubmitController = require('./controllers/appsubmitController');
 var onSiteController = require('./controllers/onSiteController');
+var applicationController = require('./controllers/applicationController');
 
 //Connect controller methods to their corresponding routes
 router.get('/api/users', userController.get);
