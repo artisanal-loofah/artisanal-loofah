@@ -5,7 +5,7 @@
   <ol class="stage-list" ng-repeat='backlog in backlogs track by $index'>
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="load(backlog)">{{backlog.job_title}} - {{backlog.company}}</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
