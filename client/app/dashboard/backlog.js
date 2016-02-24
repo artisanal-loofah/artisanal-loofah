@@ -2,35 +2,18 @@ angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
 
-  $scope.backlog = {};
-  $scope.backlogs = [];
+  $rootScope.backlogs = [];
+  $rootScope.selectedBacklogIndex;
 
   $scope.getBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
     Backlog.getBacklogs($window.localStorage.getItem('user_id'))
       .then(function (data) {
-        $scope.backlogs = data;
+        $rootScope.backlogs = data;
       })
       .catch(function (error) {
         console.log('Error initializing backlogs: ', error);
-      });
-  };
-
-  $scope.addBacklog = function () {
-    var newBacklog = {
-      userId: $rootScope.user.id,
-      notes: $scope.backlogNotes,
-      status: $scope.backlogStatus
-    };
-
-    Backlog.addBacklog(newBacklog)
-      .then(function () {
-        console.log('Backlog changes submitted!');
-        $location.path('/main');
-      })
-      .catch(function (error) {
-        console.log("There was an error submitting changes to backlog.", error);
       });
   };
 
@@ -42,19 +25,24 @@ angular.module('hunt.backlog', [])
 
   };
 
+  // Function that sets the backlogID when user clicks on backlog
+  $scope.clickedBacklog = function (backlog, index) {
+    $rootScope.backlogID = backlog.id;
+    $rootScope.selectedBacklogIndex = index;
+  };
+
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
 
     var backlogChanges = {
+      id: $rootScope.backlogID,
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
 
     Backlog.submitBacklogChanges(backlogChanges)
       .then(function (backlog) {
-        console.log('Backlog changes submitted!');
-        // do something with appsubmit using backlog.application_id
-        $location.path('/main');
+        $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
       })
       .catch(function (error) {
         console.log("There was an error submitting changes to backlog.", error);
@@ -101,7 +89,7 @@ angular.module('hunt.backlog', [])
     })
     .then(function (resp) {
       console.log('POST request to /api/backlogs successful! The response is: ', resp);
-      return resp;
+      return resp.data;
     });
   };
 

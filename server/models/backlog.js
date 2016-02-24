@@ -21,7 +21,7 @@ module.exports = {
   update: function (newProps, callback) {
     // Currently, update function is searching for a matching 'notes' value,
     //  We need to make it search for a matching application_id 
-    Backlog.find({ where: { notes: newProps.notes } })
+    Backlog.find({ where: { id: newProps.id } })
       .then(function (backlog) {
         if (backlog) {
           console.log('update found');

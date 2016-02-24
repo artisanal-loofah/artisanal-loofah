@@ -33,7 +33,6 @@ module.exports = {
     }
 
     Backlog.post(newBacklog, function () {
-      console.log('newBacklog function in server ctrl executed...');
       res.statusCode = 201;
       res.end();
     });
@@ -48,14 +47,25 @@ module.exports = {
     var userData = req.body;
 
     var updatedBacklog = {
+      id: userData.id,
       notes: userData.notes,
       status: userData.status
     }
 
     Backlog.update(updatedBacklog, function (backlog) {
-      console.log('updatedBacklog function in server ctrl executed..');
-      res.statusCode = 201;
-      res.json(backlog);
+      Application.getByAppId(backlog.application_id)
+        .then(function(application) {
+          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
+            Application.getCompany(application.id)
+              .then(function(company) {
+                backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
+                res.statusCode = 201;
+                res.json(backlog);
+              })
+              .catch(function(error) {
+                console.error(error);
+              });
+        });
     });
   }
 
