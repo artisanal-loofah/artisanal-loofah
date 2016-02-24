@@ -9,19 +9,20 @@ module.exports = {
       // Job title and company name are added to the response object for each backlog
       backlogs.forEach(function(backlog, index) {
         Application.getByAppId(backlog.application_id)
-        .then(function(application) {
+          .then(function(application) {
 
-          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
-          Application.getCompany(application.id)
-          .then(function(company) {
-            backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
-            if (index === backlogs.length - 1) {
-              res.json(backlogs);
-            }
-          }).catch(function(error) {
-            console.error(error);
+            backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
+            Application.getCompany(application.id)
+              .then(function(company) {
+                backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
+                if (index === backlogs.length - 1) {
+                  res.json(backlogs);
+                }
+              })
+              .catch(function(error) {
+                console.error(error);
+              });
           });
-        });
       });
     });
   },
@@ -37,17 +38,18 @@ module.exports = {
     // After creating the new Backlog item, the job title and company name are added to the response object
     Backlog.post(newBacklog, function (backlog) {
       Application.getByAppId(backlog.application_id)
-      .then(function(application) {
-        backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
-        Application.getCompany(application.id)
-        .then(function(company) {
-          backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
-          res.statusCode = 201;
-          res.json(backlog);
-        }).catch(function(error) {
-          console.error(error);
+        .then(function(application) {
+          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
+          Application.getCompany(application.id)
+            .then(function(company) {
+              backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
+              res.statusCode = 201;
+              res.json(backlog);
+            })
+            .catch(function(error) {
+              console.error(error);
+            });
         });
-      });
     });
   },
 
