@@ -1,15 +1,14 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $rootScope, $location, Backlog) {
+.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
 
   $scope.backlog = {};
   $scope.backlogs = [];
 
-  var initializeBacklogs = function () {
-    console.log('rootscope is : ', $rootScope);
+  $scope.getBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
-    Backlog.getBacklogs($rootScope.user.id)
+    Backlog.getBacklogs($window.localStorage.getItem('user_id'))
       .then(function (data) {
         $scope.backlogs = data;
       })
@@ -61,8 +60,7 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog.", error);
       });
   };
-
-  initializeBacklogs();
+  $scope.getBacklogs();
 })
 
 .factory('Backlog', function ($http) {
