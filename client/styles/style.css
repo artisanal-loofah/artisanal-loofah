@@ -1,1 +1,28 @@
 /*insert css styling here*/
+h1 {
+	font-size: 150%;
+}
+
+.stage-list{
+  word-wrap:break-word;
+}
+
+a .remove {
+	color: red;
+}
+
+a .accept {
+	color: green;
+}
+
+.phone-screen-item a .remove {
+	color: red;
+	float: right;
+	margin-right: 2%;
+}
+
+.phone-screen-item a .accept {
+	color: green;
+	float: right;
+	margin-right: 8%;
+}
