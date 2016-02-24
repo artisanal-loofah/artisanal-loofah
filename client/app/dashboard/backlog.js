@@ -46,10 +46,10 @@ angular.module('hunt.backlog', [])
   $scope.submitChanges = function () {
     console.log('$scope is: ', $scope.backlogs);
 
-    var application_id = 3;
+    var application_id = 6;
 
     var backlogChanges = {
-      targetId: 3,
+      targetId: 6,
       userId: $rootScope.user.id,
       application_id: application_id,
       //get application id target from the click, currently hardcoded

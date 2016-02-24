@@ -6,7 +6,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
   $scope.getAppSubmits = function () {
     //console.log('windowlocalstorage: ', $window.localStorage.user_id);
-    AppSubmitFactory.findAll($window.localStorage.user_id)
+    AppSubmitFactory.findAll($window.localStorage.getItem('user_id'))
     .then(function (data) {
       //console.log('data from appsubmits: ', data);
       $scope.appSubmitList = data;
