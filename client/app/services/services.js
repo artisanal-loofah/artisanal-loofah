@@ -35,7 +35,7 @@ angular.module('hunt.services', [])
       url: '/api/users',
       data: userData
     }).then(function(res) {
-      return res;
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     });
