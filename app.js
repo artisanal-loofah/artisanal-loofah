@@ -17,8 +17,6 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
-<<<<<<< ff09c080fd98b5a3337d1561df5a46fb0ce25add
-=======
 app.use(morgan('dev'));
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
@@ -27,19 +25,7 @@ app.use(parser.json());
 var router = require('./server/routes');
 app.use(router);
 
->>>>>>> edit app.js to move middle wear
-// Logging and parsing
-
-// Router
-var router = require('./server/routes');
-app.use(router);
-
-
-// Set up our routes
-// app.use('/classes', router);
-
 // Serve the client files
-// console.log(__dirname + '../../client');
 app.use(express.static(__dirname + '/client'));
 
 // If we are being run directly, run the server.
