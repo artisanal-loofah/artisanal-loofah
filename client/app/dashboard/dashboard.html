@@ -2,12 +2,11 @@
 
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
-  <ol class="stage-list">
-    <li ng-repeat='backlog in backlogs track by $index'>{{ backlog }}</li>
-    
+  <ol class="stage-list" ng-repeat='backlog in backlogs track by $index'>
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>{{backlog.job_title}} - {{backlog.company}}</a>
+      <p>Status: {{ backlog.status }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>

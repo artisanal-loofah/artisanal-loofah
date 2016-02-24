@@ -1,10 +1,26 @@
-var Backlog = require('../models/backlog')
+var Backlog = require('../models/backlog');
+var Application = require('../models/applicationModel');
+var _ = require('underscore');
 
 module.exports = {
 
   allBacklogs: function (req, res, next) {
     Backlog.get(req.query.userId, function (backlogs) {
-      res.json(backlogs);
+
+      backlogs.forEach(function(backlog, index) {
+        Application.getByAppId(backlog.application_id)
+        .then(function(application) {
+
+          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
+          Application.getCompany(application.id)
+          .then(function(company) {
+            backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
+            if (index === backlogs.length - 1) {
+              res.json(backlogs);
+            }
+          });
+        });
+      });
     });
   },
 
