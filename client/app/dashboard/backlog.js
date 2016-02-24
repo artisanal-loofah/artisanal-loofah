@@ -1,6 +1,6 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
+.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmitFactory) {
 
   $scope.backlog = {};
   $scope.backlogs = [];
@@ -44,16 +44,30 @@ angular.module('hunt.backlog', [])
 
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
+    console.log('$scope is: ', $scope.backlogs);
+
+    var application_id = 6;
 
     var backlogChanges = {
+      targetId: 6,
+      userId: $rootScope.user.id,
+      application_id: application_id,
+      //get application id target from the click, currently hardcoded
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
+
+    // if (backlogChanges.status === "accepted") {
+    //   AppSubmitFactory.addNew(application_id).then(function (response) {
+    //     console.log('response from appsubmit: ', response);
+    //   });
+    // };
 
     Backlog.submitBacklogChanges(backlogChanges)
       .then(function (backlog) {
         console.log('Backlog changes submitted!');
         // do something with appsubmit using backlog.application_id
+        console.log('backlog from submit changes is : ', backlog);
         $location.path('/main');
       })
       .catch(function (error) {

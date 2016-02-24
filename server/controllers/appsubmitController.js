@@ -3,16 +3,19 @@ var AppSubmit = require('../models/appsubmitModel');
 module.exports = {
 
   addApp: function (request, response, next) {
-    var newappSubmit = {
-      application_id: request.body.application_id,
-      notes: request.body.notes,
-      status: request.body.status
+    console.log('--------request body is : ', request.body)
+
+
+    var newAppSubmit = {
+      application_id: request.body.application_id//,
+    //   notes: request.body.notes,
+    //   status: request.body.status
     };
 
-    AppSubmit.createNew(newAppSubmit, function () {
+    AppSubmit.createNew(newAppSubmit, function (data) {
       console.log('new appsubmit was made')
       response.statusCode = 201;
-      response.end();
+      response.send();
     });
   },
 

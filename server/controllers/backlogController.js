@@ -48,12 +48,15 @@ module.exports = {
     var userData = req.body;
 
     var updatedBacklog = {
+      userId: req.body.userId,
+      target_id: req.body.targetId,
+      application_id: req.body.application_id,
       notes: userData.notes,
       status: userData.status
     }
 
     Backlog.update(updatedBacklog, function (backlog) {
-      console.log('updatedBacklog function in server ctrl executed..');
+      console.log('updatedBacklog function in server ctrl executed..', backlog);
       res.statusCode = 201;
       res.json(backlog);
     });
