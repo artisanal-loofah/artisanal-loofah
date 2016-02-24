@@ -19,13 +19,8 @@ angular.module('hunt.application', ['hunt.users'])
       then(function(backlog) {
         $rootScope.backlogs.push(backlog);
       });
-      // newBacklog.job_title = $scope.jobTitle;
-      // newBacklog.company = $scope.company;
-      // $rootScope.backlogs.push(newBacklog);
     });
   };
-
-  // $scope.fakeData = Application.backlog;
 })
 
 .factory('Application', function ($http) {
