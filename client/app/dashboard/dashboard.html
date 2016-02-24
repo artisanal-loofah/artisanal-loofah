@@ -2,7 +2,7 @@
 
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
-  <ol class="stage-list" ng-repeat='backlog in backlogs track by $index'>
+  <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
 <!--     NG-Repeat should look something like this -->
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
@@ -15,12 +15,12 @@
       </a>
     </li>
 <!--     END OF NG REPEAT -->
-  </ol>
+  </ul>
 </div>
 
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
-  <ol class="stage-list">
+  <ul class="stage-list">
 
 <!--     NG-Repeat should look something like this -->
     <li>
@@ -33,7 +33,7 @@
       </a>
     </li>
 <!--     END OF NG REPEAT -->
-  </ol>
+  </ul>
 </div>
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
@@ -146,7 +146,6 @@
     </li>
   </ul>
 </div>
-
 
 <!-- Dummy Modal can delete or replace -->
 <div id="myModal" class="modal fade" role="dialog">

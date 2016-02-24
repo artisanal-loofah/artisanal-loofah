@@ -15,11 +15,12 @@ angular.module('hunt.application', ['hunt.users'])
         application_id: application.id,
         status: 'Pending'
       };
-      Backlog.addBacklog(newBacklog);
+      Backlog.addBacklog(newBacklog).
+      then(function(backlog) {
+        $rootScope.backlogs.push(backlog);
+      });
     });
   };
-
-  // $scope.fakeData = Application.backlog;
 })
 
 .factory('Application', function ($http) {
