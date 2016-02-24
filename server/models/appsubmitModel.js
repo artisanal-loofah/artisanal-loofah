@@ -4,6 +4,8 @@ module.exports = {
 
   createNew: function (data, callback) {
     AppSubmit.create(data).then(function (appSubmit) {
+      console.log('appsubmit from the db: ', appSubmit);
+      
       callback(appSubmit.get('id'))
     })
   },

@@ -1,6 +1,10 @@
 angular.module('hunt.backlog', [])
 
+<<<<<<< HEAD
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
+=======
+.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmitFactory) {
+>>>>>>> fixed up some styling
 
   $scope.backlog = {};
   $scope.backlogs = [];
@@ -44,16 +48,33 @@ angular.module('hunt.backlog', [])
 
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
+    console.log('$scope is: ', $scope.backlogs);
+
+    var application_id = 6;
 
     var backlogChanges = {
+      targetId: 6,
+      userId: $rootScope.user.id,
+      application_id: application_id,
+      //get application id target from the click, currently hardcoded
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
+
+    // if (backlogChanges.status === "accepted") {
+    //   AppSubmitFactory.addNew(application_id).then(function (response) {
+    //     console.log('response from appsubmit: ', response);
+    //   });
+    // };
 
     Backlog.submitBacklogChanges(backlogChanges)
       .then(function (backlog) {
         console.log('Backlog changes submitted!');
         // do something with appsubmit using backlog.application_id
+<<<<<<< HEAD
+=======
+        console.log('backlog from submit changes is : ', backlog);
+>>>>>>> fixed up some styling
         $location.path('/main');
       })
       .catch(function (error) {
@@ -79,6 +100,7 @@ angular.module('hunt.backlog', [])
       return resp.data;
     });
   };
+<<<<<<< HEAD
 
   var submitBacklogChanges = function (backlog) {
     console.log('clientside backlog: ', backlog);
@@ -93,6 +115,22 @@ angular.module('hunt.backlog', [])
     });
   };
 
+=======
+
+  var submitBacklogChanges = function (backlog) {
+    console.log('clientside backlog: ', backlog);
+    return $http({
+      method: 'PUT',
+      url: '/api/backlogs',
+      data: backlog
+    })
+    .then(function (resp) {
+      console.log('PUT request to /api/backlogs successful! The response is: ', resp);
+      return resp.data;
+    });
+  };
+
+>>>>>>> fixed up some styling
   var addBacklog = function (backlog) {
     return $http({
       method: 'POST',

@@ -32,6 +32,9 @@ module.exports = {
     var userData = req.body;
 
     var updatedBacklog = {
+      userId: req.body.userId,
+      target_id: req.body.targetId,
+      application_id: req.body.application_id,
       notes: userData.notes,
       status: userData.status
     }

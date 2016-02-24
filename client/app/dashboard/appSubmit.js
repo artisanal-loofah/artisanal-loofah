@@ -5,8 +5,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $scope.appSubmitList = [];
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll($window.localStorage.getItem('user_id'))
+    //console.log('windowlocalstorage: ', $window.localStorage.user_id);
+    AppSubmitFactory.findAll($window.localStorage.user_id)
     .then(function (data) {
+      //console.log('data from appsubmits: ', data);
       $scope.appSubmitList = data;
     }).catch(function (error) {
       console.error(error);
@@ -39,11 +41,15 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     });
   };
 
-  var addNew = function (data) {
+  var addNew = function (appId) {
+    console.log('appid from backlog: ', appId)
+    var stuff = {
+      application_id: appId.toString()
+    };
     return $http({
       method: 'POST',
       url: 'api/appsubmits',
-      data: data
+      data: stuff
     }).then(function (response) {
       // not sure if return needed; we'll see when called from backlogController
       return response;
