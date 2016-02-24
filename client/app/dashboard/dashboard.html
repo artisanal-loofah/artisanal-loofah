@@ -1,88 +1,136 @@
 <!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
 
-<!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
+<div class='col-sm-2 stage' ng-controller='BacklogController'>
+  <h1 class='stage-heading'>Application Backlog</h1>
+  <ol class="stage-list">
+    <li ng-repeat='backlog in backlogs track by $index'>{{ backlog }}</li>
+    
+<!--     NG-Repeat should look something like this -->
+    <li>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </li>
+<!--     END OF NG REPEAT -->
+  </ol>
+</div>
 
-<div class='container' ng-controller='BacklogController'>
-  <div class="heading"><h1>Application Backlogs</h1></div>
-  <br>
+<div class='col-sm-2 stage' ng-controller='AppSubmitController'>
+  <h1 class='stage-heading'>Submitted Apps</h1>
+  <ol class="stage-list">
 
-  <div class="row">
-    <div class="col-sm-6">
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <h2>Add a new backlog</h2>
-          <label for="notes">Notes: </label>
-          <input class="form-control" type="text" ng-model="backlogNotes" />
-        </div>
-        <div class="form-group">
-            <label for="backlogStatus">Status: </label>
-            <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
-              <option value="" selected="selected">------</option>
-              <option value="accepted">Accepted</option>
-              <option value="rejected">Rejected</option>
-              <option value="pended">Pending</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" type="submit" ng-click="addBacklog()" value="Save">Add New Backlog</button>
-      </form>
+<!--     NG-Repeat should look something like this -->
+    <li>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+          <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </li>
+<!--     END OF NG REPEAT -->
+  </ol>
+</div>
 
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <h2>Update backlog</h2>
-          <label for="notes">Notes: </label>
-          <input class="form-control" type="text" ng-model="backlogNotes" />
-        </div>
-        <div class="form-group">
-            <label for="backlogStatus">Status: </label>
-            <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
-              <option value="" selected="selected">------</option>
-              <option value="accepted">Accepted</option>
-              <option value="rejected">Rejected</option>
-              <option value="pending">Pending</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save">Save Changes</button>
-      </form>
+<div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
+  <h1 class='stage-heading'>Upcoming Phone Screens</h1>
+  <div class="stage-list">
+   <!--     NG-Repeat should look something like this --> 
+    <div class="phone-screen-item">
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <p>
+        Date: 12-08-2016
+        <br>
+        Time: 12:00 PM
+        <br>
+        Interviewer: Ty Lawson
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
     </div>
-
-    <div class="col-sm-6">
-      <div><h1>Backlogs</h1></div>
-      <ol>
-        <li ng-repeat='backlog in backlogs track by $index'>{{ backlog }}</li>
-      </ol>
-    </div>
+<!--     END OF NG REPEAT -->
   </div>
 </div>
 
+<div class='col-sm-3 stage' ng-controller='OnSiteController'>
+  <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
+  <div class="stage-list">
+   <!--     NG-Repeat should look something like this --> 
+    <div class="on-site-interview-item">
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <p>
+        Date: 12-08-2016
+        <br>
+        Time: 12:00 PM
+        <br>
+        Location: 5008 Wakefield Chapel Rd Arlington VA, 20036
+        <br>
+        Interviewer: Ty Lawson
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </div>
+<!--     END OF NG REPEAT -->
+  </div>
+</div>
+
+<div class='col-sm-3 stage' ng-controller='OffersController'>
+  <h1 class='stage-heading'>Offers</h1>
+  <div class="stage-list">
+   <!--     NG-Repeat should look something like this --> 
+    <div class="offer-item">
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Hacker in Residence - Hack Reactor</a>
+      <p>
+        Salary: $9,000
+        <br>
+        Deadline: 12-23-2016
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </div>
+<!--     END OF NG REPEAT -->
+  </div>
+</div>
+
+<!-- End of Chou's Pull Request -->
+
 
 <div id="appsubmit" ng-controller="AppSubmitController">
-  <div class="heading"><h1>Application Submitted</h1></div>
-  <br>
-
   <div class="row">
     <div class="col-sm-6">
-      
     </div>
-
-    <div class="col-sm-6">
      <div><h1>Applications Submitted</h1></div>
      <ul class="appsubmitList">
         <li ng-repeat="apps in appSubmitList track by $index">
           <div class='info'>
-
           <div class='appId'>{{ appId }}</div>
           <div class='company'>{{ company }}</div>
           <div class='position'>{{ position }}</div>
           <div class='status'>{{ status }}</div>
           <div class='notes'> {{ notes }}</div>
-
           </div>
         </li>
-      </ul>
-    </div>
-    
+      </ul>   
   </div>
 </div>
+
 
 <div id="onSite" ng-controller="OnSiteController">
   <ul class="onSiteList">
@@ -98,4 +146,67 @@
 
     </li>
   </ul>
+</div>
+
+
+
+
+<div class="col-sm-6">
+  <form novalidate class="simple-form">
+    <div class="form-group">
+      <h2>Add a new backlog</h2>
+      <label for="notes">Notes: </label>
+      <input class="form-control" type="text" ng-model="backlogNotes" />
+    </div>
+    <div class="form-group">
+        <label for="backlogStatus">Status: </label>
+        <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
+          <option value="" selected="selected">------</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+          <option value="pended">Pending</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit" ng-click="addBacklog()" value="Save">Add New Backlog</button>
+  </form>
+
+  <form novalidate class="simple-form">
+    <div class="form-group">
+      <h2>Update backlog</h2>
+      <label for="notes">Notes: </label>
+      <input class="form-control" type="text" ng-model="backlogNotes" />
+    </div>
+    <div class="form-group">
+        <label for="backlogStatus">Status: </label>
+        <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
+          <option value="" selected="selected">------</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+          <option value="pending">Pending</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save">Save Changes</button>
+  </form>
+</div>
+
+
+<!-- Dummy Modal can delete or replace -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
