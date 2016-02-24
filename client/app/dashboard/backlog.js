@@ -2,7 +2,6 @@ angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
 
-  $scope.backlog = {};
   $scope.backlogs = [];
 
   $scope.getBacklogs = function () {
@@ -17,23 +16,6 @@ angular.module('hunt.backlog', [])
       });
   };
 
-  $scope.addBacklog = function () {
-    var newBacklog = {
-      userId: $rootScope.user.id,
-      notes: $scope.backlogNotes,
-      status: $scope.backlogStatus
-    };
-
-    Backlog.addBacklog(newBacklog)
-      .then(function () {
-        console.log('Backlog changes submitted!');
-        $location.path('/main');
-      })
-      .catch(function (error) {
-        console.log("There was an error submitting changes to backlog.", error);
-      });
-  };
-
   $scope.removeBacklog = function () {
 
   };
@@ -42,10 +24,16 @@ angular.module('hunt.backlog', [])
 
   };
 
+  $scope.load = function (backlog) {
+    console.log('Clicked on: ', backlog)
+    $rootScope.backlogID = backlog.id;
+  };
+
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
 
     var backlogChanges = {
+      id: $rootScope.backlogID,
       notes: $scope.backlogNotes,
       status: $scope.backlogStatus
     };
@@ -89,7 +77,7 @@ angular.module('hunt.backlog', [])
     })
     .then(function (resp) {
       console.log('PUT request to /api/backlogs successful! The response is: ', resp);
-      return resp.data;
+      return resp;
     });
   };
 
