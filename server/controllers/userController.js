@@ -3,16 +3,22 @@ var User = require('../models/user');
 
 module.exports = {
   get: function (req, res) {
-    var linkedin_id = req.query.id;
-    User.get(linkedin_id, function (user) {
-      res.json(user);
-    });
+    if (req.query.linkedInId) {
+      var linkedin_id = req.query.linkedInId;
+      User.get({'linkedin_id': linkedin_id}, function (user) {
+        res.json(user);
+      });
+    } else if (req.query.id) {
+      User.get({'id': req.query.id}, function (user) {
+        res.json(user);
+      });
+    }
   },
 
   post: function (req, res) {
     var userData = req.body;
 
-    User.get(userData.id, function (user) {
+    User.get({'linkedin_id': userData.id}, function (user) {
       if (!user) {
         var newUser = {
           first_name: userData.firstName,

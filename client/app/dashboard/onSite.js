@@ -1,10 +1,10 @@
 angular.module('hunt.onSite', [])
 
-.controller('OnSiteController', function ($scope, $rootScope, OnSiteFactory) {
+.controller('OnSiteController', function ($scope, $rootScope, $window, OnSiteFactory) {
   $scope.onSiteList = [];
 
   $scope.getOnSites = function () {
-    OnSiteFactory.findAll($rootScope.user.id)
+    OnSiteFactory.findAll($window.localStorage.getItem('user_id'))
     .then(function (onSiteList) {
       $scope.onSiteList = onSiteList;
     }).catch(function (error) {
@@ -19,7 +19,6 @@ angular.module('hunt.onSite', [])
   $scope.removeOnSite = function (onSiteListItem) {
     OnSiteFactory.edit(onSiteListItem);
   };
-
   $scope.getOnSites();
 })
 

@@ -1,22 +1,24 @@
-<span class="navbar-text ">
-  Logged in as <a ng-href="{{userprofile.publicProfileUrl}}" 
-  class="navbar-link">{{userprofile.firstName}} {{userprofile.lastName}}</a>
-</span>
+<div class="row">
+  <span class="navbar-text ">
+    Logged in as {{user.first_name}} {{user.last_name}}
+  </span>
 
-<button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
-
-<div class="container">
-  <h1>You are now logged in as {{userprofile.firstName}} {{userprofile.lastName}}</h1>
-
-  <a href="{{userprofile.publicProfileUrl}}" target="_blank"> 
-    <img class="userimage" ng-src="{{userprofile.pictureUrl}}"/>
-  </a>
-
-  <div class='applicationInputBar' id="applicationInputsBar">
-    <ng:include src="'app/dashboard/jobBar.html'"></ng:include>
-  </div>
-  <div class='backlog' ng-controller="BacklogController" id="backlog">
-    <ng:include src="'app/dashboard/dashboard.html'"></ng:include>
-  </div>
+  <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
 </div>
+
+<div class="row">
+  <h1>You are now logged in as {{user.first_name}} {{user.last_name}}</h1>
+
+  <a href="{{user.picture_url}}" target="_blank"> 
+    <img class="userimage" ng-src="{{user.picture_url}}"/>
+  </a>
+</div>
+
+<div class='applicationInputBar row' id="applicationInputsBar">
+  <ng:include src="'app/dashboard/jobBar.html'"></ng:include>
+</div>
+<div class='row backlog' ng-controller="BacklogController" id="backlog">
+  <ng:include src="'app/dashboard/dashboard.html'"></ng:include>
+</div>
+
 
