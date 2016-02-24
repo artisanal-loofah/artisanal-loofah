@@ -22,16 +22,23 @@ angular.module('hunt.users', [])
       $rootScope.$apply(function() {
         $rootScope.userprofile = result.values[0];
         $rootScope.loggedUser = true;
-
+        // debugger;
         User.getUserByLinkedInId($rootScope.userprofile.id)
         .then(function(user) {
           // test if user is empty object
+          console.log('user in getlinked...: ', user);
+          // debugger;
           if (user) {
             $rootScope.user = user;
           } else {
-            $rootScope.user = User.createUser($rootScope.userprofile);
+            User.createUser($rootScope.userprofile)
+              .then(function (user) {
+                $rootScope.user = user;
+              });
+            // debugger;
           }
           $window.localStorage.setItem('user_id', $rootScope.user.id);
+          // debugger;
           callback();
         })
         .catch(function(err) {

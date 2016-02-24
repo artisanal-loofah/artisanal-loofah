@@ -18,7 +18,7 @@ module.exports = {
   post: function (req, res) {
     var userData = req.body;
 
-    User.get(userData.id, function (user) {
+    User.get({'linkedin_id': userData.id}, function (user) {
       if (!user) {
         var newUser = {
           first_name: userData.firstName,

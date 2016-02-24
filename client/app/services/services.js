@@ -9,6 +9,7 @@ angular.module('hunt.services', [])
         linkedInId: linkedInId
       }
     }).then(function(res) {
+      console.log('RESPONSE IN GETUSERLINKEDINID: ', res);
       return res.data;
     }).catch(function (error) {
       console.error(error);
@@ -35,7 +36,7 @@ angular.module('hunt.services', [])
       url: '/api/users',
       data: userData
     }).then(function(res) {
-      return res;
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     });
