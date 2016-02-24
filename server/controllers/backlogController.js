@@ -40,7 +40,7 @@ module.exports = {
     }
 
     Backlog.update(updatedBacklog, function (backlog) {
-      console.log('updatedBacklog function in server ctrl executed..');
+      console.log('updatedBacklog function in server ctrl executed..', backlog);
       res.statusCode = 201;
       res.json(backlog);
     });
