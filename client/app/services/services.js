@@ -9,7 +9,6 @@ angular.module('hunt.services', [])
         linkedInId: linkedInId
       }
     }).then(function(res) {
-      console.log('RESPONSE IN GETUSERLINKEDINID: ', res);
       return res.data;
     }).catch(function (error) {
       console.error(error);
