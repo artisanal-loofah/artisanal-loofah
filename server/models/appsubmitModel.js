@@ -1,37 +1,42 @@
 var AppSubmit = require('../db/schemas/appsubmit');
 
 module.exports = {
-
-  createNew: function (data, callback) {
-    AppSubmit.create(data).then(function (appSubmit) {
-      callback(appSubmit.get('id'))
-    })
+  get: function (user_id, callback) {
+    AppSubmit.findAll({ where: {user_id: user_id}})
+      .then(function (appSubmits) {
+        callback(appSubmits);
+      });
   },
 
-  getInfo: function (application_id, callback) {
-    AppSubmit.findOne({ where: {application_id: application_id}})
-    .then(function (app) {
-      callback(app);
-    });
+  create: function (appSubmit, callback) {
+    AppSubmit.create(appSubmit)
+      .then(function (appSubmit) {
+        callback(appSubmit)
+      });
   },
 
-  getAllApps: function (user_id, callback) {
-    AppSubmit.findAll({ where: {user_id: user_id}}).then(function (appsubmits) {
-      callback(appsubmits);
-    });
-  },
+  // getInfo: function (application_id, callback) {
+  //   AppSubmit.findOne({ where: {application_id: application_id}})
+  //   .then(function (app) {
+  //     callback(app);
+  //   });
+  // },
 
-  modify: function (data, callback) {
-    AppSubmit.findOne({ where: {application_id: data.application_id}})
-    .on('success', function (appsubmit) {
-      if (appsubmit) {
-        appsubmit.update(data)
-        .success(function () {
-          console.log("appsubmit successfully updated");
-          callback();
-        });
+
+  update: function (newProps, callback) {
+    AppSubmit.find({ where: {id: newProps.id}})
+    .then(function (appSubmit) {
+      if (appSubmit) {
+        appSubmit.update(newProps)
+          .then(function (appSubmit) {
+            console.log("appsubmit successfully updated");
+            callback(appSubmit);
+          });
       }
     })
+    .catch(function(error) {
+      console.error('Error from update: ', error);
+    });
   }
 
 };
