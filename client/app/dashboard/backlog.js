@@ -39,6 +39,7 @@ angular.module('hunt.backlog', [])
       status: $scope.backlogStatus
     };
 
+    if (backlogChanges.status === 'accepted' || backlogChanges.status === 'rejected' || backlogChanges.status === 'pending') {
     Backlog.editBacklog(backlogChanges)
       .then(function (backlog) {
         $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
@@ -46,6 +47,10 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log("There was an error submitting changes to backlog: ", error);
       });
+    } else {
+      console.error('appropriate value for status needed');
+    };
+
   };
 
   $scope.getBacklogs();
