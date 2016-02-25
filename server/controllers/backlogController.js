@@ -2,6 +2,7 @@ var Backlog = require('../models/backlog');
 var Application = require('../models/applicationModel');
 var _ = require('underscore');
 
+// extendBacklog adds the company name and job title to the backlog object
 var extendBacklog = function(backlog, application, callback) {
   backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
     Application.getCompany(application.id)
@@ -18,7 +19,7 @@ module.exports = {
 
   allBacklogs: function (req, res, next) {
     Backlog.get(req.query.userId, function (backlogs) {
-      // Job title and company name are added to the response object for each backlog
+      // Job title and company name are added to each backlog
       backlogs.forEach(function(backlog, index) {
         Application.getByAppId(backlog.application_id)
           .then(function(application) {
@@ -40,7 +41,7 @@ module.exports = {
       status: req.body.status
     }
 
-    // After creating the new Backlog item, the job title and company name are added to the response object
+    // After creating the new Backlog item, the job title and company name are added to the backlog response object
     Backlog.post(newBacklog, function (backlog) {
       Application.getByAppId(backlog.application_id)
         .then(function(application) {
@@ -64,8 +65,9 @@ module.exports = {
       id: userData.id,
       notes: userData.notes,
       status: userData.status
-    }
+    };
 
+    // After update, job title and company name are added to the backlog response object
     Backlog.update(updatedBacklog, function (backlog) {
       Application.getByAppId(backlog.application_id)
         .then(function(application) {
