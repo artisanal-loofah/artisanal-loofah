@@ -112,26 +112,6 @@
 <!-- End of Chou's Pull Request -->
 
 
-<div id="appsubmit" ng-controller="AppSubmitController">
-  <div class="row">
-    <div class="col-sm-6">
-    </div>
-     <div><h1>Applications Submitted</h1></div>
-     <ul class="appsubmitList">
-        <li ng-repeat="apps in appSubmitList track by $index">
-          <div class='info'>
-          <div class='appId'>{{ appId }}</div>
-          <div class='company'>{{ company }}</div>
-          <div class='position'>{{ position }}</div>
-          <div class='status'>{{ status }}</div>
-          <div class='notes'> {{ notes }}</div>
-          </div>
-        </li>
-      </ul>   
-  </div>
-</div>
-
-
 <div id="onSite" ng-controller="OnSiteController">
   <ul class="onSiteList">
     <li ng-repeat="onSites in onSiteList track by $index">
