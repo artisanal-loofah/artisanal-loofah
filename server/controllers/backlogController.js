@@ -2,6 +2,18 @@ var Backlog = require('../models/backlog');
 var Application = require('../models/applicationModel');
 var _ = require('underscore');
 
+var extendBacklog = function(backlog, application, callback) {
+  backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
+    Application.getCompany(application.id)
+      .then(function(company) {
+        backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
+        callback(backlog);
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+};
+
 module.exports = {
 
   allBacklogs: function (req, res, next) {
@@ -10,18 +22,11 @@ module.exports = {
       backlogs.forEach(function(backlog, index) {
         Application.getByAppId(backlog.application_id)
           .then(function(application) {
-
-            backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
-            Application.getCompany(application.id)
-              .then(function(company) {
-                backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
-                if (index === backlogs.length - 1) {
-                  res.json(backlogs);
-                }
-              })
-              .catch(function(error) {
-                console.error(error);
-              });
+            extendBacklog(backlog, application, function(backlog) {
+              if (index === backlogs.length - 1) {
+                res.json(backlogs);
+              }
+            })
           });
       });
     });
@@ -39,16 +44,10 @@ module.exports = {
     Backlog.post(newBacklog, function (backlog) {
       Application.getByAppId(backlog.application_id)
         .then(function(application) {
-          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
-          Application.getCompany(application.id)
-            .then(function(company) {
-              backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
-              res.statusCode = 201;
-              res.json(backlog);
-            })
-            .catch(function(error) {
-              console.error(error);
-            });
+          extendBacklog(backlog, application, function(backlog) {
+            res.statusCode = 201;
+            res.json(backlog);
+          });
         });
     });
   },
@@ -70,16 +69,10 @@ module.exports = {
     Backlog.update(updatedBacklog, function (backlog) {
       Application.getByAppId(backlog.application_id)
         .then(function(application) {
-          backlog.dataValues = _.extend(backlog.dataValues, {'job_title': application.dataValues.job_title});
-            Application.getCompany(application.id)
-              .then(function(company) {
-                backlog.dataValues = _.extend(backlog.dataValues, {'company': company.name});
-                res.statusCode = 201;
-                res.json(backlog);
-              })
-              .catch(function(error) {
-                console.error(error);
-              });
+          extendBacklog(backlog, application, function(backlog) {
+            res.statusCode = 201;
+            res.json(backlog);
+          });
         });
     });
   }
