@@ -1,7 +1,6 @@
 angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
-
   $rootScope.backlogs = [];
   $rootScope.selectedBacklogIndex;
 
@@ -40,12 +39,12 @@ angular.module('hunt.backlog', [])
       status: $scope.backlogStatus
     };
 
-    Backlog.submitBacklogChanges(backlogChanges)
+    Backlog.editBacklog(backlogChanges)
       .then(function (backlog) {
         $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
       })
       .catch(function (error) {
-        console.log("There was an error submitting changes to backlog.", error);
+        console.log("There was an error submitting changes to backlog: ", error);
       });
   };
   $scope.getBacklogs();
@@ -62,22 +61,8 @@ angular.module('hunt.backlog', [])
         userId: userId
       }
     })
-    .then(function (resp) {
-      console.log('GET request to /api/backlogs/ successful! The response is: ', resp.data);
-      return resp.data;
-    });
-  };
-
-  var submitBacklogChanges = function (backlog) {
-    console.log('clientside backlog: ', backlog);
-    return $http({
-      method: 'PUT',
-      url: '/api/backlogs',
-      data: backlog
-    })
-    .then(function (resp) {
-      console.log('PUT request to /api/backlogs successful! The response is: ', resp);
-      return resp.data;
+    .then(function (res) {
+      return res.data;
     });
   };
 
@@ -87,15 +72,29 @@ angular.module('hunt.backlog', [])
       url: '/api/backlogs',
       data: backlog
     })
-    .then(function (resp) {
-      console.log('POST request to /api/backlogs successful! The response is: ', resp);
-      return resp.data;
+    .then(function (res) {
+      return res.data;
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+  };
+
+  var editBacklog = function (backlog) {
+    console.log('clientside backlog: ', backlog);
+    return $http({
+      method: 'PUT',
+      url: '/api/backlogs',
+      data: backlog
+    })
+    .then(function (res) {
+      return res.data;
     });
   };
 
   return {
     getBacklogs: getBacklogs,
-    submitBacklogChanges: submitBacklogChanges,
-    addBacklog: addBacklog
+    addBacklog: addBacklog,
+    editBacklog: editBacklog
   };
 });
