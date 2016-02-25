@@ -30,6 +30,7 @@ angular.module('hunt.backlog', [])
   $scope.clickedBacklog = function (backlog, index) {
     $rootScope.selectedBacklog = backlog;
     $rootScope.selectedBacklogIndex = index;
+    $rootScope.selectedApplicationId = backlog.application_id;
   };
 
   // Function for submitting any updated changes to a specific backlog
@@ -42,13 +43,18 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog: ", error);
       });
 
-    var backlogChanges = {
-      id: $rootScope.backlogID,
-      notes: $scope.backlogNotes,
-      status: $scope.backlogStatus
-    };
-
+    // If user changes state of backlog to accepted, 
+    //  Create a new app submitted list item and change status in backlog to 'Accepted'
     if ($scope.backlogStatus === "Accepted") {
+
+      var backlogChanges = {
+        user_id: $window.localStorage.getItem('user_id'),
+        application_id: $rootScope.selectedApplicationId,
+        id: $rootScope.backlogID,
+        notes: $scope.backlogNotes,
+        status: $scope.backlogStatus
+      };
+
       AppSubmit.addAppSubmit(backlogChanges)
         .then(function (backlog) {
           console.log("Added a new app submit from backlog after changing state! ", backlog);
@@ -58,6 +64,11 @@ angular.module('hunt.backlog', [])
           console.log("Error creating a new AppSubmit list item in backlog submit changes! ", error);
         });
     } else {
+      var backlogChanges = {
+        id: $rootScope.backlogID,
+        notes: $scope.backlogNotes,
+        status: $scope.backlogStatus
+      };
       Backlog.editBacklog(backlogChanges)
         .then(function (backlog) {
           $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
