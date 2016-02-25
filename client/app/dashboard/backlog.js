@@ -47,6 +47,7 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog: ", error);
       });
   };
+
   $scope.getBacklogs();
 })
 
