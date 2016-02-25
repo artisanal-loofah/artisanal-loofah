@@ -1,73 +1,100 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmitFactory) {
-  $scope.appSubmitInfo = {};
-  $scope.appSubmitList = [];
+.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit) {
+  $rootScope.appSubmits = [];
+  $rootScope.selectedAppSubmitIndex;
 
   $scope.getAppSubmits = function () {
-    AppSubmitFactory.findAll($window.localStorage.getItem('user_id'))
+    AppSubmit.getAppSubmits($window.localStorage.getItem('user_id'))
     .then(function (data) {
-      $scope.appSubmitList = data;
+      $rootScope.appSubmits = data;
     }).catch(function (error) {
       console.error(error);
     });
   };
 
-  $scope.modify = function (target) {
-    AppSubmitFactory.edit(target);
+  $scope.removeAppSubmit = function () {
+
   };
 
-  $scope.removeApp = function (target) {
-    AppSubmitFactory.edit(target);
+  $scope.moveToPhoneScreen = function () {
+
   };
+
+  // Function that sets the appSubmitID when user clicks on appSubmit
+  $scope.clickedAppSubmit = function (appSubmit, index) {
+    $rootScope.appSubmitID = appSubmit.id;
+    $rootScope.selectedAppSubmitIndex = index;
+  };
+
+  // Function for submitting any updated changes to a specific appSubmit
+  $scope.submitChanges = function () {
+
+    var appSubmitChanges = {
+      id: $rootScope.appSubmitID,
+      notes: $scope.appSubmitNotes,
+      status: $scope.appSubmitStatus
+    };
+
+    AppSubmit.editAppSubmit(appSubmitChanges)
+      .then(function (appSubmit) {
+        $rootScope.appSubmits.splice($rootScope.selectedAppSubmitIndex, 1, appSubmit);
+      })
+      .catch(function (error) {
+        console.log("There was an error submitting changes to appSubmit: ", error);
+      });
+  };
+
   $scope.getAppSubmits();
 })
 
-.factory('AppSubmitFactory', function ($http) {
+.factory('AppSubmit', function ($http) {
 
-  var findAll = function (userId) {
+  var getAppSubmits = function (userId) {
     return $http({
       method: 'GET',
       url: '/api/appsubmits',
       params: {
         userId: userId
       }
-    }).then(function (response) {
-      return response.data;
+    }).then(function (res) {
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     });
   };
 
-  var addNew = function (data) {
+  var addAppSubmit = function (appSubmit) {
     return $http({
       method: 'POST',
       url: 'api/appsubmits',
-      data: data
-    }).then(function (response) {
-      // not sure if return needed; we'll see when called from backlogController
-      return response;
-    }).catch(function (error) {
+      data: appSubmit
+    })
+    .then(function (res) {
+      return res.data;
+    })
+    .catch(function (error) {
       console.error(error);
     });
   };
 
-  var edit = function (data) {
+  var editAppSubmit = function (appSubmit) {
     return $http({
       method: 'PUT',
       url: 'api/appsubmits',
-      data: data
-    }).then(function (response) {
-      // not sure if return needed
-      return response;
-    }).catch(function (error) {
+      data: appSubmit
+    })
+    .then(function (res) {
+      return res.data;
+    })
+    .catch(function (error) {
       console.error(error);
     });
   };
 
   return {
-    findAll: findAll,
-    addNew: addNew,
-    edit: edit
+    getAppSubmits: getAppSubmits,
+    addAppSubmit: addAppSubmit,
+    editAppSubmit: editAppSubmit
   };
 });

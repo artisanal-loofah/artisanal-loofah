@@ -2,12 +2,11 @@
 
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
-  <ol class="stage-list">
-    <li ng-repeat='backlog in backlogs track by $index'>{{ backlog }}</li>
-    
+  <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
+      <p>Status: {{ backlog.status }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
@@ -16,16 +15,17 @@
       </a>
     </li>
 <!--     END OF NG REPEAT -->
-  </ol>
+  </ul>
 </div>
 
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
-  <ol class="stage-list">
+  <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
 
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
+      <p>Status: {{ appSubmit.status }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
@@ -34,7 +34,7 @@
       </a>
     </li>
 <!--     END OF NG REPEAT -->
-  </ol>
+  </ul>
 </div>
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
@@ -148,48 +148,6 @@
   </ul>
 </div>
 
-
-
-
-<div class="col-sm-6">
-  <form novalidate class="simple-form">
-    <div class="form-group">
-      <h2>Add a new backlog</h2>
-      <label for="notes">Notes: </label>
-      <input class="form-control" type="text" ng-model="backlogNotes" />
-    </div>
-    <div class="form-group">
-        <label for="backlogStatus">Status: </label>
-        <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
-          <option value="" selected="selected">------</option>
-          <option value="accepted">Accepted</option>
-          <option value="rejected">Rejected</option>
-          <option value="pended">Pending</option>
-        </select>
-    </div>
-    <button class="btn btn-primary" type="submit" ng-click="addBacklog()" value="Save">Add New Backlog</button>
-  </form>
-
-  <form novalidate class="simple-form">
-    <div class="form-group">
-      <h2>Update backlog</h2>
-      <label for="notes">Notes: </label>
-      <input class="form-control" type="text" ng-model="backlogNotes" />
-    </div>
-    <div class="form-group">
-        <label for="backlogStatus">Status: </label>
-        <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
-          <option value="" selected="selected">------</option>
-          <option value="accepted">Accepted</option>
-          <option value="rejected">Rejected</option>
-          <option value="pending">Pending</option>
-        </select>
-    </div>
-    <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save">Save Changes</button>
-  </form>
-</div>
-
-
 <!-- Dummy Modal can delete or replace -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -203,6 +161,42 @@
       <div class="modal-body">
         <p>Some text in the modal.</p>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Backlog Modal -->
+<div id="backlogModal" class="modal fade" role="dialog" ng-controller='BacklogController'>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+          <label for="notes">Notes: </label>
+          <input class="form-control" type="text" ng-model="backlogNotes" />
+        </div>
+        <div class="form-group">
+            <label for="backlogStatus">Status: </label>
+            <select class="form-control" name="backlogStatus" ng-model="backlogStatus">
+              <option value="" selected="selected">------</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save">Save Changes</button>
+      </form>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
