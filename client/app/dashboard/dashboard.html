@@ -20,11 +20,12 @@
 
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
-  <ul class="stage-list">
+  <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
 
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
+      <p>Status: {{ appSubmit.status }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
