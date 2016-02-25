@@ -21,9 +21,9 @@ router.put('/api/backlogs', backlogController.updateBacklog);
 // List Item controllers
 // Note: GET requests return ALL list items
 
-router.get('/api/appsubmits', appSubmitController.getAllApps);
-router.post('/api/appsubmits', appSubmitController.addApp);
-router.put('/api/appsubmits', appSubmitController.editApp);
+router.get('/api/appsubmits', appSubmitController.allAppSubmits);
+router.post('/api/appsubmits', appSubmitController.addAppSubmit);
+router.put('/api/appsubmits', appSubmitController.updateAppSubmit);
 
 router.get('/api/phonescreens', phoneScreenController.getAllPhoneScreens);
 router.post('/api/phonescreens', phoneScreenController.addPhoneScreen);
