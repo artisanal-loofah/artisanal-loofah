@@ -15,7 +15,7 @@ router.get('/api/applications', applicationController.getAll);
 router.post('/api/applications', applicationController.create);
 
 router.get('/api/backlogs', backlogController.allBacklogs);
-router.post('/api/backlogs', backlogController.newBacklog);
+router.post('/api/backlogs', backlogController.addBacklog);
 router.put('/api/backlogs', backlogController.updateBacklog);
 
 // List Item controllers
