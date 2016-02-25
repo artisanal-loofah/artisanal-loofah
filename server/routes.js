@@ -25,9 +25,9 @@ router.get('/api/appsubmits', appSubmitController.allAppSubmits);
 router.post('/api/appsubmits', appSubmitController.addAppSubmit);
 router.put('/api/appsubmits', appSubmitController.updateAppSubmit);
 
-router.get('/api/phonescreens', phoneScreenController.getAllPhoneScreens);
+router.get('/api/phonescreens', phoneScreenController.allPhoneScreens);
 router.post('/api/phonescreens', phoneScreenController.addPhoneScreen);
-router.put('/api/phonescreens', phoneScreenController.editPhoneScreen);
+router.put('/api/phonescreens', phoneScreenController.updatePhoneScreen);
 
 router.get('/api/onsites', onSiteController.getAllOnSites);
 router.post('/api/onsites', onSiteController.addOnSite);
