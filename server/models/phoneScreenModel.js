@@ -1,37 +1,36 @@
 var PhoneScreen = require('../db/schemas/phonescreen');
 
 module.exports = {
-
-  createNew: function (data, callback) {
-    PhoneScreen.create(data).then(function (phoneScreen) {
-      callback(phoneScreen.get('id'));
-    });
+  get: function (user_id, callback) {
+    PhoneScreen.findAll({ where: {user_id: user_id}})
+      .then(function (phoneScreens) {
+        callback(phoneScreens);
+      });
   },
 
-  modify: function (data, callback) {
-    PhoneScreen.findOne({ where: {application_id: data.application_id}})
-    .on('success', function (phoneScreen) {
-      if (phoneScreen) {
-        phoneScreen.update(data)
-        .success(function () {
-          console.log("phoneScreen successfully updated");
-          callback();
-        });
-      }
-    });
+  create: function (phoneScreen, callback) {
+    PhoneScreen.create(phoneScreen)
+      .then(function (phoneScreen) {
+        callback(phoneScreen);
+      });
   },
 
-  getAllPhoneScreens: function (user_id, callback) {
-    PhoneScreen.findAll({ where: {user_id: user_id}}).then(function (phoneScreens) {
-      callback(phoneScreens);
-    });
-  },
-
-  getOne: function (data, callback) {
-    PhoneScreen.findOne({ where: {application_id: data.application_id}})
-    .on('success', function (phoneScreen) {
-      callback(phoneScreen);
-    }); 
+  update: function (newProps, callback) {
+    // Currently, update function is searching for a matching 'notes' value,
+    //  We need to make it search for a matching application_id 
+    PhoneScreen.find({ where: { id: newProps.id } })
+      .then(function (phoneScreen) {
+        if (phoneScreen) {
+          phoneScreen.update(newProps)
+            .then(function (phoneScreen) {
+              console.log('phoneScreen update function ran in phoneScreen models, successfully updated phoneScreen!');
+              callback(phoneScreen);
+            });
+        }
+      })
+      .catch(function (error) {
+        console.error('Error from update:', error);
+      });
   }
 
 };

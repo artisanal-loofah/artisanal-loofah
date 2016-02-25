@@ -1,43 +1,25 @@
-var PhoneScreen = require('../models/phoneScreenModel')
+var PhoneScreen = require('../models/phoneScreenModel');
+var ListItem = require('../models/listItemModel');
 
 module.exports = {
-
-  addPhoneScreen: function (request, response, next) {
-    var newPhoneScreen = {
-      user_id: request.body.user_id,
-      application_id: request.body.application_id,
-      interviewer: request.body.interviewer,
-      date_time: request.body.date_time,
-      notes: request.body.notes,
-      status: request.body.status
-    };
-
-    PhoneScreen.createNew(newPhoneScreen, function () {
-      console.log('a new phonescreen was added');
-      response.statusCode = 201;
-      response.end();
-    });
+  allPhoneScreens: function(req, res) {
+    ListItem.allListItems(req, res, PhoneScreen);
   },
 
-  editPhoneScreen: function (request, response, next) {
-    PhoneScreen.modify(request.body, function () {
-      response.statusCode = 204;
-      response.end();
-    });
+  addPhoneScreen: function(req, res) {
+    ListItem.addListItem(req, res, PhoneScreen);
   },
 
-  getAllPhoneScreens: function (request, response, next) {
-    PhoneScreen.getAllPhoneScreens(request.query.userId, function (data) {
-      response.statusCode = 200;
-      response.send(data);
-    });
-  },
-
-  getAPhoneScreen: function (request, response, next) {
-    PhoneScreen.getOne(request.body, function (data) {
-      response.statusCode = 200;
-      response.send(data);
-    });
+  updatePhoneScreen: function(req, res) {
+    ListItem.updateListItem(req, res, PhoneScreen);
   }
+
+
+  // getAPhoneScreen: function (request, response, next) {
+  //   PhoneScreen.getOne(request.body, function (data) {
+  //     response.statusCode = 200;
+  //     response.send(data);
+  //   });
+  // }
 
 };
