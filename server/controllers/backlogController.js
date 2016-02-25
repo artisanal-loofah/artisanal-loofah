@@ -1,7 +1,5 @@
 var Backlog = require('../models/backlog');
-var Application = require('../models/applicationModel');
 var ListItem = require('../models/listItemModel');
-var _ = require('underscore');
 
 
 module.exports = {
