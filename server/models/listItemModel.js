@@ -30,15 +30,11 @@ module.exports = {
     });
   },
   addListItem: function (req, res, listItemModel) {
-    var newListItem = {
-      user_id: req.body.user_id,
-      application_id: req.body.application_id,
-      notes: req.body.notes,
-      status: req.body.status
-    }
+    console.log('-------------ADDING LSIT ITEM');
+    console.log(req.body);
 
     // After creating the new list item, the job title and company name are added to the list item response object
-    listItemModel.post(newListItem, function (listItem) {
+    listItemModel.post(req.body, function (listItem) {
       Application.getByAppId(listItem.application_id)
         .then(function(application) {
           extendListItem(listItem, application, function(listItem) {
@@ -49,14 +45,11 @@ module.exports = {
     });
   },
   updateListItem: function (req, res, listItemModel) {
-    var updatedListItem = {
-      id: req.body.id,
-      notes: req.body.notes,
-      status: req.body.status
-    };
+    console.log('------UPDATING LIST ITEM');
+    console.log(req.body);
 
     // After update, job title and company name are added to the list item response object
-    listItemModel.update(updatedListItem, function (listItem) {
+    listItemModel.update(req.body, function (listItem) {
       Application.getByAppId(listItem.application_id)
         .then(function(application) {
           extendListItem(listItem, application, function(listItem) {
