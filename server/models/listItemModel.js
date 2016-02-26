@@ -30,17 +30,11 @@ module.exports = {
     });
   },
   addListItem: function (req, res, listItemModel) {
-    console.log('-------------ADDING LSIT ITEM');
-    console.log(req.body);
-
     // After creating the new list item, the job title and company name are added to the list item response object
     listItemModel.create(req.body, function (listItem) {
-      console.log('inside add list item, passed in item: ', listItem);
       Application.getByAppId(listItem.dataValues.application_id)
         .then(function(application) {
-          console.log('inside the then before extendlistitem function: ', application);
           extendListItem(listItem, application, function(listItem) {
-            console.log('inside the extendlistitem function: ', listItem);
             res.statusCode = 201;
             res.json(listItem);
           });
@@ -51,9 +45,6 @@ module.exports = {
     });
   },
   updateListItem: function (req, res, listItemModel) {
-    console.log('------UPDATING LIST ITEM');
-    console.log(req.body);
-
     // After update, job title and company name are added to the list item response object
     listItemModel.update(req.body, function (listItem) {
       Application.getByAppId(listItem.application_id)

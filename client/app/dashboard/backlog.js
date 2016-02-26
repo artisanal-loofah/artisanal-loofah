@@ -34,30 +34,25 @@ angular.module('hunt.backlog', [])
 
   // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
-    var backlogChanges = {
-        user_id: $window.localStorage.getItem('user_id'),
-        application_id: $rootScope.selectedApplicationId,
-        notes: $scope.backlogNotes,
-        status: 'Pending'
-      };
+    var newAppSubmit = {
+      user_id: $window.localStorage.getItem('user_id'),
+        application_id: $rootScope.selectedBacklog.application_id,
+        status: 'Pending' 
+    }
 
-      AppSubmit.addAppSubmit(backlogChanges)
-        .then(function (appSubmit) {
-          $rootScope.appSubmits.push(appSubmit);
-          $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
-          backlogChanges.status = $scope.backlogStatus;
-          $scope.editBacklog(backlogChanges);
-        })
-        .catch(function (error) {
-          console.log("Error creating AppSubmit list item on backlog status change: ", error);
-        });
+    AppSubmit.addAppSubmit(newAppSubmit)
+      .then(function (appSubmit) {
+        $rootScope.appSubmits.push(appSubmit);
+      })
+      .catch(function (error) {
+        console.log("Error creating AppSubmit list item on backlog status change: ", error);
+      });
   };
 
-  // Function that sets the backlogID when user clicks on backlog
+  // Function that sets the selectedBacklog to backlog user clicked on
   $scope.clickedBacklog = function (backlog, index) {
     $rootScope.selectedBacklog = backlog;
     $rootScope.selectedBacklogIndex = index;
-    $rootScope.selectedApplicationId = backlog.application_id;
   };
 
   // Function for submitting any updated changes to a specific backlog
@@ -70,18 +65,9 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog: ", error);
       });
 
-    // If user changes state of backlog to accepted, move backlog to next stage
-    // Else, update the backlog with new changes
-    if ($scope.backlogStatus === "Accepted") {
+    if ($rootScope.selectedBacklog.status === "Accepted") {
       $scope.moveToAppSubmitted();
-    } else {
-      var backlogChanges = {
-        id: $rootScope.backlogID,
-        notes: $scope.backlogNotes,
-        status: $scope.backlogStatus
-      };
-      $scope.editBacklog(backlogChanges);
-    }
+    } 
   };
 
   $scope.getBacklogs();
