@@ -25,7 +25,7 @@
 
 <!--     NG-Repeat should look something like this -->
     <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
       <p>Notes: {{ appSubmit.notes }}<p>
       <a href="javascript:void(0)">
@@ -168,8 +168,43 @@
           <input class="form-control" type="text" ng-model="selectedBacklog.notes" />
         </div>
         <div class="form-group">
-            <label for="backlogStatus">Status:</label>
+            <label for="status">Status:</label>
             <select class="form-control" name="backlogStatus" ng-model="selectedBacklog.status">
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- AppSubmit Modal -->
+<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+          <label for="notes">Notes:</label>
+          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Pending">Pending</option>

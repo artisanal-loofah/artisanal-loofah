@@ -2,6 +2,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit) {
   $rootScope.appSubmits = [];
+  $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
 
   $scope.getAppSubmits = function () {
@@ -23,20 +24,13 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
   // Function that sets the appSubmitID when user clicks on appSubmit
   $scope.clickedAppSubmit = function (appSubmit, index) {
-    $rootScope.appSubmitID = appSubmit.id;
+    $rootScope.selectedAppSubmit = appSubmit;
     $rootScope.selectedAppSubmitIndex = index;
   };
 
   // Function for submitting any updated changes to a specific appSubmit
   $scope.submitChanges = function () {
-
-    var appSubmitChanges = {
-      id: $rootScope.appSubmitID,
-      notes: $scope.appSubmitNotes,
-      status: $scope.appSubmitStatus
-    };
-
-    AppSubmit.editAppSubmit(appSubmitChanges)
+    AppSubmit.editAppSubmit($rootScope.selectedAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.splice($rootScope.selectedAppSubmitIndex, 1, appSubmit);
       })
