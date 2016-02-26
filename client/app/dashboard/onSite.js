@@ -1,12 +1,14 @@
 angular.module('hunt.onSite', [])
 
-.controller('OnSiteController', function ($scope, $rootScope, $window, OnSiteFactory) {
-  $scope.onSiteList = [];
+.controller('OnSiteController', function ($scope, $rootScope, $window, OnSite) {
+  $rootScope.onSites = [];
+  $rootScope.selectedOnSite;
+  $rootScope.selectedOnSiteIndex;
 
   $scope.getOnSites = function () {
-    OnSiteFactory.findAll($window.localStorage.getItem('user_id'))
-    .then(function (onSiteList) {
-      $scope.onSiteList = onSiteList;
+    OnSite.getOnSites($window.localStorage.getItem('user_id'))
+    .then(function (data) {
+      $scope.onSites = data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -17,55 +19,73 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.removeOnSite = function (onSiteListItem) {
-    OnSiteFactory.edit(onSiteListItem);
+    // OnSiteFactory.edit(onSiteListItem);
   };
+
+  $scope.moveToOffer = function() {
+
+  };
+
+  $scope.clickedOnSite = function(onSite, index) {
+    $rootScope.selectedOnSite = onSite;
+    $rootScope.selectedOnSiteIndex = index;
+  };
+
+  $scope.submitChanges = function() {
+    OnSite.editOnSite($rootScope.selectedOnSite);
+      .then(function (onSite) {
+        $rootScope.onSites.splice($rootScope.selectedOnSiteIndex, 1, onSite);
+      })
+      .catch(function (error) {
+        console.error("There was an error submitting changes to onSite: ", error);
+      });
+  };
+
   $scope.getOnSites();
 })
 
-.factory('OnSiteFactory', function ($http) {
-  var findAll = function (userId) {
+.factory('OnSite', function ($http) {
+  var getBacklogs = function (userId) {
     return $http({
       method: 'GET',
       url: '/api/onsites',
       params: {
         userId: userId
       }
-    }).then(function (response) {
-      return response.data;
+    }).then(function (res) {
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     });
   };
 
-  var addNew = function (onSiteListItem) {
+  var addOnSite = function (onSite) {
     return $http({
       method: 'POST',
       url: 'api/onesites',
-      data: onSiteListItem
-    }).then(function (response) {
-      // not sure if return needed; we'll see when called from backlogController
-      return response.data;
+      data: onSite
+    }).then(function (res) {
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     });
   };
 
-  var edit = function (onSiteListItem) {
+  var editOnSite = function (onSite) {
     return $http({
       method: 'PUT',
       url: 'api/onsites',
-      data: onSiteListItem
-    }).then(function (response) {
-      // not sure if return needed
-      return response.data;
+      data: onSite
+    }).then(function (res) {
+      return res.data;
     }).catch(function (error) {
       console.error(error);
     })
   };
 
   return {
-    findAll: findAll,
-    addNew: addNew,
-    edit: edit
+    getBacklogs: getBacklogs,
+    addOnSite: addOnSite,
+    editOnSite: editOnSite
   }
 });
