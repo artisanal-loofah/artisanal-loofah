@@ -2,8 +2,9 @@ angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
   $rootScope.backlogs = [];
+  $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
-
+  
   $scope.getBacklogs = function () {
     // Query the DB for all backlogs using the function in server controller 
     //  On success, assign $scope.backlogs to the data returned from query
@@ -26,33 +27,19 @@ angular.module('hunt.backlog', [])
 
   // Function that sets the backlogID when user clicks on backlog
   $scope.clickedBacklog = function (backlog, index) {
-    $rootScope.backlogID = backlog.id;
+    $rootScope.selectedBacklog = backlog;
     $rootScope.selectedBacklogIndex = index;
   };
 
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
-
-    var backlogChanges = {
-      id: $rootScope.backlogID,
-      notes: $scope.backlogNotes,
-      status: $scope.backlogStatus
-    };
-
-    console.log('backchanges: ', backlogChanges.status);
-
-    if (backlogChanges.status === 'Accepted' || backlogChanges.status === 'Rejected' || backlogChanges.status === 'Pending') {
-    Backlog.editBacklog(backlogChanges)
+    Backlog.editBacklog($rootScope.selectedBacklog)
       .then(function (backlog) {
         $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
       })
       .catch(function (error) {
         console.log("There was an error submitting changes to backlog: ", error);
       });
-    } else {
-      console.error('appropriate value for status needed');
-    };
-
   };
 
   $scope.getBacklogs();
