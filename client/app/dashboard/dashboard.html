@@ -7,6 +7,7 @@
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
+      <p>Notes: {{ backlog.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
@@ -26,6 +27,7 @@
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
+      <p>Notes: {{ appSubmit.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
@@ -106,30 +108,24 @@
       </a>
     </div>
 <!--     END OF NG REPEAT -->
+    <div class="offer-item" ng-repeat="offer in offers track by $index">
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>{{offer.job_title}} - {{offer.company}}</a>
+      <p>
+        Salary: ${{offer.salary}}
+        <br>
+        Deadline: {{offer.deadline}}
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </div>
   </div>
 </div>
 
 <!-- End of Chou's Pull Request -->
-
-
-<div id="appsubmit" ng-controller="AppSubmitController">
-  <div class="row">
-    <div class="col-sm-6">
-    </div>
-     <div><h1>Applications Submitted</h1></div>
-     <ul class="appsubmitList">
-        <li ng-repeat="apps in appSubmitList track by $index">
-          <div class='info'>
-          <div class='appId'>{{ appId }}</div>
-          <div class='company'>{{ company }}</div>
-          <div class='position'>{{ position }}</div>
-          <div class='status'>{{ status }}</div>
-          <div class='notes'> {{ notes }}</div>
-          </div>
-        </li>
-      </ul>   
-  </div>
-</div>
 
 
 <div id="onSite" ng-controller="OnSiteController">
@@ -194,7 +190,7 @@
               <option value="Pending">Pending</option>
             </select>
         </div>
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save">Save Changes</button>
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
       </form>
 
       <div class="modal-footer">
