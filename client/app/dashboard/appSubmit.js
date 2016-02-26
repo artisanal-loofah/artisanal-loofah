@@ -65,7 +65,6 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       data: appSubmit
     })
     .then(function (res) {
-      console.log('added a new appsubmit, returning res data: ', res.data);
       return res.data;
     })
     .catch(function (error) {
