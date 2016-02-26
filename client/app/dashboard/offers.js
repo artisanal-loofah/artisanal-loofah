@@ -32,7 +32,7 @@ angular.module('hunt.offers', [])
     console.log('offerchanges: ', offerChanges.status);
 
     if (offerChanges.status === 'Accepted' || offerChanges.status === 'Rejected' || offerChanges.status === 'Pending') {
-    Offers.editOffer(offerChanges)
+      Offers.editOffer(offerChanges)
       .then(function (offer) {
         $rootScope.offers.splice($rootScope.selectedOfferIndex, 1, offer);
       })
