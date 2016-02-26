@@ -33,12 +33,12 @@ angular.module('hunt.offers', [])
 
     if (offerChanges.status === 'Accepted' || offerChanges.status === 'Rejected' || offerChanges.status === 'Pending') {
     Offers.editOffer(offerChanges)
-      // .then(function (offer) {
-      //   $rootScope.offers.splice($rootScope.selectedBacklogIndex, 1, offer);
-      // })
-      // .catch(function (error) {
-      //   console.log("There was an error submitting changes to offers: ", error);
-      // });
+      .then(function (offer) {
+        $rootScope.offers.splice($rootScope.selectedOfferIndex, 1, offer);
+      })
+      .catch(function (error) {
+        console.log("There was an error submitting changes to offers: ", error);
+      });
     } else {
       console.error('appropriate value for status needed');
     }
