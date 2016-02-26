@@ -37,14 +37,13 @@ angular.module('hunt.backlog', [])
     var backlogChanges = {
         user_id: $window.localStorage.getItem('user_id'),
         application_id: $rootScope.selectedApplicationId,
-        id: $rootScope.backlogID,
         notes: $scope.backlogNotes,
         status: 'Pending'
       };
 
       AppSubmit.addAppSubmit(backlogChanges)
-        .then(function (backlog) {
-          $rootScope.appSubmits.push(backlog);
+        .then(function (appSubmit) {
+          $rootScope.appSubmits.push(appSubmit);
           $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
           backlogChanges.status = $scope.backlogStatus;
           $scope.editBacklog(backlogChanges);
