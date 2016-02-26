@@ -20,7 +20,6 @@ angular.module('hunt.offers', [])
 .factory('Offers', function ($http) {
 
   var getOffers = function (userId) {
-    console.log("=----------------------going to server")
     return $http({
       method: 'GET',
       url: '/api/offers',
