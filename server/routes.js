@@ -1,11 +1,12 @@
 var router = require('express').Router();
 var userController = require('./controllers/userController');
-var applicationController = require('./controllers/applicationController')
+var applicationController = require('./controllers/applicationController');
 var backlogController = require('./controllers/backlogController');
 var appSubmitController = require('./controllers/appsubmitController');
 var phoneScreenController = require('./controllers/phoneScreenController');
 var onSiteController = require('./controllers/onSiteController');
 var applicationController = require('./controllers/applicationController');
+var offerController = require('./controllers/offerController.js');
 
 //Connect controller methods to their corresponding routes
 router.get('/api/users', userController.get);
@@ -33,4 +34,5 @@ router.get('/api/onsites', onSiteController.allOnSites);
 router.post('/api/onsites', onSiteController.addOnSite);
 router.put('/api/onsites', onSiteController.updateOnSite);
 
+router.get('/api/offers', offerController.allOffers);
 module.exports = router;

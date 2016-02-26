@@ -100,6 +100,20 @@
       </a>
     </div>
 <!--     END OF NG REPEAT -->
+    <div class="offer-item" ng-repeat="offer in offers track by $index">
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>{{offer.job_title}} - {{offer.company}}</a>
+      <p>
+        Salary: ${{offer.salary}}
+        <br>
+        Deadline: {{offer.deadline}}
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </div>
   </div>
 </div>
 
