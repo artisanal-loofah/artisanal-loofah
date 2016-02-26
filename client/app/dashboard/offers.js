@@ -15,9 +15,34 @@ angular.module('hunt.offers', [])
   };
 
   // Function that sets the offerID when user clicks on Offer
-  $scope.clickedBacklog = function (offer, index) {
+  $scope.clickedOffer = function (offer, index) {
     $rootScope.offerID = offer.id;
     $rootScope.selectedOfferIndex = index;
+  };
+
+  $scope.submitChanges = function () {
+
+    var offerChanges = {
+      id: $rootScope.offerID,
+      notes: $scope.offerNotes,
+      deadline: $scope.offerDeadline,
+      status: $scope.offerStatus
+    };
+
+    console.log('offerchanges: ', offerChanges.status);
+
+    if (offerChanges.status === 'Accepted' || offerChanges.status === 'Rejected' || offerChanges.status === 'Pending') {
+    Offers.editOffer(offerChanges)
+      // .then(function (offer) {
+      //   $rootScope.offers.splice($rootScope.selectedBacklogIndex, 1, offer);
+      // })
+      // .catch(function (error) {
+      //   console.log("There was an error submitting changes to offers: ", error);
+      // });
+    } else {
+      console.error('appropriate value for status needed');
+    }
+
   };
 
   $scope.getOffers();
@@ -40,7 +65,20 @@ angular.module('hunt.offers', [])
     });
   };
 
+  var editOffer = function (offer) {
+    console.log('clientside offer: ', offer);
+    // return $http({
+    //   method: 'PUT',
+    //   url: '/api/offer',
+    //   data: offer
+    // })
+    // .then(function (res) {
+    //   return res.data;
+    // });
+  };
+
   return {
-    getOffers: getOffers
+    getOffers: getOffers,
+    editOffer: editOffer
   };
 });

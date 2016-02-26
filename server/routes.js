@@ -35,4 +35,5 @@ router.post('/api/onsites', onSiteController.addOnSite);
 router.put('/api/onsites', onSiteController.updateOnSite);
 
 router.get('/api/offers', offerController.allOffers);
+router.put('/api/offers', offerController.updateOffer);
 module.exports = router;
