@@ -40,26 +40,23 @@
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
-  <div class="stage-list">
+  <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
-    <div class="phone-screen-item">
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
-      <p>
-        Date: 12-08-2016
-        <br>
-        Time: 12:00 PM
-        <br>
-        Interviewer: Ty Lawson
-      </p>
+    <li>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#phoneScreenModal' ng-click="clickedPhoneScreen(phoneScreen, $index)">{{phoneScreen.job_title}} - {{phoneScreen.company}}</a>
+      <p>Status: {{ phoneScreen.status }}<p>
+      <p>Interviewer: {{ phoneScreen.interviewer }}<p>
+      <p>Interview Time: {{ phoneScreen.date_time }}<p>
+      <p>Notes: {{ phoneScreen.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a href="#">
-        <span class="glyphicon glyphicon-remove remove"></span>
+          <span class="glyphicon glyphicon-remove remove"></span>
       </a>
-    </div>
+    </li>
 <!--     END OF NG REPEAT -->
-  </div>
+  </ul>
 </div>
 
 <div class='col-sm-3 stage' ng-controller='OnSiteController'>
@@ -185,6 +182,48 @@
   </div>
 </div>
 
+<!-- PhoneScreen Modal -->
+<div id="phoneScreenModal" class="modal fade" role="dialog" ng-controller='PhoneScreenController'>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+          <label for="interviewer">Interviewer:</label>
+          <input class="form-control" type="text" ng-model="selectedPhoneScreen.interviewer" />
+        </div>
+        <div class="form-group">
+          <label for="date_time">Interview Time:</label>
+          <input class="form-control" type="text" ng-model="selectedPhoneScreen.date_time" />
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes:</label>
+          <input class="form-control" type="text" ng-model="selectedPhoneScreen.notes" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control" name="backlogStatus" ng-model="selectedPhoneScreen.status">
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- AppSubmit Modal -->
 <div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
 

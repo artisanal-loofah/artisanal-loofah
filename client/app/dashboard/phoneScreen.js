@@ -2,6 +2,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
 .controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen) {
   $rootScope.phoneScreens = [];
+  $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
 
   $scope.getPhoneScreens = function () {
@@ -23,20 +24,13 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
   // Function that sets the phoneScreenID when user clicks on phoneScreen
   $scope.clickedPhoneScreen = function (phoneScreen, index) {
-    $rootScope.phoneScreenID = phoneScreen.id;
+    $rootScope.selectedPhoneScreen = phoneScreen;
     $rootScope.selectedPhoneScreenIndex = index;
   };
 
   // Function for submitting any updated changes to a specific phoneScreen
   $scope.submitChanges = function () {
-
-    var phoneScreenChanges = {
-      id: $rootScope.phoneScreenID,
-      notes: $scope.phoneScreenNotes,
-      status: $scope.phoneScreenStatus
-    };
-
-    PhoneScreen.editPhoneScreen(phoneScreenChanges)
+    PhoneScreen.editPhoneScreen($rootScope.selectedPhoneScreen)
       .then(function (phoneScreen) {
         $rootScope.phoneScreens.splice($rootScope.selectedPhoneScreenIndex, 1, phoneScreen);
       })
