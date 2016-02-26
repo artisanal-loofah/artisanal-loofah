@@ -12,7 +12,7 @@ angular.module('hunt.backlog', [])
         $rootScope.backlogs = data;
       })
       .catch(function (error) {
-        console.log('Error initializing backlogs: ', error);
+        console.log('Error getting backlogs: ', error);
       });
   };
 
@@ -21,6 +21,7 @@ angular.module('hunt.backlog', [])
 
   };
 
+  // Function that edits an existing backlog
   $scope.editBacklog = function (backlog) {
     Backlog.editBacklog(backlog)
         .then(function (backlog) {
@@ -49,7 +50,7 @@ angular.module('hunt.backlog', [])
           $scope.editBacklog(backlogChanges);
         })
         .catch(function (error) {
-          console.log("Error creating AppSubmit list item on backlog status change! ", error);
+          console.log("Error creating AppSubmit list item on backlog status change: ", error);
         });
   };
 
@@ -82,7 +83,6 @@ angular.module('hunt.backlog', [])
       };
       $scope.editBacklog(backlogChanges);
     }
-
   };
 
   $scope.getBacklogs();
