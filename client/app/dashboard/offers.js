@@ -67,14 +67,14 @@ angular.module('hunt.offers', [])
 
   var editOffer = function (offer) {
     console.log('clientside offer: ', offer);
-    // return $http({
-    //   method: 'PUT',
-    //   url: '/api/offer',
-    //   data: offer
-    // })
-    // .then(function (res) {
-    //   return res.data;
-    // });
+    return $http({
+      method: 'PUT',
+      url: '/api/offers',
+      data: offer
+    })
+    .then(function (res) {
+      return res.data;
+    });
   };
 
   return {
