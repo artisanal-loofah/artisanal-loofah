@@ -5,6 +5,8 @@ h1 {
 
 .stage-list{
   word-wrap:break-word;
+  border-style: groove;
+  border-color: #d3d3d3;
 }
 
 a .remove {
