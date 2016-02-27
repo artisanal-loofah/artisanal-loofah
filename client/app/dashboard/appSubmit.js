@@ -5,6 +5,29 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
 
+  $scope.set_color = function (appSubmit) {
+    if (appSubmit.status === "Accepted") {
+      return { 'background-color': "#7CFC00" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#4C924C'}
+    }
+    if (appSubmit.status === "Rejected") {
+      return { 'background-color': "#FF3232",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#990000'}
+    }
+    if (appSubmit.status === "Pending") {
+      return { 'background-color': "#D3D3D3",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#A8A8A8' }
+    }
+  };
+
+
+
   $scope.getAppSubmits = function () {
     AppSubmit.getAppSubmits($window.localStorage.getItem('user_id'))
     .then(function (data) {

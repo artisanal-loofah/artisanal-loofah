@@ -5,11 +5,33 @@ angular.module('hunt.backlog', [])
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
 
+  $scope.set_color = function (backlog) {
+    if (backlog.status === "Accepted") {
+      return { 'background-color': "#7CFC00" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#4C924C'}
+    }
+    if (backlog.status === "Rejected") {
+      return { 'background-color': "#FF3232",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#990000'}
+    }
+    if (backlog.status === "Pending") {
+      return { 'background-color': "#D3D3D3",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#A8A8A8' }
+    }
+  };
+
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function () {
     Backlog.getBacklogs($window.localStorage.getItem('user_id'))
       .then(function (data) {
         $rootScope.backlogs = data;
+        console.log('data is :', data);
       })
       .catch(function (error) {
         console.log('Error getting backlogs: ', error);
@@ -69,6 +91,8 @@ angular.module('hunt.backlog', [])
       $scope.moveToAppSubmitted();
     } 
   };
+
+  
 
   $scope.getBacklogs();
 })

@@ -3,8 +3,33 @@ h1 {
 	font-size: 150%;
 }
 
+.topnavibar {
+  padding: 20px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+
+
 .stage-list{
   word-wrap:break-word;
+}
+
+.jobbar {
+  margin: auto;
+  margin-top: 50px;
+  width: 50%;
+  border: 3px solid #73AD21;
+  padding: 5px;
+}
+
+
+.pending{
+  border-style: solid;
+  border-color: #D3D3D3;
+  border-width: 3px;
 }
 
 a .remove {
