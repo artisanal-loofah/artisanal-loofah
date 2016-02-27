@@ -29,8 +29,8 @@ router.get('/api/phonescreens', phoneScreenController.allPhoneScreens);
 router.post('/api/phonescreens', phoneScreenController.addPhoneScreen);
 router.put('/api/phonescreens', phoneScreenController.updatePhoneScreen);
 
-router.get('/api/onsites', onSiteController.getAllOnSites);
+router.get('/api/onsites', onSiteController.allOnSites);
 router.post('/api/onsites', onSiteController.addOnSite);
-router.put('/api/onsites', onSiteController.editOnSite);
+router.put('/api/onsites', onSiteController.updateOnSite);
 
 module.exports = router;

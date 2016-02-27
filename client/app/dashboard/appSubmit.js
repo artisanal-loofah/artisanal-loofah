@@ -1,7 +1,8 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit) {
+.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen) {
   $rootScope.appSubmits = [];
+  $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
 
   $scope.getAppSubmits = function () {
@@ -18,31 +19,40 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.moveToPhoneScreen = function () {
+    var newPhoneScreen = {
+      user_id: $rootScope.selectedAppSubmit.user_id,
+      application_id: $rootScope.selectedAppSubmit.application_id,
+      status: 'Pending'
+    }
 
+    PhoneScreen.addPhoneScreen(newPhoneScreen)
+      .then(function (phoneScreen) {
+        $rootScope.phoneScreens.push(phoneScreen);
+      })
+      .catch(function (error) {
+        console.log("Error creating PhoneScreen list item on AppSubmit status change : ", error);
+      });
   };
 
   // Function that sets the appSubmitID when user clicks on appSubmit
   $scope.clickedAppSubmit = function (appSubmit, index) {
-    $rootScope.appSubmitID = appSubmit.id;
+    $rootScope.selectedAppSubmit = appSubmit;
     $rootScope.selectedAppSubmitIndex = index;
   };
 
   // Function for submitting any updated changes to a specific appSubmit
   $scope.submitChanges = function () {
-
-    var appSubmitChanges = {
-      id: $rootScope.appSubmitID,
-      notes: $scope.appSubmitNotes,
-      status: $scope.appSubmitStatus
-    };
-
-    AppSubmit.editAppSubmit(appSubmitChanges)
+    AppSubmit.editAppSubmit($rootScope.selectedAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.splice($rootScope.selectedAppSubmitIndex, 1, appSubmit);
       })
       .catch(function (error) {
         console.log("There was an error submitting changes to appSubmit: ", error);
       });
+
+      if ($rootScope.selectedAppSubmit.status === "Accepted") {
+        $scope.moveToPhoneScreen();
+      }
   };
 
   $scope.getAppSubmits();
