@@ -2,7 +2,10 @@ var OnSite = require('../db/schemas/onsite');
 
 module.exports = {
   get: function (user_id, callback) {
-    OnSite.findAll({ where: {user_id: user_id}})
+    OnSite.findAll({ where: {
+      user_id: user_id,
+      $not: {status: 'Removed'}
+    }})
       .then(function (onSites) {
         callback(onSites);
       });
