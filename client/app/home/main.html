@@ -1,17 +1,15 @@
-<div class="row">
-  <span class="navbar-text ">
-    Logged in as {{user.first_name}} {{user.last_name}}
-  </span>
-
-  <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
-</div>
-
-<div class="row">
-  <h1>You are now logged in as {{user.first_name}} {{user.last_name}}</h1>
+<div class="topnavibar">
 
   <a href="{{user.picture_url}}" target="_blank"> 
     <img class="userimage" ng-src="{{user.picture_url}}"/>
   </a>
+  <p>
+  <span class="navbar-text ">
+    Logged in as {{user.first_name}} {{user.last_name}}
+  </span>
+  <p>
+
+  <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
 </div>
 
 <div class='applicationInputBar row' id="applicationInputsBar">
