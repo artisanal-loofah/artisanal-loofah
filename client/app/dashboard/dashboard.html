@@ -61,26 +61,22 @@
 
 <div class='col-sm-3 stage' ng-controller='OnSiteController'>
   <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
-  <div class="stage-list">
-   <!--     NG-Repeat should look something like this --> 
-    <div class="on-site-interview-item">
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Software Engineer - Google</a>
-      <p>
-        Date: 12-08-2016
-        <br>
-        Time: 12:00 PM
-        <br>
-        Location: 5008 Wakefield Chapel Rd Arlington VA, 20036
-        <br>
-        Interviewer: Ty Lawson
-      </p>
+  <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
+    <li>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#onSiteModal' ng-click="clickedOnSite(onSite, $index)">{{onSite.job_title}} - {{onSite.company}}</a>
+      <p>Status: {{ onSite.status }}<p>
+      <p>Interviewer: {{ onSite.interviewer }}<p>
+      <p>Location: {{ onSite.location }}<p>
+      <p>Interview Time: {{ onSite.date_time }}<p>
+      <p>Notes: {{ onSite.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-remove remove"></span>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-remove remove"></span>
       </a>
-    </div>
+    </li>
+  </ul>
 <!--     END OF NG REPEAT -->
   </div>
 </div>
@@ -105,25 +101,6 @@
     </div>
 <!--     END OF NG REPEAT -->
   </div>
-</div>
-
-<!-- End of Chou's Pull Request -->
-
-
-<div id="onSite" ng-controller="OnSiteController">
-  <ul class="onSiteList">
-    <li ng-repeat="onSites in onSiteList track by $index">
-      <div class='info'></div>
-
-      <div class='interviewer'></div>
-      <div class='datetime'></div>
-      <div class='location'></div>
-      <div class='status'></div>
-      <div class='notes'></div>
-
-
-    </li>
-  </ul>
 </div>
 
 <!-- Dummy Modal can delete or replace -->
@@ -182,6 +159,45 @@
   </div>
 </div>
 
+<!-- AppSubmit Modal -->
+<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+
+          <label for="notes">Notes:</label>
+          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- PhoneScreen Modal -->
 <div id="phoneScreenModal" class="modal fade" role="dialog" ng-controller='PhoneScreenController'>
   <div class="modal-dialog">
@@ -224,8 +240,9 @@
 
   </div>
 </div>
-<!-- AppSubmit Modal -->
-<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
+
+<!-- OnSite Modal -->
+<div id="onSiteModal" class="modal fade" role="dialog" ng-controller='OnSiteController'>
 
   <div class="modal-dialog">
 
@@ -238,13 +255,26 @@
 
       <form novalidate class="simple-form">
         <div class="form-group">
-
+          <label for="interviewer">Interviewer:</label>
+          <input class="form-control" type="text" ng-model="selectedOnSite.interviewer" />
+        </div>
+        <div class="form-group">
+        <div class="form-group">
+          <label for="interviewer">Interview Time:</label>
+          <input class="form-control" type="text" ng-model="selectedOnSite.date_time" />
+        </div>
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input class="form-control" type="text" ng-model="selectedOnSite.location" />
+        </div>
+        <div class="form-group">
+        <div class="form-group">
           <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
+          <input class="form-control" type="text" ng-model="selectedOnSite.notes" />
         </div>
         <div class="form-group">
             <label for="status">Status:</label>
-            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
+            <select class="form-control" name="status" ng-model="selectedOnSite.status">
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Pending">Pending</option>

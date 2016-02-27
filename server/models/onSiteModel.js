@@ -1,38 +1,41 @@
 var OnSite = require('../db/schemas/onsite');
 
 module.exports = {
-
-  createNew: function (data, callback) {
-    OnSite.create(data).then(function (onSite) {
-      callback(onSite.get('id'))
-    });
+  get: function (user_id, callback) {
+    OnSite.findAll({ where: {user_id: user_id}})
+      .then(function (onSites) {
+        callback(onSites);
+      });
   },
 
-  getInfo: function (application_id, callback) {
-    OnSite.findOne({ where: {application_id: application_id}})
-    .then(function (onSite) {
-      callback(onSite);
-    });
+  create: function (onSite, callback) {
+    OnSite.create(onSite)
+      .then(function (onSite) {
+        callback(onSite);
+      });
   },
 
-  getAllOnSites: function (user_id, callback) {
-    OnSite.findAll({ where: {user_id: user_id}}).then(function (onSites) {
-      callback(onSites);
-    });
-  },
-
-  modify: function (data, callback) {
-    OnSite.findOne({ where: {application_id: data.application_id}})
-    .on('success', function (onSite) {
-      if (onSite) {
-        onSite.update(data)
-        .success(function () {
-          console.log("onsite successfully updated");
-          callback();
-        });
-      }
-    });
+  update: function (newProps, callback) {
+    OnSite.findOne({ where: {id: newProps.id}})
+      .then(function (onSite) {
+        if (onSite) {
+          onSite.update(newProps)
+          .then(function (onSite) {
+            console.log("onsite successfully updated");
+            callback(onSite);
+          });
+        }
+      })
+      .catch(function (error) {
+        console.error('Error from update:', error);
+      })
   }
 
+  // getInfo: function (application_id, callback) {
+  //   OnSite.findOne({ where: {application_id: application_id}})
+  //   .then(function (onSite) {
+  //     callback(onSite);
+  //   });
+  // },
 };
 
