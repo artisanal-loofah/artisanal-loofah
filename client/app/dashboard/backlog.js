@@ -18,8 +18,12 @@ angular.module('hunt.backlog', [])
   };
 
   // Function that removes backlog
-  $scope.removeBacklog = function () {
-
+  $scope.removeBacklog = function (backlog, index) {
+    if (window.confirm("Are you sure you want to remove this item from this stage?")){
+      $scope.clickedBacklog(backlog, index);
+      $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1);
+      $scope.editBacklog(backlog);
+    }
   };
 
   // Function that edits an existing backlog
