@@ -8,13 +8,13 @@ angular.module('hunt.backlog', [])
 
   $scope.set_color = function (backlog) {
     if (backlog.status === "Accepted") {
-      return { color: "green" }
+      return { 'background-color': "#7CFC00" }
     }
     if (backlog.status === "Rejected") {
-      return { color: "red" }
+      return { 'background-color': "#FF3232" }
     }
     if (backlog.status === "Pending") {
-      return { color: "gray" }
+      return { 'background-color': "gray" }
     }
   };
 
