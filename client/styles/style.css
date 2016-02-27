@@ -13,19 +13,19 @@ h1 {
 .accepted{
   border-style: solid;
   border-color: #00FF00;
-  border-width: 7px;
+  border-width: 3px;
 }
 
 .notaccepted{
   border-style: solid;
   border-color: #FF0000;
-  border-width: 7px;
+  border-width: 3px;
 }
 
 .pending{
   border-style: solid;
   border-color: #D3D3D3;
-  border-width: 7px;
+  border-width: 3px;
 }
 
 a .remove {
