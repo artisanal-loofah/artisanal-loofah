@@ -8,13 +8,15 @@ module.exports = {
       var linkedin_id = req.query.linkedInId;
       User.get({'linkedin_id': linkedin_id}, function (user) {
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        var responseData = {
+          user: user,
+          token: token
+        };
+        res.json(responseData);
       });
-    } else if (req.query.id) {
-      User.get({'id': req.query.id}, function (user) {
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
-      });
+    } else {
+      res.statusCode = 401;
+      res.send("Could not find that LinkedIn id.");
     }
   },
 
@@ -32,12 +34,15 @@ module.exports = {
         };
 
         User.post(newUser, function (user) {
-          var token = jwt.encode(user, 'secret');
+          var responseData = {
+            user: user,
+            token: token
+          };
           res.statusCode = 201;
-          res.json({token: token});
+          res.json(responseData);
         })
       } else {
-        next(new Error('User already exist!'));
+        next(new Error('User already exists!'));
         res.statusCode = 409;
         res.end();
       }
