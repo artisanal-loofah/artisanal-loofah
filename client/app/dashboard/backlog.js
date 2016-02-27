@@ -81,6 +81,8 @@ angular.module('hunt.backlog', [])
     } 
   };
 
+  $scope.accepted = false;
+
   $scope.getBacklogs();
 })
 
