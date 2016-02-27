@@ -2,18 +2,19 @@ angular.module('hunt.users', [])
 
 .controller('UserController', function huntUsers($scope, $location, $rootScope, $http, $window, User) {
   $scope.initializeApp = function() {
-    if (!isLoggedIn()) {
+    // if (!User.isAuth()) {
       $scope.getLinkedInData(function() {
         $location.path("/main");
       });
-    } else {
-      var id = $window.localStorage.getItem('user_id');
-      User.getUserById(id)
-      .then(function(user) {
-        $rootScope.user = user;
-        $location.path("/main");
-      });
-    }
+    // } else {
+    //   // console.log('set rootscope user in initliazeapp: ', $rootScope.user);
+    //   // var token = $window.localStorage.getItem('hunt_token');
+    //   // User.getUserByLinkedInId(id)
+    //   // .then(function(user) {
+    //   //   $rootScope.user = user;
+    //   //   $location.path("/main");
+    //   // });
+    // }
   };
 
   $scope.getLinkedInData = function (callback) {
@@ -23,19 +24,30 @@ angular.module('hunt.users', [])
         $rootScope.userprofile = result.values[0];
         $rootScope.loggedUser = true;
         User.getUserByLinkedInId($rootScope.userprofile.id)
-        .then(function(user) {
-          // test if user is empty object
-          console.log('user in getlinked...: ', user);
-          if (user) {
-            $rootScope.user = user;
+        .then(function(data) {
+          // console.log('user in getlinked...: ', user);
+          // if (user) {
+          //   $rootScope.user = user;
+          // } else {
+            // User.createUser($rootScope.userprofile)
+            //   .then(function (user) {
+            //     $rootScope.user = user;
+            //   });
+          // }
+          if (data.user) {
+            $rootScope.user = data.user;
+            console.log('set rootscope user in getlidata: ', $rootScope.user);
+            $window.localStorage.setItem('hunt_token', data.token);
+            callback();
           } else {
             User.createUser($rootScope.userprofile)
-              .then(function (user) {
-                $rootScope.user = user;
+              .then(function (data) {
+                $rootScope.user = data.user;
+                console.log('set rootscope user in getlidata: ', $rootScope.user);
+                $window.localStorage.setItem('hunt_token', data.token);
+                callback();
               });
           }
-          $window.localStorage.setItem('user_id', $rootScope.user.id);
-          callback();
         })
         .catch(function(err) {
           console.error(err);
@@ -51,7 +63,7 @@ angular.module('hunt.users', [])
     delete $rootScope.userprofile;
     delete $rootScope.user;
     $rootScope.loggedUser = false;
-    $window.localStorage.removeItem('user_id');
+    $window.localStorage.removeItem('hunt_token');
     $location.path('/signin');
   };
 });
