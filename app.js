@@ -21,6 +21,8 @@ app.use(morgan('dev'));
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
 
+// Logging and parsing
+
 // Router
 var router = require('./server/routes');
 app.use(router);

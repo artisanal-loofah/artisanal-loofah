@@ -86,7 +86,7 @@
   <div class="stage-list">
    <!--     NG-Repeat should look something like this --> 
     <div class="offer-item">
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Hacker in Residence - Hack Reactor</a>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal'>Hacker in Residence - Hack Reactor</a>
       <p>
         Salary: $9,000
         <br>
@@ -100,6 +100,20 @@
       </a>
     </div>
 <!--     END OF NG REPEAT -->
+    <div class="offer-item" ng-repeat="offer in offers track by $index">
+      <a ng-click="clickedOffer(offer, $index)" href="javascript:void(0)" data-toggle='modal' data-target='#offerModal'>{{offer.job_title}} - {{offer.company}}</a>
+      <p>
+        Salary: ${{offer.salary}}
+        <br>
+        Deadline: {{offer.deadline}}
+      </p>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-ok accept"></span>
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-remove remove"></span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -158,6 +172,7 @@
 
   </div>
 </div>
+
 
 <!-- AppSubmit Modal -->
 <div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
@@ -243,9 +258,7 @@
 
 <!-- OnSite Modal -->
 <div id="onSiteModal" class="modal fade" role="dialog" ng-controller='OnSiteController'>
-
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -289,6 +302,52 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Offer Modal -->
+<div id="offerModal" class="modal fade" role="dialog" ng-controller='OffersController'>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Offers for {{offers[selectedOfferIndex].job_title}} - {{offers[selectedOfferIndex].company}}</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+          <label for="notes">Notes: </label>
+          <input class="form-control" type="text" placeholder="{{offers[selectedOfferIndex].notes}} " ng-model="offerNotes" />
+        </div>
+        <div class="form-group">
+          <label for="salary">Salary: </label>
+          <input class="form-control" type="text" ng-model="offerSalary" />
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline: </label>
+          <input class="form-control" type="date" ng-model="offerDeadline" />
+        </div>
+        <div class="form-group">
+            <label for="offerStatus">Status: </label>
+            <select class="form-control" name="offerStatus" ng-model="offerStatus">
+              <option value="" selected="selected">------</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
   </div>
 </div>
+
+
+
