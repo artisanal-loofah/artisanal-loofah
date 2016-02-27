@@ -81,46 +81,24 @@
   </div>
 </div>
 
-<div class='col-sm-3 stage' ng-controller='OffersController'>
+<div class='col-sm-3 stage' ng-controller='OfferController'>
   <h1 class='stage-heading'>Offers</h1>
-  <div class="stage-list">
-   <!--     NG-Repeat should look something like this --> 
-    <div class="offer-item">
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#myModal'>Hacker in Residence - Hack Reactor</a>
-      <p>
-        Salary: $9,000
-        <br>
-        Deadline: 12-23-2016
-      </p>
+  <ul class="stage-list" ng-repeat='offer in offers track by $index'>
+    <li>
+      <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
+      <p>Status: {{ offer.status }}<p>
+      <p>Salary: {{ offer.salary }}<p>
+      <p>Deadline: {{ offer.deadline }}<p>
+      <p>Notes: {{ offer.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-remove remove"></span>
+      <a href="javascript:void(0)">
+          <span class="glyphicon glyphicon-remove remove"></span>
       </a>
-    </div>
+    </li>
+  </ul>
 <!--     END OF NG REPEAT -->
-  </div>
-</div>
-
-<!-- Dummy Modal can delete or replace -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -259,7 +237,6 @@
           <input class="form-control" type="text" ng-model="selectedOnSite.interviewer" />
         </div>
         <div class="form-group">
-        <div class="form-group">
           <label for="interviewer">Interview Time:</label>
           <input class="form-control" type="text" ng-model="selectedOnSite.date_time" />
         </div>
@@ -268,13 +245,58 @@
           <input class="form-control" type="text" ng-model="selectedOnSite.location" />
         </div>
         <div class="form-group">
-        <div class="form-group">
           <label for="notes">Notes:</label>
           <input class="form-control" type="text" ng-model="selectedOnSite.notes" />
         </div>
         <div class="form-group">
             <label for="status">Status:</label>
             <select class="form-control" name="status" ng-model="selectedOnSite.status">
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Offer Modal -->
+<div id="offerModal" class="modal fade" role="dialog" ng-controller='OfferController'>
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+          <label for="Salary">Salary:</label>
+          <input class="form-control" type="number" ng-model="selectedOffer.salary" />
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline:</label>
+          <input class="form-control" type="text" ng-model="selectedOffer.deadline" />
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes:</label>
+          <input class="form-control" type="text" ng-model="selectedOffer.notes" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control" name="status" ng-model="selectedOffer.status">
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Pending">Pending</option>
