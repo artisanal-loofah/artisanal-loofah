@@ -1,6 +1,6 @@
 angular.module('hunt.onSite', [])
 
-.controller('OnSiteController', function ($scope, $rootScope, $window, OnSite) {
+.controller('OnSiteController', function ($scope, $rootScope, $window, OnSite, Offer) {
   $rootScope.onSites = [];
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
@@ -19,7 +19,19 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.moveToOffer = function() {
+    var newOffer = {
+      user_id: $rootScope.selectedOnSite.user_id,
+      application_id: $rootScope.selectedOnSite.application_id,
+      status: 'Pending'
+    }
 
+    Offer.addOffer(newOffer)
+      .then(function (offer) {
+        $rootScope.offers.push(offer);
+      })
+      .catch(function (error) {
+        console.log("Error creating Offer list item on OnSite status change : ", error);
+      });
   };
 
   $scope.clickedOnSite = function(onSite, index) {
@@ -35,6 +47,10 @@ angular.module('hunt.onSite', [])
       .catch(function (error) {
         console.error("There was an error submitting changes to onSite: ", error);
       });
+
+      if ($rootScope.selectedOnSite.status === "Accepted") {
+        $scope.moveToOffer();
+      }
   };
 
   $scope.getOnSites();
