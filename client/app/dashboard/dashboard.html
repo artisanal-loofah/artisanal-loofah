@@ -42,7 +42,7 @@
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
-    <li>
+    <li class='phonescreens' ng-style="set_color(phoneScreen)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#phoneScreenModal' ng-click="clickedPhoneScreen(phoneScreen, $index)">{{phoneScreen.job_title}} - {{phoneScreen.company}}</a>
       <p>Status: {{ phoneScreen.status }}<p>
       <p>Interviewer: {{ phoneScreen.interviewer }}<p>

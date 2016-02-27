@@ -5,6 +5,19 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
 
+  $scope.set_color = function (phoneScreen) {
+    if (phoneScreen.status === "Accepted") {
+      return { 'background-color': "#7CFC00" }
+    }
+    if (phoneScreen.status === "Rejected") {
+      return { 'background-color': "#FF3232" }
+    }
+    if (phoneScreen.status === "Pending") {
+      return { 'background-color': "#D3D3D3" }
+    }
+  };
+
+
   $scope.getPhoneScreens = function () {
     PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
     .then(function (data) {
