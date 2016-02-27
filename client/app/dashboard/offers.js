@@ -2,6 +2,7 @@ angular.module('hunt.offers', [])
 
 .controller('OffersController', function ($scope, $rootScope, $window, Offers) {
   $rootScope.offers = [];
+  $rootScope.selectedOffer;
   $rootScope.selectedOfferIndex;
 
   $scope.getOffers = function () {
@@ -16,22 +17,20 @@ angular.module('hunt.offers', [])
 
   // Function that sets the offerID when user clicks on Offer
   $scope.clickedOffer = function (offer, index) {
-    $rootScope.offerID = offer.id;
+    $rootScope.selectedOffer = offer;
     $rootScope.selectedOfferIndex = index;
   };
 
   $scope.submitChanges = function () {
-
     var offerChanges = {
-      id: $rootScope.offerID,
+      id: $rootScope.selectedOffer.id,
       notes: $scope.offerNotes,
+      status: $scope.offerStatus,
       deadline: $scope.offerDeadline,
-      status: $scope.offerStatus
+      salary: $scope.offerSalary
     };
 
-    console.log('offerchanges: ', offerChanges.status);
-
-    if (offerChanges.status === 'Accepted' || offerChanges.status === 'Rejected' || offerChanges.status === 'Pending') {
+    if ($rootScope.selectedOffer.status === 'Accepted' || $rootScope.selectedOffer.status === 'Rejected' || $rootScope.selectedOffer.status === 'Pending') {
       Offers.editOffer(offerChanges)
       .then(function (offer) {
         $rootScope.offers.splice($rootScope.selectedOfferIndex, 1, offer);
