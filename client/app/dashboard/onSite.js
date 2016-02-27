@@ -14,10 +14,6 @@ angular.module('hunt.onSite', [])
     });
   };
 
-  $scope.modify = function (onSiteListItem) {
-    OnSiteFactory.edit(onSiteListItem);
-  };
-
   $scope.removeOnSite = function (onSiteListItem) {
     // OnSiteFactory.edit(onSiteListItem);
   };
@@ -62,7 +58,7 @@ angular.module('hunt.onSite', [])
   var addOnSite = function (onSite) {
     return $http({
       method: 'POST',
-      url: 'api/onesites',
+      url: 'api/onsites',
       data: onSite
     }).then(function (res) {
       return res.data;
