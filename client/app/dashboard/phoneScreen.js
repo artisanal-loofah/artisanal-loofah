@@ -6,7 +6,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.selectedPhoneScreenIndex;
 
   $scope.getPhoneScreens = function () {
-    PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
+    PhoneScreen.getPhoneScreens()
     .then(function (data) {
       $rootScope.phoneScreens = data;
     }).catch(function (error) {
@@ -20,7 +20,6 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
   $scope.moveToOnSite = function () {
     var newOnSite = {
-      user_id: $rootScope.selectedPhoneScreen.user_id,
       application_id: $rootScope.selectedPhoneScreen.application_id,
       status: 'Pending'
     }
@@ -60,13 +59,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
 .factory('PhoneScreen', function ($http) {
 
-  var getPhoneScreens = function (userId) {
+  var getPhoneScreens = function () {
     return $http({
       method: 'GET',
-      url: '/api/phonescreens',
-      params: {
-        userId: userId
-      }
+      url: '/api/phonescreens'
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {

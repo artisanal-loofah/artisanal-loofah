@@ -4,14 +4,12 @@ angular.module('hunt.application', ['hunt.users'])
 
   $scope.addApplication = function (){
     var applicationData = {
-      userId: $rootScope.user.id,
       jobTitle: $scope.jobTitle,
       company: $scope.company
     };
     Application.createApplication(applicationData)
     .then(function(application) {
       var newBacklog = {
-        user_id: $rootScope.user.id,
         application_id: application.id,
         status: 'Pending'
       };

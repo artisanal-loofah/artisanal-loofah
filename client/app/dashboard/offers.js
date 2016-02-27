@@ -6,7 +6,7 @@ angular.module('hunt.offer', [])
   $rootScope.selectedOfferIndex;
 
   $scope.getOffers = function () {
-    Offer.getOffers($window.localStorage.getItem('user_id'))
+    Offer.getOffers()
     .then(function (data) {
       $scope.offers = data;
     }).catch(function (error) {
@@ -41,13 +41,10 @@ angular.module('hunt.offer', [])
 })
 
 .factory('Offer', function ($http) {
-  var getOffers = function (userId) {
+  var getOffers = function () {
     return $http({
       method: 'GET',
-      url: '/api/offers',
-      params: {
-        userId: userId
-      }
+      url: '/api/offers'
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {
