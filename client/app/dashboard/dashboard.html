@@ -159,6 +159,45 @@
   </div>
 </div>
 
+<!-- AppSubmit Modal -->
+<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Edit Modal</h2>
+      </div>
+
+      <form novalidate class="simple-form">
+        <div class="form-group">
+
+          <label for="notes">Notes:</label>
+          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending">Pending</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- PhoneScreen Modal -->
 <div id="phoneScreenModal" class="modal fade" role="dialog" ng-controller='PhoneScreenController'>
   <div class="modal-dialog">
@@ -236,43 +275,6 @@
         <div class="form-group">
             <label for="status">Status:</label>
             <select class="form-control" name="status" ng-model="selectedOnSite.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div><!-- AppSubmit Modal -->
-<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
-
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit Modal</h2>
-      </div>
-
-      <form novalidate class="simple-form">
-        <div class="form-group">
-
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Pending">Pending</option>
