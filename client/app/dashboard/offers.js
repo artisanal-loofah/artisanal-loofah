@@ -18,10 +18,6 @@ angular.module('hunt.offer', [])
 
   };
 
-  $scope.moveToOffer = function() {
-
-  };
-
   $scope.clickedOffer = function(offer, index) {
     $rootScope.selectedOffer = offer;
     $rootScope.selectedOfferIndex = index;
