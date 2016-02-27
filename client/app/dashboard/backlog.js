@@ -6,6 +6,12 @@ angular.module('hunt.backlog', [])
   $rootScope.selectedBacklogIndex;
   $scope.accepted = false;
 
+  $scope.set_color = function (backlog) {
+    if (backlog.status === "Accepted") {
+      return { color: "green" }
+    }
+  };
+
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function () {
     Backlog.getBacklogs($window.localStorage.getItem('user_id'))

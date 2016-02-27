@@ -4,7 +4,7 @@
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
-    <li class='accepted' ng-if='accepted'>
+    <li class='accepted' ng-style="set_color(backlog)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <p>Notes: {{ backlog.notes }}<p>
@@ -16,7 +16,7 @@
       </a>
     </li>
 
-    <li class='notaccepted' ng-if='!accepted'>
+<!--     <li class='notaccepted' ng-if='!accepted'>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <p>Notes: {{ backlog.notes }}<p>
@@ -26,7 +26,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
-    </li>
+    </li> -->
   </ul>
 </div>
 <!-- END: Applicaiton Backlog STAGE -->
