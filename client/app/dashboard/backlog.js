@@ -35,7 +35,7 @@ angular.module('hunt.backlog', [])
   // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
     var newAppSubmit = {
-      user_id: $window.localStorage.getItem('user_id'),
+      user_id: $rootScope.selectedBacklog.user_id,
         application_id: $rootScope.selectedBacklog.application_id,
         status: 'Pending' 
     }
