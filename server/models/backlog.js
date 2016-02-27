@@ -3,7 +3,10 @@ var Backlog = require('../db/schemas/backlog');
 
 module.exports = {
   get: function (user_id, callback) {
-    Backlog.findAll({ where: {user_id: user_id}})
+    Backlog.findAll({ where: {
+      user_id: user_id,
+      $not: {status: 'Removed'}
+    }})
       .then(function (backlogs) {
         callback(backlogs);
       });
