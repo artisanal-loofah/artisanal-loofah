@@ -1,9 +1,9 @@
 <!-- html template for the dashboard which will have a controller in each div for each stage of the workflow -->
 
+<!-- BEGIN: Applicaiton Backlog STAGE -->
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
-<!--     NG-Repeat should look something like this -->
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
@@ -15,15 +15,14 @@
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
-<!--     END OF NG REPEAT -->
   </ul>
 </div>
+<!-- END: Applicaiton Backlog STAGE -->
 
+<!-- BEGIN: Application Submitted STAGE -->
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
-
-<!--     NG-Repeat should look something like this -->
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
@@ -31,13 +30,13 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="#">
+      <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
-<!--     END OF NG REPEAT -->
   </ul>
 </div>
+<!-- END: Application Submitted STAGE -->
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
@@ -188,6 +187,7 @@
 
 <!-- AppSubmit Modal -->
 <div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
+
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -199,6 +199,7 @@
 
       <form novalidate class="simple-form">
         <div class="form-group">
+
           <label for="notes">Notes:</label>
           <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
         </div>
@@ -210,6 +211,7 @@
               <option value="Pending">Pending</option>
             </select>
         </div>
+
         <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
       </form>
 

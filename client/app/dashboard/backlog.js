@@ -1,13 +1,12 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog) {
+.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmit) {
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
-  
+
+  // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function () {
-    // Query the DB for all backlogs using the function in server controller 
-    //  On success, assign $scope.backlogs to the data returned from query
     Backlog.getBacklogs($window.localStorage.getItem('user_id'))
       .then(function (data) {
         $rootScope.backlogs = data;
@@ -17,10 +16,12 @@ angular.module('hunt.backlog', [])
       });
   };
 
+  // Function that removes backlog
   $scope.removeBacklog = function () {
 
   };
 
+  // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
 
   };
@@ -40,6 +41,31 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log("There was an error submitting changes to backlog: ", error);
       });
+
+    var backlogChanges = {
+      id: $rootScope.backlogID,
+      notes: $scope.backlogNotes,
+      status: $scope.backlogStatus
+    };
+
+    if ($scope.backlogStatus === "Accepted") {
+      AppSubmit.addAppSubmit(backlogChanges)
+        .then(function (backlog) {
+          console.log("Added a new app submit from backlog after changing state! ", backlog);
+          // Do something here after creating a new app submit list item
+        })
+        .catch(function (error) {
+          console.log("Error creating a new AppSubmit list item in backlog submit changes! ", error);
+        });
+    } else {
+      Backlog.editBacklog(backlogChanges)
+        .then(function (backlog) {
+          $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
+        })
+        .catch(function (error) {
+          console.log("There was an error submitting changes to backlog: ", error);
+        });
+      }
   };
 
   $scope.getBacklogs();
