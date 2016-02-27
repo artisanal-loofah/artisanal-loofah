@@ -6,18 +6,13 @@ h1 {
 .stage-list{
   word-wrap:break-word;
 }
-/*
-.accepted{
-  border-style: solid;
-  border-color: #00FF00;
-  border-width: 3px;
-}
 
-.notaccepted{
-  border-style: solid;
-  border-color: #FF0000;
-  border-width: 3px;
-}*/
+.jobbar {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
 
 .pending{
   border-style: solid;
