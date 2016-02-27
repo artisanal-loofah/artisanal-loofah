@@ -11,7 +11,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="javascript:void(0)">
+      <a href="javascript:void(0)" ng-click="removeBacklog(backlog, $index)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
@@ -30,7 +30,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="javascript:void(0)">
+      <a ng-click="removeAppSubmit(appSubmit, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
@@ -51,7 +51,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="#">
+      <a ng-click="removePhoneScreen(phoneScreen, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
@@ -72,7 +72,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="javascript:void(0)">
+      <a ng-click="removeOnSite(onSite, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
@@ -93,7 +93,7 @@
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="javascript:void(0)">
+      <a ng-click="removeOffer(offer, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>

@@ -3,7 +3,10 @@ var Offer = require('../db/schemas/offer');
 
 module.exports = {
   get: function (user_id, callback) {
-    Offer.findAll({ where: {user_id: user_id}})
+    Offer.findAll({ where: {
+      user_id: user_id,
+      $not: {status: 'Removed'}
+    }})
       .then(function (offers) {
         callback(offers);
       });

@@ -14,8 +14,16 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     });
   };
 
-  $scope.removePhoneScreen = function () {
-
+  $scope.removePhoneScreen = function (phoneScreen, index) {
+    if (window.confirm("Are you sure you want to remove this item from this stage?")){
+      $scope.clickedPhoneScreen(phoneScreen, index);
+      phoneScreen.status = 'Removed';
+      $rootScope.phoneScreens.splice(index, 1);
+      PhoneScreen.editPhoneScreen(phoneScreen)
+      .catch(function (error) {
+        console.log("Error editing phone screen: ", error);
+      });
+    }
   };
 
   $scope.moveToOnSite = function () {
