@@ -24,20 +24,20 @@ angular.module('hunt.backlog', [])
   // Function that edits an existing backlog
   $scope.editBacklog = function (backlog) {
     Backlog.editBacklog(backlog)
-        .then(function (backlog) {
-          $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
-        })
-        .catch(function (error) {
-          console.log("Error editing backlog: ", error);
-        });
+      .then(function (backlog) {
+        $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
+      })
+      .catch(function (error) {
+        console.log("Error editing backlog: ", error);
+      });
   };
 
   // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
     var newAppSubmit = {
       user_id: $rootScope.selectedBacklog.user_id,
-        application_id: $rootScope.selectedBacklog.application_id,
-        status: 'Pending' 
+      application_id: $rootScope.selectedBacklog.application_id,
+      status: 'Pending' 
     }
 
     AppSubmit.addAppSubmit(newAppSubmit)

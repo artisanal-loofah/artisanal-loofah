@@ -32,7 +32,7 @@ module.exports = {
   addListItem: function (req, res, listItemModel) {
     // After creating the new list item, the job title and company name are added to the list item response object
     listItemModel.create(req.body, function (listItem) {
-      Application.getByAppId(listItem.dataValues.application_id)
+      Application.getByAppId(listItem.application_id)
         .then(function(application) {
           extendListItem(listItem, application, function(listItem) {
             res.statusCode = 201;
