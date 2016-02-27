@@ -8,7 +8,7 @@ angular.module('hunt.offer', [])
   $scope.getOffers = function () {
     Offer.getOffers()
     .then(function (data) {
-      $scope.offers = data;
+      $rootScope.offers = data;
     }).catch(function (error) {
       console.error(error);
     });
