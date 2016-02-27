@@ -7,6 +7,25 @@ h1 {
   word-wrap:break-word;
   border-style: groove;
   border-color: #d3d3d3;
+  border-width: 10px;
+}
+
+.accepted{
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 7px;
+}
+
+.notaccepted{
+  border-style: solid;
+  border-color: #FF0000;
+  border-width: 7px;
+}
+
+.pending{
+  border-style: solid;
+  border-color: #D3D3D3;
+  border-width: 7px;
 }
 
 a .remove {

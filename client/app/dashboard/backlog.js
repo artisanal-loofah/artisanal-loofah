@@ -4,12 +4,14 @@ angular.module('hunt.backlog', [])
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
+  $scope.accepted = false;
 
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function () {
     Backlog.getBacklogs($window.localStorage.getItem('user_id'))
       .then(function (data) {
         $rootScope.backlogs = data;
+        console.log('data is :', data);
       })
       .catch(function (error) {
         console.log('Error getting backlogs: ', error);
@@ -70,7 +72,7 @@ angular.module('hunt.backlog', [])
     } 
   };
 
-  $scope.accepted = false;
+  
 
   $scope.getBacklogs();
 })
