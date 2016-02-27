@@ -10,6 +10,12 @@ angular.module('hunt.backlog', [])
     if (backlog.status === "Accepted") {
       return { color: "green" }
     }
+    if (backlog.status === "Rejected") {
+      return { color: "red" }
+    }
+    if (backlog.status === "Pending") {
+      return { color: "gray" }
+    }
   };
 
   // Function that retrieves all backlogs for given user
