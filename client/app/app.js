@@ -5,7 +5,7 @@ angular.module('huntApp', [
   'hunt.appSubmit',
   'hunt.phoneScreen',
   'hunt.onSite',
-  'hunt.offers',
+  'hunt.offer',
   'hunt.application',
   'ngRoute'])
 

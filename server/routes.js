@@ -6,6 +6,7 @@ var appSubmitController = require('./controllers/appsubmitController');
 var phoneScreenController = require('./controllers/phoneScreenController');
 var onSiteController = require('./controllers/onSiteController');
 var applicationController = require('./controllers/applicationController');
+var offerController = require('./controllers/offerController');
 
 //Connect controller methods to their corresponding routes
 router.get('/api/users', userController.get);
@@ -32,5 +33,9 @@ router.put('/api/phonescreens', phoneScreenController.updatePhoneScreen);
 router.get('/api/onsites', onSiteController.allOnSites);
 router.post('/api/onsites', onSiteController.addOnSite);
 router.put('/api/onsites', onSiteController.updateOnSite);
+
+router.get('/api/offers', offerController.allOffers);
+router.post('/api/offers', offerController.addOffer);
+router.put('/api/offers', offerController.updateOffer);
 
 module.exports = router;
