@@ -6,7 +6,7 @@ angular.module('hunt.offer', [])
   $rootScope.selectedOfferIndex;
 
   $scope.getOffers = function () {
-    offer.getOffers($window.localStorage.getItem('user_id'))
+    Offer.getOffers($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $scope.offers = data;
     }).catch(function (error) {
@@ -28,7 +28,7 @@ angular.module('hunt.offer', [])
   };
 
   $scope.submitChanges = function() {
-    offer.editOffer($rootScope.selectedOffer)
+    Offer.editOffer($rootScope.selectedOffer)
       .then(function (offer) {
         $rootScope.offers.splice($rootScope.selectedOfferIndex, 1, offer);
       })
