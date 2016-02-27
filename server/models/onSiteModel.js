@@ -27,7 +27,7 @@ module.exports = {
         }
       })
       .catch(function (error) {
-        console..error('Error from update:', error);
+        console.error('Error from update:', error);
       })
   }
 
