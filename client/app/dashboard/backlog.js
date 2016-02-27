@@ -21,7 +21,7 @@ angular.module('hunt.backlog', [])
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       $scope.clickedBacklog(backlog, index);
       backlog.status = 'Removed';
-      $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1);
+      $rootScope.backlogs.splice(index, 1);
       Backlog.editBacklog(backlog)
       .catch(function (error) {
         console.log("Error editing backlog: ", error);

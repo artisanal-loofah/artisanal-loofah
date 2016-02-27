@@ -18,10 +18,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       $scope.clickedPhoneScreen(phoneScreen, index);
       phoneScreen.status = 'Removed';
-      $rootScope.phoneScreens.splice($rootScope.selectedAppPhoneScreenIndex, 1);
+      $rootScope.phoneScreens.splice(index, 1);
       PhoneScreen.editPhoneScreen(phoneScreen)
       .catch(function (error) {
-        console.log("Error editing backlog: ", error);
+        console.log("Error editing phone screen: ", error);
       });
     }
   };
