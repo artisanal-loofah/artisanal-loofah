@@ -1,6 +1,6 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit) {
+.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen) {
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
@@ -19,7 +19,19 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.moveToPhoneScreen = function () {
+    var newPhoneScreen = {
+      user_id: $rootScope.selectedAppSubmit.user_id,
+      application_id: $rootScope.selectedAppSubmit.application_id,
+      status: 'Pending'
+    }
 
+    PhoneScreen.addPhoneScreen(newPhoneScreen)
+      .then(function (phoneScreen) {
+        $rootScope.phoneScreens.push(phoneScreen);
+      })
+      .catch(function (error) {
+        console.log("Error creating PhoneScreen list item on AppSubmit status change : ", error);
+      });
   };
 
   // Function that sets the appSubmitID when user clicks on appSubmit
@@ -37,6 +49,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       .catch(function (error) {
         console.log("There was an error submitting changes to appSubmit: ", error);
       });
+
+      if ($rootScope.selectedAppSubmit.status === "Accepted") {
+        $scope.moveToPhoneScreen();
+      }
   };
 
   $scope.getAppSubmits();
