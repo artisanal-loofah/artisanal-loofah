@@ -14,8 +14,16 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     });
   };
 
-  $scope.removeAppSubmit = function () {
-
+  $scope.removeAppSubmit = function (appSubmit, index) {
+    if (window.confirm("Are you sure you want to remove this item from this stage?")){
+      $scope.clickedAppSubmit(appSubmit, index);
+      appSubmit.status = 'Removed';
+      $rootScope.appSubmits.splice($rootScope.selectedAppSubmitIndex, 1);
+      AppSubmit.editAppSubmit(appSubmit)
+      .catch(function (error) {
+        console.log("Error editing backlog: ", error);
+      });
+    }
   };
 
   $scope.moveToPhoneScreen = function () {
