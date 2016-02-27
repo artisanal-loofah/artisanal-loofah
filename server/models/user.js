@@ -6,11 +6,20 @@ module.exports = {
     User.findOne({ where: query})
     .then(function(user) {
       callback(user);
+    })
+    .catch(function(error) {
+      console.error(error);
+      callback();
     });
   },
   post: function (user, callback) {
-    User.create(user).then(function(user){
+    User.create(user)
+    .then(function(user){
       callback(user);
+    })
+    .catch(function(error) {
+      console.error(error);
+      callback();
     });
   }
 };
