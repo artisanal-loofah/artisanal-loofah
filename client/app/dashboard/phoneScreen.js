@@ -1,6 +1,6 @@
 angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
-.controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen) {
+.controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen, OnSite) {
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
@@ -19,7 +19,19 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   };
 
   $scope.moveToOnSite = function () {
+    var newOnSite = {
+      user_id: $rootScope.selectedPhoneScreen.user_id,
+      application_id: $rootScope.selectedPhoneScreen.application_id,
+      status: 'Pending'
+    }
 
+    OnSite.addOnSite(newOnSite)
+      .then(function (onSite) {
+        $rootScope.onSites.push(onSite);
+      })
+      .catch(function (error) {
+        console.log("Error creating OnSite list item on phoneScreen status change: ", error);
+      });
   };
 
   // Function that sets the phoneScreenID when user clicks on phoneScreen
@@ -37,6 +49,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
       .catch(function (error) {
         console.log("There was an error submitting changes to phoneScreen: ", error);
       });
+
+      if ($rootScope.selectedPhoneScreen.status === "Accepted") {
+        $scope.moveToOnSite();
+      }
   };
 
   $scope.getPhoneScreens();
