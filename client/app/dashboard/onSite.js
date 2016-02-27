@@ -8,7 +8,7 @@ angular.module('hunt.onSite', [])
   $scope.getOnSites = function () {
     OnSite.getOnSites()
     .then(function (data) {
-      $scope.onSites = data;
+      $rootScope.onSites = data;
     }).catch(function (error) {
       console.error(error);
     });
