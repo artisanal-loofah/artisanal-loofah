@@ -2,7 +2,10 @@ var PhoneScreen = require('../db/schemas/phonescreen');
 
 module.exports = {
   get: function (user_id, callback) {
-    PhoneScreen.findAll({ where: {user_id: user_id}})
+    PhoneScreen.findAll({ where: {
+      user_id: user_id,
+      $not: {status: 'Removed'}
+    }})
       .then(function (phoneScreens) {
         callback(phoneScreens);
       });
