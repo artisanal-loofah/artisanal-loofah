@@ -30,9 +30,6 @@ module.exports = {
     });
   },
   addListItem: function (req, res, listItemModel) {
-    console.log('-------------ADDING LSIT ITEM');
-    console.log(req.body);
-
     // After creating the new list item, the job title and company name are added to the list item response object
     listItemModel.create(req.body, function (listItem) {
       Application.getByAppId(listItem.application_id)
@@ -41,13 +38,13 @@ module.exports = {
             res.statusCode = 201;
             res.json(listItem);
           });
+        })
+        .catch(function (error) {
+          console.log('Error in addListItem function in listItemModel: ', error);
         });
     });
   },
   updateListItem: function (req, res, listItemModel) {
-    console.log('------UPDATING LIST ITEM');
-    console.log(req.body);
-
     // After update, job title and company name are added to the list item response object
     listItemModel.update(req.body, function (listItem) {
       Application.getByAppId(listItem.application_id)
