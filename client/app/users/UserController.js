@@ -23,16 +23,16 @@ angular.module('hunt.users', [])
     IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
     .result(function(result) {
       $rootScope.$apply(function() {
-        $rootScope.userprofile = result.values[0];
-        $window.localStorage.setItem('hunt_userprofile_id', $rootScope.userprofile.id);
-        User.getUserByLinkedInId($rootScope.userprofile.id)
+        var linkedInProfile = result.values[0];
+        $window.localStorage.setItem('hunt_userprofile_id', linkedInProfile.id);
+        User.getUserByLinkedInId(linkedInProfile.id)
         .then(function(data) {
           if (data.user) {
             $rootScope.user = data.user;
             $window.localStorage.setItem('hunt_token', data.token);
             callback();
           } else {
-            User.createUser($rootScope.userprofile)
+            User.createUser(linkedInProfile)
               .then(function (data) {
                 $rootScope.user = data.user;
                 $window.localStorage.setItem('hunt_token', data.token);
@@ -51,7 +51,6 @@ angular.module('hunt.users', [])
 
   $scope.logoutLinkedIn = function () {
     IN.User.logout();
-    delete $rootScope.userprofile;
     delete $rootScope.user;
     $window.localStorage.removeItem('hunt_token');
     $window.localStorage.removeItem('hunt_userprofile_id');
