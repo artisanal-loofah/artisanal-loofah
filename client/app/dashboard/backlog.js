@@ -7,6 +7,12 @@ angular.module('hunt.backlog', [])
   $scope.sort = 'created';
   $scope.accepted = false;
 
+  $scope.set_color = function (backlog) {
+    if (backlog.status === "Accepted") {
+      return { color: "green" }
+    }
+  };
+
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function (sort) {
     // user id is added on the backend

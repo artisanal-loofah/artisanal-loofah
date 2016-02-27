@@ -9,7 +9,7 @@ h1 {
   border-color: #d3d3d3;
   border-width: 10px;
 }
-
+/*
 .accepted{
   border-style: solid;
   border-color: #00FF00;
@@ -20,7 +20,7 @@ h1 {
   border-style: solid;
   border-color: #FF0000;
   border-width: 3px;
-}
+}*/
 
 .pending{
   border-style: solid;
