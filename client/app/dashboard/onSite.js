@@ -32,7 +32,7 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.submitChanges = function() {
-    OnSite.editOnSite($rootScope.selectedOnSite);
+    OnSite.editOnSite($rootScope.selectedOnSite)
       .then(function (onSite) {
         $rootScope.onSites.splice($rootScope.selectedOnSiteIndex, 1, onSite);
       })
@@ -45,7 +45,7 @@ angular.module('hunt.onSite', [])
 })
 
 .factory('OnSite', function ($http) {
-  var getBacklogs = function (userId) {
+  var getOnSites = function (userId) {
     return $http({
       method: 'GET',
       url: '/api/onsites',
@@ -84,7 +84,7 @@ angular.module('hunt.onSite', [])
   };
 
   return {
-    getBacklogs: getBacklogs,
+    getOnSites: getOnSites,
     addOnSite: addOnSite,
     editOnSite: editOnSite
   }
