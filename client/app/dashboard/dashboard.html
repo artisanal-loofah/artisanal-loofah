@@ -40,6 +40,11 @@
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
+  <p>Sort by: 
+    <a href="javascript:void(0)" ng-click="getPhoneScreens()">All</a>
+    <a href="javascript:void(0)" ng-click="getPhoneScreens('date')">Date</a> 
+    <a href="javascript:void(0)" ng-click="getPhoneScreens('pending')">Pending</a>
+    </p>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
     <li>
