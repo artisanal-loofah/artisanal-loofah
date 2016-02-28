@@ -6,13 +6,9 @@ angular.module('hunt.offer', [])
   $rootScope.selectedOfferIndex;
   $scope.sort = 'created';
 
-  $scope.test = function(sort) {
-    console.log(sort);
-  }
-
-  $scope.getOffers = function () {
+  $scope.getOffers = function (sort) {
     // user id is added on the backend
-    Offer.getOffers()
+    Offer.getOffers(sort)
     .then(function (data) {
       $rootScope.offers = data;
     }).catch(function (error) {
@@ -54,10 +50,13 @@ angular.module('hunt.offer', [])
 })
 
 .factory('Offer', function ($http) {
-  var getOffers = function () {
+  var getOffers = function (sort) {
     return $http({
       method: 'GET',
-      url: '/api/offers'
+      url: '/api/offers',
+      params: {
+        sort: sort
+      }
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {
