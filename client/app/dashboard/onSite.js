@@ -1,6 +1,6 @@
 angular.module('hunt.onSite', [])
 
-.controller('OnSiteController', function ($scope, $rootScope, $window, OnSite, Offer) {
+.controller('OnSiteController', function ($scope, $rootScope, $window, OnSite, Offer, Helpers) {
   $rootScope.onSites = [];
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
@@ -52,7 +52,8 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.submitChanges = function() {
-    OnSite.editOnSite($rootScope.selectedOnSite)
+    var selectedOnSite = $rootScope.selectedOnSite;
+    OnSite.editOnSite(selectedOnSite)
       .then(function (onSite) {
         $rootScope.onSites.splice($rootScope.selectedOnSiteIndex, 1, onSite);
       })
@@ -60,7 +61,7 @@ angular.module('hunt.onSite', [])
         console.error("There was an error submitting changes to onSite: ", error);
       });
 
-      if ($rootScope.selectedOnSite.status === "Accepted") {
+      if (selectedOnSite.status === "Accepted" && Helpers.isNotDuplicate($rootScope.offers, selectedOnSite.application_id)) {
         $scope.moveToOffer();
       }
   };

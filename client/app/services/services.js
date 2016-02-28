@@ -36,4 +36,20 @@ angular.module('hunt.services', [])
     createUser: createUser,
     isAuth: isAuth
   }
+})
+
+.factory('Helpers', function() {
+  // check if a list item with this application id already exists
+  var isNotDuplicate = function(nextStageListItems, application_id) {
+    for (var i = 0; i < nextStageListItems.length; i++) {
+      if (nextStageListItems[i].application_id === application_id) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  return {
+    isNotDuplicate: isNotDuplicate
+  }
 });

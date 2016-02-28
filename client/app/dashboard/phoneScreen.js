@@ -1,6 +1,6 @@
 angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
-.controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen, OnSite) {
+.controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen, OnSite, Helpers) {
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
@@ -54,7 +54,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
   // Function for submitting any updated changes to a specific phoneScreen
   $scope.submitChanges = function () {
-    PhoneScreen.editPhoneScreen($rootScope.selectedPhoneScreen)
+    var selectedPhoneScreen = $rootScope.selectedPhoneScreen;
+    PhoneScreen.editPhoneScreen(selectedPhoneScreen)
       .then(function (phoneScreen) {
         $rootScope.phoneScreens.splice($rootScope.selectedPhoneScreenIndex, 1, phoneScreen);
       })
@@ -62,7 +63,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
         console.log("There was an error submitting changes to phoneScreen: ", error);
       });
 
-      if ($rootScope.selectedPhoneScreen.status === "Accepted") {
+      if (selectedPhoneScreen.status === "Accepted" && Helpers.isNotDuplicate($rootScope.onSites, selectedPhoneScreen.application_id)) {
         $scope.moveToOnSite();
       }
   };

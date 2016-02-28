@@ -1,6 +1,6 @@
 angular.module('hunt.backlog', [])
 
-.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmit) {
+.controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmit, Helpers) {
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
@@ -65,7 +65,8 @@ angular.module('hunt.backlog', [])
 
   // Function for submitting any updated changes to a specific backlog
   $scope.submitChanges = function () {
-    Backlog.editBacklog($rootScope.selectedBacklog)
+    var selectedBacklog = $rootScope.selectedBacklog;
+    Backlog.editBacklog(selectedBacklog)
       .then(function (backlog) {
         $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
       })
@@ -73,7 +74,8 @@ angular.module('hunt.backlog', [])
         console.log("There was an error submitting changes to backlog: ", error);
       });
 
-    if ($rootScope.selectedBacklog.status === "Accepted") {
+    // Only send to next stage if a list item with the same application id doesn't already exist in next stage
+    if (selectedBacklog.status === "Accepted" && Helpers.isNotDuplicate($rootScope.appSubmits, selectedBacklog.application_id)) {
       $scope.moveToAppSubmitted();
     } 
   };

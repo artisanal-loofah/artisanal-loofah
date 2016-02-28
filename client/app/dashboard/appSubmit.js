@@ -1,6 +1,6 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
-.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen) {
+.controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen, Helpers) {
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
@@ -50,7 +50,8 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
   // Function for submitting any updated changes to a specific appSubmit
   $scope.submitChanges = function () {
-    AppSubmit.editAppSubmit($rootScope.selectedAppSubmit)
+    var selectedAppSubmit = $rootScope.selectedAppSubmit;
+    AppSubmit.editAppSubmit(selectedAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.splice($rootScope.selectedAppSubmitIndex, 1, appSubmit);
       })
@@ -58,7 +59,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
         console.log("There was an error submitting changes to appSubmit: ", error);
       });
 
-      if ($rootScope.selectedAppSubmit.status === "Accepted") {
+      if (selectedAppSubmit.status === "Accepted" && Helpers.isNotDuplicate($rootScope.phoneScreens, selectedAppSubmit.application_id)) {
         $scope.moveToPhoneScreen();
       }
   };
