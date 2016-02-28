@@ -13,13 +13,4 @@ module.exports = {
   updatePhoneScreen: function(req, res) {
     ListItem.updateListItem(req, res, PhoneScreen);
   }
-
-
-  // getAPhoneScreen: function (request, response, next) {
-  //   PhoneScreen.getOne(request.body, function (data) {
-  //     response.statusCode = 200;
-  //     response.send(data);
-  //   });
-  // }
-
 };

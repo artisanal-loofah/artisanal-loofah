@@ -1,21 +1,28 @@
 var User = require('../models/user');
+var jwt =require('jwt-simple')
 
 
 module.exports = {
+  // Responds with user and token
   get: function (req, res) {
     if (req.query.linkedInId) {
       var linkedin_id = req.query.linkedInId;
       User.get({'linkedin_id': linkedin_id}, function (user) {
-        res.json(user);
+        var token = jwt.encode(user, 'secret');
+        var responseData = {
+          user: user,
+          token: token
+        };
+        res.json(responseData);
       });
-    } else if (req.query.id) {
-      User.get({'id': req.query.id}, function (user) {
-        res.json(user);
-      });
+    } else {
+      res.statusCode = 401;
+      res.send("Could not find that LinkedIn id.");
     }
   },
-
-  post: function (req, res) {
+  
+  // Responds with user and token
+  post: function (req, res, next) {
     var userData = req.body;
 
     User.get({'linkedin_id': userData.id}, function (user) {
@@ -29,10 +36,15 @@ module.exports = {
         };
 
         User.post(newUser, function (user) {
+          var responseData = {
+            user: user,
+            token: token
+          };
           res.statusCode = 201;
-          res.json(user);
+          res.json(responseData);
         })
       } else {
+        next(new Error('User already exists!'));
         res.statusCode = 409;
         res.end();
       }

@@ -2,17 +2,20 @@ angular.module('hunt.users', [])
 
 .controller('UserController', function huntUsers($scope, $location, $rootScope, $http, $window, User) {
   $scope.initializeApp = function() {
-    if (!isLoggedIn()) {
+    if (!User.isAuth()) {
       $scope.getLinkedInData(function() {
         $location.path("/main");
       });
     } else {
-      var id = $window.localStorage.getItem('user_id');
-      User.getUserById(id)
-      .then(function(user) {
-        $rootScope.user = user;
+      var linkedInId = $window.localStorage.getItem('hunt_userprofile_id');
+      User.getUserByLinkedInId(linkedInId)
+      .then(function(data) {
+        $rootScope.user = data.user;
         $location.path("/main");
-      });
+      })
+      .catch(function(error){
+        console.error(error);
+      })
     }
   };
 
@@ -20,22 +23,22 @@ angular.module('hunt.users', [])
     IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
     .result(function(result) {
       $rootScope.$apply(function() {
-        $rootScope.userprofile = result.values[0];
-        $rootScope.loggedUser = true;
-        User.getUserByLinkedInId($rootScope.userprofile.id)
-        .then(function(user) {
-          // test if user is empty object
-          console.log('user in getlinked...: ', user);
-          if (user) {
-            $rootScope.user = user;
+        var linkedInProfile = result.values[0];
+        $window.localStorage.setItem('hunt_userprofile_id', linkedInProfile.id);
+        User.getUserByLinkedInId(linkedInProfile.id)
+        .then(function(data) {
+          if (data.user) {
+            $rootScope.user = data.user;
+            $window.localStorage.setItem('hunt_token', data.token);
+            callback();
           } else {
-            User.createUser($rootScope.userprofile)
-              .then(function (user) {
-                $rootScope.user = user;
+            User.createUser(linkedInProfile)
+              .then(function (data) {
+                $rootScope.user = data.user;
+                $window.localStorage.setItem('hunt_token', data.token);
+                callback();
               });
           }
-          $window.localStorage.setItem('user_id', $rootScope.user.id);
-          callback();
         })
         .catch(function(err) {
           console.error(err);
@@ -48,10 +51,9 @@ angular.module('hunt.users', [])
 
   $scope.logoutLinkedIn = function () {
     IN.User.logout();
-    delete $rootScope.userprofile;
     delete $rootScope.user;
-    $rootScope.loggedUser = false;
-    $window.localStorage.removeItem('user_id');
+    $window.localStorage.removeItem('hunt_token');
+    $window.localStorage.removeItem('hunt_userprofile_id');
     $location.path('/signin');
   };
 });

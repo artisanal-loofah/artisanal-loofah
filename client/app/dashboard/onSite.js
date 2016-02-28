@@ -6,9 +6,10 @@ angular.module('hunt.onSite', [])
   $rootScope.selectedOnSiteIndex;
 
   $scope.getOnSites = function () {
-    OnSite.getOnSites($window.localStorage.getItem('user_id'))
+    // user id is added on the backend
+    OnSite.getOnSites()
     .then(function (data) {
-      $scope.onSites = data;
+      $rootScope.onSites = data;
     }).catch(function (error) {
       console.error(error);
     });
@@ -19,8 +20,8 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.moveToOffer = function() {
+    // user id is added on the backend
     var newOffer = {
-      user_id: $rootScope.selectedOnSite.user_id,
       application_id: $rootScope.selectedOnSite.application_id,
       status: 'Pending'
     }
@@ -57,13 +58,10 @@ angular.module('hunt.onSite', [])
 })
 
 .factory('OnSite', function ($http) {
-  var getOnSites = function (userId) {
+  var getOnSites = function () {
     return $http({
       method: 'GET',
-      url: '/api/onsites',
-      params: {
-        userId: userId
-      }
+      url: '/api/onsites'
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {
