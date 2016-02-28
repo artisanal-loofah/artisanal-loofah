@@ -5,6 +5,38 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
 
+  $scope.set_color = function (phoneScreen) {
+    if (phoneScreen.status === "Accepted") {
+      return { 'background-color': "#DFF0D8" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (phoneScreen.status === "Rejected") {
+      return { 'background-color': "#F2DEDE",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (phoneScreen.status === "Pending") {
+      return { 'background-color': "#DADFE1",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+  };
+
+
+
   $scope.getPhoneScreens = function () {
     PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
     .then(function (data) {

@@ -5,6 +5,38 @@ angular.module('hunt.onSite', [])
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
 
+  $scope.set_color = function (onSite) {
+    if (onSite.status === "Accepted") {
+      return { 'background-color': "#DFF0D8" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (onSite.status === "Rejected") {
+      return { 'background-color': "#F2DEDE",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (onSite.status === "Pending") {
+      return { 'background-color': "#DADFE1",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+  };
+
+
+
   $scope.getOnSites = function () {
     OnSite.getOnSites($window.localStorage.getItem('user_id'))
     .then(function (data) {

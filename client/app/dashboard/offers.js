@@ -5,6 +5,38 @@ angular.module('hunt.offer', [])
   $rootScope.selectedOffer;
   $rootScope.selectedOfferIndex;
 
+  $scope.set_color = function (offer) {
+    if (offer.status === "Accepted") {
+      return { 'background-color': "#DFF0D8" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (offer.status === "Rejected") {
+      return { 'background-color': "#F2DEDE",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+    if (offer.status === "Pending") {
+      return { 'background-color': "#DADFE1",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#CFCFC4',
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
+    }
+  };
+
+
+
   $scope.getOffers = function () {
     Offer.getOffers($window.localStorage.getItem('user_id'))
     .then(function (data) {

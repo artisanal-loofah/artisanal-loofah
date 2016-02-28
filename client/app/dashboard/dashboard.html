@@ -4,7 +4,7 @@
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
-    <li>
+    <li class='backlogs' ng-style="set_color(backlog)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <p>Notes: {{ backlog.notes }}<p>
@@ -23,7 +23,7 @@
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
-    <li>
+    <li class='appsubmitted' ng-style="set_color(appSubmit)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
       <p>Notes: {{ appSubmit.notes }}<p>
@@ -42,7 +42,7 @@
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
-    <li>
+    <li class='phonescreens' ng-style="set_color(phoneScreen)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#phoneScreenModal' ng-click="clickedPhoneScreen(phoneScreen, $index)">{{phoneScreen.job_title}} - {{phoneScreen.company}}</a>
       <p>Status: {{ phoneScreen.status }}<p>
       <p>Interviewer: {{ phoneScreen.interviewer }}<p>
@@ -62,7 +62,7 @@
 <div class='col-sm-3 stage' ng-controller='OnSiteController'>
   <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
-    <li>
+    <li class='onsites' ng-style="set_color(onSite)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#onSiteModal' ng-click="clickedOnSite(onSite, $index)">{{onSite.job_title}} - {{onSite.company}}</a>
       <p>Status: {{ onSite.status }}<p>
       <p>Interviewer: {{ onSite.interviewer }}<p>
@@ -84,7 +84,7 @@
 <div class='col-sm-3 stage' ng-controller='OfferController'>
   <h1 class='stage-heading'>Offers</h1>
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
-    <li>
+    <li class='offers' ng-style="set_color(offer)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
       <p>Status: {{ offer.status }}<p>
       <p>Salary: {{ offer.salary }}<p>
