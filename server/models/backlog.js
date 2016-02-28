@@ -6,10 +6,13 @@ module.exports = {
     switch(sort) {
       case undefined:
       case 'created':
-        Backlog.findAll({ where: {
-          user_id: user_id,
-          $not: {status: 'Removed'}
-        }})
+        Backlog.findAll({
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
         .then(function (backlogs) {
           callback(backlogs);
         });

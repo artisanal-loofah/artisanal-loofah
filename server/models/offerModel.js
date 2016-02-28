@@ -6,10 +6,13 @@ module.exports = {
     switch(sort) {
       case undefined:
       case 'created':
-        Offer.findAll({ where: {
-          user_id: user_id,
-          $not: {status: 'Removed'}
-        }})
+        Offer.findAll({
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
         .then(function (offers) {
           callback(offers);
         });

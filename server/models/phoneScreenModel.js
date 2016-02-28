@@ -5,10 +5,13 @@ module.exports = {
     switch(sort) {
       case undefined:
       case 'created':
-        PhoneScreen.findAll({where: {
-          user_id: user_id,
-          $not: {status: 'Removed'}
-        }})
+        PhoneScreen.findAll({
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
         .then(function (phoneScreens) {
           callback(phoneScreens);
         });

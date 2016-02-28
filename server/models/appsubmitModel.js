@@ -5,10 +5,13 @@ module.exports = {
     switch(sort) {
       case undefined:
       case 'created':
-        AppSubmit.findAll({ where: {
-          user_id: user_id,
-          $not: {status: 'Removed'}
-        }})
+        AppSubmit.findAll({ 
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
         .then(function (appSubmits) {
           callback(appSubmits);
         });

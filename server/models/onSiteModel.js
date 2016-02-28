@@ -5,10 +5,13 @@ module.exports = {
     switch (sort) {
       case undefined:
       case 'created':
-        OnSite.findAll({ where: {
-          user_id: user_id,
-          $not: {status: 'Removed'}
-        }})
+        OnSite.findAll({
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
         .then(function (onSites) {
           callback(onSites);
         });
