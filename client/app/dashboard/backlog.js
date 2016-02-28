@@ -91,7 +91,9 @@ angular.module('hunt.backlog', [])
     return $http({
       method: 'GET',
       url: '/api/backlogs',
-      params: {sort: sort}
+      params: {
+        sort: sort
+      }
     })
     .then(function (res) {
       return res.data;
