@@ -2,14 +2,35 @@ var Backlog = require('../db/schemas/backlog');
 
 
 module.exports = {
-  get: function (user_id, callback) {
-    Backlog.findAll({ where: {
-      user_id: user_id,
-      $not: {status: 'Removed'}
-    }})
-      .then(function (backlogs) {
-        callback(backlogs);
-      });
+  get: function (user_id, callback, sort) {
+    switch(sort) {
+      case undefined:
+      case 'created':
+        Backlog.findAll({ where: {
+          user_id: user_id,
+          $not: {status: 'Removed'}
+        }})
+        .then(function (backlogs) {
+          callback(backlogs);
+        });
+        break;
+
+      case 'pending':
+        Backlog.findAll({
+          where: {
+            user_id: user_id,
+            status: 'Pending',
+            $not: {
+              status: ['Removed', 'Rejected']
+            }
+          },
+          order: 'status DESC'
+        })
+        .then(function (backlogs) {
+          callback(backlogs);
+        });
+        break;
+    }
   },
 
   create: function (backlog, callback) {

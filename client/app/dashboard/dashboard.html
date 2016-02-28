@@ -3,6 +3,11 @@
 <!-- BEGIN: Applicaiton Backlog STAGE -->
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getBacklogs(sort)">
+    <option value="created">Created</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
