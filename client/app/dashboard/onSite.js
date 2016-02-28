@@ -20,9 +20,7 @@ angular.module('hunt.onSite', [])
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       $scope.clickedOnSite(onSite, index);
       onSite.status = 'Removed';
-      console.log($rootScope.onSites);
       $rootScope.onSites.splice(index, 1);
-      console.log("this is the current rootscope",$rootScope.onSites);
       OnSite.editOnSite(onSite)
       .catch(function (error) {
         console.log("Error editing on-site: ", error);
@@ -35,7 +33,7 @@ angular.module('hunt.onSite', [])
     var newOffer = {
       application_id: $rootScope.selectedOnSite.application_id,
       status: 'Pending'
-    }
+    };
 
     Offer.addOffer(newOffer)
       .then(function (offer) {
