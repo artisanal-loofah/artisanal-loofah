@@ -23,20 +23,6 @@ angular.module('hunt.application', ['hunt.users'])
 })
 
 .factory('Application', function ($http) {
-  var getApplications = function(userId) {
-    return $http({
-      method: 'GET',
-      url: '/api/applications',
-      params: {
-        userId: userId
-      }
-    }).then(function(res) {
-      return res.data;
-    }).catch(function(error) {
-      console.error(error);
-    });
-  };
-
   var createApplication = function(application) {
     return $http({
       method: 'POST',
@@ -50,7 +36,6 @@ angular.module('hunt.application', ['hunt.users'])
   };
 
   return {
-    getApplications: getApplications,
     createApplication: createApplication
   };
 });
