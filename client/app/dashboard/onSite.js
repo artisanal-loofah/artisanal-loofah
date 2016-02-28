@@ -10,6 +10,7 @@ angular.module('hunt.onSite', [])
     OnSite.getOnSites()
     .then(function (data) {
       $rootScope.onSites = data;
+      console.log('this is from the get on sites', $scope.onSites);
     }).catch(function (error) {
       console.error(error);
     });
@@ -18,8 +19,10 @@ angular.module('hunt.onSite', [])
   $scope.removeOnSite = function (onSite, index) {
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       $scope.clickedOnSite(onSite, index);
-      onSite.status = 'Removed';
-      $rootScope.onSites.splice(index, 1);
+      // onSite.status = 'Removed';
+      console.log($rootScope.onSites);
+      // $rootScope.onSites.splice(index, 1);
+      console.log("this is the current rootscope",$rootScope.onSites);
       OnSite.editOnSite(onSite)
       .catch(function (error) {
         console.log("Error editing on-site: ", error);
