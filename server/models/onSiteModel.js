@@ -1,7 +1,7 @@
 var OnSite = require('../db/schemas/onsite');
 
 module.exports = {
-  get: function (user_id, callback, sort) {
+  get: function (user_id, sort, callback) {
     switch (sort) {
       case undefined:
       case 'created':

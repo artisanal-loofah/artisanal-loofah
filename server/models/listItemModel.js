@@ -16,7 +16,7 @@ var extendListItem = function(listItem, application, callback) {
 module.exports = {
   // req.user attached from helper.decode method
   allListItems: function (req, res, listItemModel) {
-    listItemModel.get(req.user.id, function (listItems) {
+    listItemModel.get(req.user.id, req.query.sort, function (listItems) {
       // Job title and company name are added to each listItem
       if (listItems.length) {
         listItems.forEach(function(listItem, index) {
@@ -32,7 +32,7 @@ module.exports = {
       } else {
         res.end();
       }
-    }, req.query.sort);
+    });
   },
   addListItem: function (req, res, listItemModel) {
     // req.user attached from helper.decode method, we add the user_id to the body of the listItem request

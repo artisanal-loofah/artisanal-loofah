@@ -1,7 +1,7 @@
 var AppSubmit = require('../db/schemas/appsubmit');
 
 module.exports = {
-  get: function (user_id, callback, sort) {
+  get: function (user_id, sort, callback) {
     switch(sort) {
       case undefined:
       case 'created':
