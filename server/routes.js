@@ -14,8 +14,7 @@ router.get('/api/users', userController.get);
 router.post('/api/users', userController.post);
 
 router.use('/api/applications', helpers.decode);
-router.get('/api/applications', applicationController.getAll);
-router.post('/api/applications', applicationController.create);
+router.post('/api/applications', applicationController.addApplication);
 
 router.use('/api/backlogs', helpers.decode);
 router.get('/api/backlogs', backlogController.allBacklogs);

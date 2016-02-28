@@ -3,13 +3,7 @@ var Company = require('../models/companyModel');
 
 
 module.exports = {
-  getAll: function (req, res) {
-    Application.get(req.user.id, function (applications) {
-      res.json(applications);
-    });
-  },
-
-  create: function (req, res) {
+  addApplication: function (req, res) {
     var companyName = req.body.company;
     var companyId;
 
