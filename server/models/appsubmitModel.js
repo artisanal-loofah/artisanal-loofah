@@ -1,14 +1,35 @@
 var AppSubmit = require('../db/schemas/appsubmit');
 
 module.exports = {
-  get: function (user_id, callback) {
-    AppSubmit.findAll({ where: {
-      user_id: user_id,
-      $not: {status: 'Removed'}
-    }})
-      .then(function (appSubmits) {
-        callback(appSubmits);
-      });
+  get: function (user_id, callback, sort) {
+    switch(sort) {
+      case undefined:
+      case 'created':
+        AppSubmit.findAll({ where: {
+          user_id: user_id,
+          $not: {status: 'Removed'}
+        }})
+        .then(function (appSubmits) {
+          callback(appSubmits);
+        });
+        break;
+
+      case 'pending':
+        AppSubmit.findAll({
+          where: {
+            user_id: user_id,
+            status: 'Pending',
+            $not: {
+              status: ['Removed', 'Rejected']
+            }
+          },
+          order: 'status DESC'
+        })
+        .then(function (appSubmits) {
+          callback(appSubmits);
+        });
+        break;
+    }
   },
 
   create: function (appSubmit, callback) {

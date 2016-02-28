@@ -27,6 +27,11 @@
 <!-- BEGIN: Application Submitted STAGE -->
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getAppSubmits(sort)">
+    <option value="created">Created</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
