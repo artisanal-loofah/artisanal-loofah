@@ -14,6 +14,7 @@ var extendListItem = function(listItem, application, callback) {
 };
 
 module.exports = {
+  // req.user attached from helper.decode method
   allListItems: function (req, res, listItemModel) {
     listItemModel.get(req.user.id, function (listItems) {
       // Job title and company name are added to each listItem
@@ -34,6 +35,7 @@ module.exports = {
     });
   },
   addListItem: function (req, res, listItemModel) {
+    // req.user attached from helper.decode method, we add the user_id to the body of the listItem request
     // After creating the new list item, the job title and company name are added to the list item response object
     req.body.user_id = req.user.id;
     listItemModel.create(req.body, function (listItem) {
