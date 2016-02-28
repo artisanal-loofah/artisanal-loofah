@@ -11,7 +11,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
                 'border-style': 'solid', 
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
     if (phoneScreen.status === "Rejected") {
@@ -19,7 +20,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
     if (phoneScreen.status === "Pending") {
@@ -27,7 +29,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px' 
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
   };
