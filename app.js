@@ -25,11 +25,6 @@ app.use(parser.json());
 var router = require('./server/routes');
 app.use(router);
 
-// Logging and parsing
-
-// Set up our routes
-// app.use('/classes', router);
-
 // Serve the client files
 app.use(express.static(__dirname + '/client'));
 
