@@ -4,6 +4,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
+  $scope.sort = 'created'
 
   $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend

@@ -4,6 +4,11 @@ angular.module('hunt.offer', [])
   $rootScope.offers = [];
   $rootScope.selectedOffer;
   $rootScope.selectedOfferIndex;
+  $scope.sort = 'created';
+
+  $scope.test = function(sort) {
+    console.log(sort);
+  }
 
   $scope.getOffers = function () {
     // user id is added on the backend

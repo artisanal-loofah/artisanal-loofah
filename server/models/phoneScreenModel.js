@@ -2,9 +2,9 @@ var PhoneScreen = require('../db/schemas/phonescreen');
 
 module.exports = {
   get: function (user_id, callback, sort) {
-    console.log('HEEYY THIS IS THE QUERY', sort);
     switch(sort) {
       case undefined:
+      case 'created':
         PhoneScreen.findAll({where: {
           user_id: user_id,
           $not: {status: 'Removed'}

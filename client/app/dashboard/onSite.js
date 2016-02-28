@@ -4,10 +4,11 @@ angular.module('hunt.onSite', [])
   $rootScope.onSites = [];
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
+  $scope.sort = 'created';
 
-  $scope.getOnSites = function () {
+  $scope.getOnSites = function (sort) {
     // user id is added on the backend
-    OnSite.getOnSites()
+    OnSite.getOnSites(sort)
     .then(function (data) {
       $rootScope.onSites = data;
     }).catch(function (error) {
@@ -70,10 +71,13 @@ angular.module('hunt.onSite', [])
 })
 
 .factory('OnSite', function ($http) {
-  var getOnSites = function () {
+  var getOnSites = function (sort) {
     return $http({
       method: 'GET',
-      url: '/api/onsites'
+      url: '/api/onsites',
+      params: {
+        sort: sort
+      }
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {
