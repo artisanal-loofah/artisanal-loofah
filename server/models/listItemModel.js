@@ -32,7 +32,7 @@ module.exports = {
       } else {
         res.end();
       }
-    });
+    }, req.query.sort);
   },
   addListItem: function (req, res, listItemModel) {
     // req.user attached from helper.decode method, we add the user_id to the body of the listItem request
