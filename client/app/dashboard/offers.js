@@ -15,8 +15,15 @@ angular.module('hunt.offer', [])
     });
   };
 
-  $scope.removeOffer = function (offer) {
-
+  $scope.removeOffer = function (offer, index) {
+    if (window.confirm("Are you sure you want to remove this item from this stage?")){
+      offer.status = 'Removed';
+      $rootScope.offers.splice(index, 1);
+      Offer.editOffer(offer)
+      .catch(function (error) {
+        console.log("Error editing offer: ", error);
+      });
+    }
   };
 
   $scope.clickedOffer = function(offer, index) {
