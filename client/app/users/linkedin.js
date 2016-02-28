@@ -19,7 +19,3 @@ function onLinkedInLogin() {
     }
   );
 };
-
-function isLoggedIn() {
-  return !!window.localStorage.getItem('user_id');
-};

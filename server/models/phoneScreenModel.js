@@ -16,8 +16,6 @@ module.exports = {
   },
 
   update: function (newProps, callback) {
-    // Currently, update function is searching for a matching 'notes' value,
-    //  We need to make it search for a matching application_id 
     PhoneScreen.find({ where: { id: newProps.id } })
       .then(function (phoneScreen) {
         if (phoneScreen) {

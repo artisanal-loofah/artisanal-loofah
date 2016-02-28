@@ -6,7 +6,8 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $rootScope.selectedAppSubmitIndex;
 
   $scope.getAppSubmits = function () {
-    AppSubmit.getAppSubmits($window.localStorage.getItem('user_id'))
+    // user id is added on the backend
+    AppSubmit.getAppSubmits()
     .then(function (data) {
       $rootScope.appSubmits = data;
     }).catch(function (error) {
@@ -19,8 +20,8 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.moveToPhoneScreen = function () {
+    // user id is added on the backend
     var newPhoneScreen = {
-      user_id: $rootScope.selectedAppSubmit.user_id,
       application_id: $rootScope.selectedAppSubmit.application_id,
       status: 'Pending'
     }
@@ -60,13 +61,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .factory('AppSubmit', function ($http) {
 
-  var getAppSubmits = function (userId) {
+  var getAppSubmits = function () {
     return $http({
       method: 'GET',
-      url: '/api/appsubmits',
-      params: {
-        userId: userId
-      }
+      url: '/api/appsubmits'
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {
