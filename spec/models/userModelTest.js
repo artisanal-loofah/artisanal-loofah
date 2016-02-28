@@ -56,14 +56,21 @@ describe('User Model', function() {
     });
   });
 
-  it('should get a user by LinkedIn id', function(done) {
+  after(function(done) {
+    dbConnection.query('TRUNCATE TABLE "Users"')
+    .then(function() {
+      done();
+    });
+  });
+
+  it('Should get a user by LinkedIn id', function(done) {
     userModel.get({linkedin_id: 'gr4-Hr3-Mcw'}, function(user) {
       expect(user.first_name).to.equal('Akshay');
       done();
     });
   });
 
-  it('should create a new user', function(done) {
+  it('Should create a new user', function(done) {
     var newUser = {
       first_name: 'Stephen',
       last_name: 'Curry',
