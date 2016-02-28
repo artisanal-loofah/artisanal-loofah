@@ -6,6 +6,7 @@ angular.module('hunt.onSite', [])
   $rootScope.selectedOnSiteIndex;
 
   $scope.getOnSites = function () {
+    // user id is added on the backend
     OnSite.getOnSites()
     .then(function (data) {
       $rootScope.onSites = data;
@@ -19,6 +20,7 @@ angular.module('hunt.onSite', [])
   };
 
   $scope.moveToOffer = function() {
+    // user id is added on the backend
     var newOffer = {
       application_id: $rootScope.selectedOnSite.application_id,
       status: 'Pending'

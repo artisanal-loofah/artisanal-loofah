@@ -6,6 +6,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $rootScope.selectedAppSubmitIndex;
 
   $scope.getAppSubmits = function () {
+    // user id is added on the backend
     AppSubmit.getAppSubmits()
     .then(function (data) {
       $rootScope.appSubmits = data;
@@ -19,6 +20,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   };
 
   $scope.moveToPhoneScreen = function () {
+    // user id is added on the backend
     var newPhoneScreen = {
       application_id: $rootScope.selectedAppSubmit.application_id,
       status: 'Pending'

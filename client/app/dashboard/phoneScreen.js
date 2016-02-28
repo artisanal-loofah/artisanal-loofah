@@ -6,6 +6,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.selectedPhoneScreenIndex;
 
   $scope.getPhoneScreens = function () {
+    // user id is added on the backend
     PhoneScreen.getPhoneScreens()
     .then(function (data) {
       $rootScope.phoneScreens = data;
@@ -19,6 +20,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   };
 
   $scope.moveToOnSite = function () {
+    // user id is added on the backend
     var newOnSite = {
       application_id: $rootScope.selectedPhoneScreen.application_id,
       status: 'Pending'

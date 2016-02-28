@@ -6,6 +6,7 @@ angular.module('hunt.offer', [])
   $rootScope.selectedOfferIndex;
 
   $scope.getOffers = function () {
+    // user id is added on the backend
     Offer.getOffers()
     .then(function (data) {
       $rootScope.offers = data;

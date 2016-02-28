@@ -7,7 +7,7 @@ angular.module('hunt.backlog', [])
 
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function () {
-    // console.log('getting backlogs with rootscope user: ', $rootScope.user);
+    // user id is added on the backend
     Backlog.getBacklogs()
       .then(function (data) {
         $rootScope.backlogs = data;
@@ -35,6 +35,7 @@ angular.module('hunt.backlog', [])
 
   // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
+    // user id is added on the backend
     var newAppSubmit = {
       application_id: $rootScope.selectedBacklog.application_id,
       status: 'Pending' 
