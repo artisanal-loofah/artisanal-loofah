@@ -37,6 +37,10 @@ angular.module('hunt.onSite', [])
 
   $scope.clickedOnSite = function(onSite, index) {
     $rootScope.selectedOnSite = onSite;
+    // convert string (if it exists) to Date object
+    if ($rootScope.selectedOnSite.date_time) {
+      $rootScope.selectedOnSite.date_time = new Date($rootScope.selectedOnSite.date_time);
+    }
     $rootScope.selectedOnSiteIndex = index;
   };
 
