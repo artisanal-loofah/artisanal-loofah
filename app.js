@@ -25,7 +25,6 @@ app.use(parser.json());
 var router = require('./server/routes');
 app.use(router);
 
-
 // Logging and parsing
 
 // Set up our routes
