@@ -38,6 +38,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   // Function that sets the phoneScreenID when user clicks on phoneScreen
   $scope.clickedPhoneScreen = function (phoneScreen, index) {
     $rootScope.selectedPhoneScreen = phoneScreen;
+    // convert string (if it exists) to Date object
+    if ($rootScope.selectedPhoneScreen.date_time) {
+      $rootScope.selectedPhoneScreen.date_time = new Date($rootScope.selectedPhoneScreen.date_time);
+    }
     $rootScope.selectedPhoneScreenIndex = index;
   };
 

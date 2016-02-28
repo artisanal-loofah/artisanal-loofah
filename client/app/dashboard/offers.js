@@ -21,6 +21,10 @@ angular.module('hunt.offer', [])
 
   $scope.clickedOffer = function(offer, index) {
     $rootScope.selectedOffer = offer;
+    // convert string (if it exists) to Date object
+    if ($rootScope.selectedOffer.deadline) {
+      $rootScope.selectedOffer.deadline = new Date($rootScope.selectedOffer.deadline);
+    }
     $rootScope.selectedOfferIndex = index;
   };
 
