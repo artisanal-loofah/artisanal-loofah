@@ -3,6 +3,7 @@ angular.module('hunt.application', ['hunt.users'])
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
 
   $scope.addApplication = function (){
+    // user id is added on the backend
     var applicationData = {
       jobTitle: $scope.jobTitle,
       company: $scope.company
@@ -13,8 +14,8 @@ angular.module('hunt.application', ['hunt.users'])
         application_id: application.id,
         status: 'Pending'
       };
-      Backlog.addBacklog(newBacklog).
-      then(function(backlog) {
+      Backlog.addBacklog(newBacklog)
+      .then(function(backlog) {
         $rootScope.backlogs.push(backlog);
       });
     });
