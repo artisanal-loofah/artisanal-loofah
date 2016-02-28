@@ -46,7 +46,7 @@
       <a href="javascript:void(0)" data-toggle='modal' data-target='#phoneScreenModal' ng-click="clickedPhoneScreen(phoneScreen, $index)">{{phoneScreen.job_title}} - {{phoneScreen.company}}</a>
       <p>Status: {{ phoneScreen.status }}<p>
       <p>Interviewer: {{ phoneScreen.interviewer }}<p>
-      <p>Interview Time: {{ phoneScreen.date_time }}<p>
+      <p>Interview Time: {{ phoneScreen.date_time | date:"h:mma 'on' MM/dd/yyyy" }}<p>
       <p>Notes: {{ phoneScreen.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
@@ -67,7 +67,7 @@
       <p>Status: {{ onSite.status }}<p>
       <p>Interviewer: {{ onSite.interviewer }}<p>
       <p>Location: {{ onSite.location }}<p>
-      <p>Interview Time: {{ onSite.date_time }}<p>
+      <p>Interview Time: {{ onSite.date_time | date:"h:mma 'on' MM/dd/yyyy" }}<p>
       <p>Notes: {{ onSite.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
@@ -88,7 +88,7 @@
       <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
       <p>Status: {{ offer.status }}<p>
       <p>Salary: {{ offer.salary }}<p>
-      <p>Deadline: {{ offer.deadline }}<p>
+      <p>Deadline: {{ offer.deadline | date:"MM/dd/yyyy" }}<p>
       <p>Notes: {{ offer.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
@@ -194,7 +194,7 @@
         </div>
         <div class="form-group">
           <label for="date_time">Interview Time:</label>
-          <input class="form-control" type="text" ng-model="selectedPhoneScreen.date_time" />
+          <input class="form-control" type="datetime-local" ng-model="selectedPhoneScreen.date_time" />
         </div>
         <div class="form-group">
           <label for="notes">Notes:</label>
@@ -238,7 +238,7 @@
         </div>
         <div class="form-group">
           <label for="interviewer">Interview Time:</label>
-          <input class="form-control" type="text" ng-model="selectedOnSite.date_time" />
+          <input class="form-control" type="datetime-local" ng-model="selectedOnSite.date_time" />
         </div>
         <div class="form-group">
           <label for="location">Location:</label>
@@ -288,7 +288,7 @@
         </div>
         <div class="form-group">
           <label for="deadline">Deadline:</label>
-          <input class="form-control" type="text" ng-model="selectedOffer.deadline" />
+          <input class="form-control" type="date" ng-model="selectedOffer.deadline" />
         </div>
         <div class="form-group">
           <label for="notes">Notes:</label>
