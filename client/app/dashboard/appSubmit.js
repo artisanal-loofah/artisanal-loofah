@@ -18,21 +18,27 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
                 'border-style': 'solid', 
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'}
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
     }
     if (appSubmit.status === "Rejected") {
       return { 'background-color': "#F2DEDE",
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'}
+                'border-radius': '5px',
+                'padding': '0px 5px'
+              }
     }
     if (appSubmit.status === "Pending") {
       return { 'background-color': "#DADFE1",
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px' }
+                'border-radius': '5px' ,
+                'padding': '0px 5px'
+              }
     }
   };
 

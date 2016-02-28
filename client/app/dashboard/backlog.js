@@ -13,7 +13,8 @@ angular.module('hunt.backlog', [])
                 'border-style': 'solid', 
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
     if (backlog.status === "Rejected") {
@@ -21,7 +22,8 @@ angular.module('hunt.backlog', [])
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px'
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
     if (backlog.status === "Pending") {
@@ -29,7 +31,8 @@ angular.module('hunt.backlog', [])
                 'border-style': 'solid',
                 'border-width': '5px',
                 'border-color': '#CFCFC4',
-                'border-radius': '5px' 
+                'border-radius': '5px',
+                'padding': '0px 5px'
               }
     }
   };
