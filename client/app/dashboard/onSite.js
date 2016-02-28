@@ -18,7 +18,6 @@ angular.module('hunt.onSite', [])
 
   $scope.removeOnSite = function (onSite, index) {
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
-      $scope.clickedOnSite(onSite, index);
       onSite.status = 'Removed';
       $rootScope.onSites.splice(index, 1);
       OnSite.editOnSite(onSite)
