@@ -10,7 +10,6 @@ angular.module('hunt.onSite', [])
     OnSite.getOnSites()
     .then(function (data) {
       $rootScope.onSites = data;
-      console.log('this is from the get on sites', $scope.onSites);
     }).catch(function (error) {
       console.error(error);
     });

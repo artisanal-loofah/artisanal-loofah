@@ -40,6 +40,7 @@
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
+  <p>Sort by <a href="javascript:void(0)" ng-click="sortDate()">Date</a></p>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
     <li>
@@ -110,7 +111,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit {{selectedBacklog.job_title}} - {{selectedBacklog.company}}</h2>
+        <h2 class="modal-title">Edit Backlog: {{selectedBacklog.job_title}} - {{selectedBacklog.company}}</h2>
       </div>
 
       <form novalidate class="simple-form">
@@ -146,7 +147,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit {{selectedAppSubmit.job_title}} - {{selectedAppSubmit.company}}</h2>
+        <h2 class="modal-title">Edit Submitted App: {{selectedAppSubmit.job_title}} - {{selectedAppSubmit.company}}</h2>
       </div>
 
       <form novalidate class="simple-form">
@@ -184,7 +185,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit {{selectedPhoneScreen.job_title}} - {{selectedPhoneScreen.company}}</h2>
+        <h2 class="modal-title">Edit Phone Screen: {{selectedPhoneScreen.job_title}} - {{selectedPhoneScreen.company}}</h2>
       </div>
 
       <form novalidate class="simple-form">
@@ -228,7 +229,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit {{selectedOnSite.job_title}} - {{selectedOnSite.company}}</h2>
+        <h2 class="modal-title">Edit On-Site Interview: {{selectedOnSite.job_title}} - {{selectedOnSite.company}}</h2>
       </div>
 
       <form novalidate class="simple-form">
@@ -278,7 +279,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit {{selectedOffer.job_title}} - {{selectedOffer.company}}</h2>
+        <h2 class="modal-title">Edit Offer: {{selectedOffer.job_title}} - {{selectedOffer.company}}</h2>
       </div>
 
       <form novalidate class="simple-form">
