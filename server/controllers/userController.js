@@ -3,6 +3,7 @@ var jwt =require('jwt-simple')
 
 
 module.exports = {
+  // Responds with user and token
   get: function (req, res) {
     if (req.query.linkedInId) {
       var linkedin_id = req.query.linkedInId;
@@ -19,7 +20,8 @@ module.exports = {
       res.send("Could not find that LinkedIn id.");
     }
   },
-
+  
+  // Responds with user and token
   post: function (req, res, next) {
     var userData = req.body;
 

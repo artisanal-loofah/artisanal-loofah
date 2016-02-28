@@ -13,13 +13,4 @@ module.exports = {
   updateOnSite: function(req, res) {
     ListItem.updateListItem(req, res, OnSite);
   }
-
-
-  // getAOnSite: function (request, response, next) {
-  //   OnSite.getOne(request.body, function (data) {
-  //     response.statusCode = 200;
-  //     response.send(data);
-  //   });
-  // }
-
 };

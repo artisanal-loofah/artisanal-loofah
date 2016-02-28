@@ -30,12 +30,4 @@ module.exports = {
         console.error('Error from update:', error);
       })
   }
-
-  // getInfo: function (application_id, callback) {
-  //   OnSite.findOne({ where: {application_id: application_id}})
-  //   .then(function (onSite) {
-  //     callback(onSite);
-  //   });
-  // },
 };
-

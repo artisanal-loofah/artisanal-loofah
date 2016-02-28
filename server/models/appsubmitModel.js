@@ -15,14 +15,6 @@ module.exports = {
       });
   },
 
-  // getInfo: function (application_id, callback) {
-  //   AppSubmit.findOne({ where: {application_id: application_id}})
-  //   .then(function (app) {
-  //     callback(app);
-  //   });
-  // },
-
-
   update: function (newProps, callback) {
     AppSubmit.find({ where: {id: newProps.id}})
     .then(function (appSubmit) {
