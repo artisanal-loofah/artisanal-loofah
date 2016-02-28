@@ -2,7 +2,10 @@ var AppSubmit = require('../db/schemas/appsubmit');
 
 module.exports = {
   get: function (user_id, callback) {
-    AppSubmit.findAll({ where: {user_id: user_id}})
+    AppSubmit.findAll({ where: {
+      user_id: user_id,
+      $not: {status: 'Removed'}
+    }})
       .then(function (appSubmits) {
         callback(appSubmits);
       });
