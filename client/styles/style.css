@@ -50,6 +50,12 @@ h1 {
   width: 100%;
 }
 
+.mainlogo {
+  height: 40%;
+  width: 40%;
+  display: inline-block;
+}
+
 .accepted {
   background-color: #DFF0D8;
   border-style: solid;
