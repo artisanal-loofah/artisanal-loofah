@@ -13,24 +13,31 @@ angular.module('hunt.offer', [])
 
   $scope.set_color = function (offer) {
     if (offer.status === "Accepted") {
-      return { 'background-color': "#7CFC00" ,
+      return { 'background-color': "#DFF0D8" ,
                 'border-style': 'solid', 
                 'border-width': '5px',
-                'border-color': '#4C924C'}
+                'border-color': '#CFCFC4',
+                'border-radius': '5px'
+              }
     }
     if (offer.status === "Rejected") {
-      return { 'background-color': "#FF3232",
+      return { 'background-color': "#F2DEDE",
                 'border-style': 'solid',
                 'border-width': '5px',
-                'border-color': '#990000'}
+                'border-color': '#CFCFC4',
+                'border-radius': '5px'
+              }
     }
     if (offer.status === "Pending") {
-      return { 'background-color': "#D3D3D3",
+      return { 'background-color': "#DADFE1",
                 'border-style': 'solid',
                 'border-width': '5px',
-                'border-color': '#A8A8A8' }
+                'border-color': '#CFCFC4',
+                'border-radius': '5px' 
+              }
     }
   };
+
 
 
   $scope.getOffers = function () {
