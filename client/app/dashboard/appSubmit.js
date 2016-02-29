@@ -4,10 +4,11 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
+  $scope.sort = 'created';
 
-  $scope.getAppSubmits = function () {
+  $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
-    AppSubmit.getAppSubmits()
+    AppSubmit.getAppSubmits(sort)
     .then(function (data) {
       $rootScope.appSubmits = data;
     }).catch(function (error) {
@@ -69,10 +70,13 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .factory('AppSubmit', function ($http) {
 
-  var getAppSubmits = function () {
+  var getAppSubmits = function (sort) {
     return $http({
       method: 'GET',
-      url: '/api/appsubmits'
+      url: '/api/appsubmits',
+      params: {
+        sort: sort
+      }
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {

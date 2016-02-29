@@ -16,7 +16,7 @@ var extendListItem = function(listItem, application, callback) {
 module.exports = {
   // req.user attached from helper.decode method
   allListItems: function (req, res, listItemModel) {
-    listItemModel.get(req.user.id, function (listItems) {
+    listItemModel.get(req.user.id, req.query.sort, function (listItems) {
       // Job title and company name are added to each listItem
       if (listItems.length) {
         listItems.forEach(function(listItem, index) {

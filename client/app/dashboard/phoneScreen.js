@@ -4,10 +4,11 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
+  $scope.sort = 'created'
 
-  $scope.getPhoneScreens = function () {
+  $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend
-    PhoneScreen.getPhoneScreens()
+    PhoneScreen.getPhoneScreens(sort)
     .then(function (data) {
       $rootScope.phoneScreens = data;
     }).catch(function (error) {
@@ -73,10 +74,13 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
 .factory('PhoneScreen', function ($http) {
 
-  var getPhoneScreens = function () {
+  var getPhoneScreens = function (sort) {
     return $http({
       method: 'GET',
-      url: '/api/phonescreens'
+      url: '/api/phonescreens',
+      params: {
+        sort: sort
+      }
     }).then(function (res) {
       return res.data;
     }).catch(function (error) {

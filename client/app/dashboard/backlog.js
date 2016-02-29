@@ -4,11 +4,12 @@ angular.module('hunt.backlog', [])
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
+  $scope.sort = 'created';
 
   // Function that retrieves all backlogs for given user
-  $scope.getBacklogs = function () {
+  $scope.getBacklogs = function (sort) {
     // user id is added on the backend
-    Backlog.getBacklogs()
+    Backlog.getBacklogs(sort)
       .then(function (data) {
         $rootScope.backlogs = data;
       })
@@ -86,10 +87,13 @@ angular.module('hunt.backlog', [])
 .factory('Backlog', function ($http) {
 
   // Retrieves all backlogs stored in database matching the passed in user id
-  var getBacklogs = function () {
+  var getBacklogs = function (sort) {
     return $http({
       method: 'GET',
       url: '/api/backlogs',
+      params: {
+        sort: sort
+      }
     })
     .then(function (res) {
       return res.data;

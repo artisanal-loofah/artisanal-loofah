@@ -1,14 +1,53 @@
 var PhoneScreen = require('../db/schemas/phonescreen');
 
 module.exports = {
-  get: function (user_id, callback) {
-    PhoneScreen.findAll({ where: {
-      user_id: user_id,
-      $not: {status: 'Removed'}
-    }})
-      .then(function (phoneScreens) {
-        callback(phoneScreens);
-      });
+  get: function (user_id, sort, callback) {
+    switch(sort) {
+      case undefined:
+      case 'created':
+        PhoneScreen.findAll({
+          where: {
+            user_id: user_id,
+            $not: {status: 'Removed'}
+          },
+          order: [['createdAt', 'ASC']]
+        })
+        .then(function (phoneScreens) {
+          callback(phoneScreens);
+        });
+        break;
+
+      case 'date':
+        PhoneScreen.findAll({
+          where: {
+            user_id: user_id,
+            $not: {
+              status: ['Removed', 'Rejected']
+            }
+          },
+          order: 'date_time ASC, status DESC'
+        })
+        .then(function (phoneScreens) {
+          callback(phoneScreens);
+        });
+        break;
+
+      case 'pending':
+        PhoneScreen.findAll({
+          where: {
+            user_id: user_id,
+            status: 'Pending',
+            $not: {
+              status: ['Removed', 'Rejected']
+            }
+          },
+          order: 'date_time ASC, status DESC'
+        })
+        .then(function (phoneScreens) {
+          callback(phoneScreens);
+        });
+        break;
+    }
   },
 
   create: function (phoneScreen, callback) {

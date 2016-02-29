@@ -3,6 +3,11 @@
 <!-- BEGIN: Applicaiton Backlog STAGE -->
 <div class='col-sm-2 stage' ng-controller='BacklogController'>
   <h1 class='stage-heading'>Application Backlog</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getBacklogs(sort)">
+    <option value="created">Created</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
@@ -22,6 +27,11 @@
 <!-- BEGIN: Application Submitted STAGE -->
 <div class='col-sm-2 stage' ng-controller='AppSubmitController'>
   <h1 class='stage-heading'>Submitted Apps</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getAppSubmits(sort)">
+    <option value="created">Created</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
@@ -40,6 +50,12 @@
 
 <div class='col-sm-2 stage' ng-controller='PhoneScreenController'>
   <h1 class='stage-heading'>Upcoming Phone Screens</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getPhoneScreens(sort)">
+    <option value="created">Created</option>
+    <option value="date">Date</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
     <li>
@@ -61,6 +77,12 @@
 
 <div class='col-sm-3 stage' ng-controller='OnSiteController'>
   <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getOnSites(sort)">
+    <option value="created">Created</option>
+    <option value="date">Date</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#onSiteModal' ng-click="clickedOnSite(onSite, $index)">{{onSite.job_title}} - {{onSite.company}}</a>
@@ -83,6 +105,13 @@
 
 <div class='col-sm-3 stage' ng-controller='OfferController'>
   <h1 class='stage-heading'>Offers</h1>
+  <label for="sort">Sort By: </label>
+  <select ng-model="sort" ng-change="getOffers(sort)">
+    <option value="created">Created</option>
+    <option value="salary">Salary</option>
+    <option value="deadline">Deadline</option>
+    <option value="pending">Pending</option>
+  </select>
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
     <li>
       <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
