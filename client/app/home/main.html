@@ -1,18 +1,27 @@
-<div class="row">
-  <span class="navbar-text ">
-    Logged in as {{user.first_name}} {{user.last_name}}
-  </span>
+<div class="topnavibar">
+  <div class="topbar">
+    <div class="mainlogo">
+      <img class="mainlogo" src="../../assets/logo.png"/>
+    </div>
 
-  <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
+    <div class="login-info-container">
+      <div> 
+          <img class="userimage" ng-src="{{user.picture_url}}"/>
+      </div>
+      
+      <div>
+        Logged in as {{user.first_name}} {{user.last_name}}
+      </div>
+
+      <div>
+        <button class="logout" style="margin-top:0px;" type="button" ng-click="logoutLinkedIn()">Logout</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="row">
-  <h1>You are now logged in as {{user.first_name}} {{user.last_name}}</h1>
 
-  <a href="{{user.picture_url}}" target="_blank"> 
-    <img class="userimage" ng-src="{{user.picture_url}}"/>
-  </a>
-</div>
 
 <div class='applicationInputBar row' id="applicationInputsBar">
   <ng:include src="'app/dashboard/jobBar.html'"></ng:include>
