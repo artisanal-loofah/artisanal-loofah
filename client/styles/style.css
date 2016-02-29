@@ -34,6 +34,14 @@ h1 {
 
 .stage-heading {
   text-align: center;
+  word-wrap:break-word;
+  font-weight: bold;
+  font-family: 'Enriqueta', arial, serif; 
+  line-height: 1.25; 
+  margin: 0 0 10px; 
+  font-size: 19px; 
+  padding: 15px 0px 12px 0px;
+  height: 80px;
 }
 
 .stage-list {
@@ -42,8 +50,9 @@ h1 {
   padding-left: 0px;
 }
 
-.stagename {
+.stageinfo {
   word-wrap:break-word;
+  padding: 0px 0px 20px 0px;
 }
 
 .jobbar {

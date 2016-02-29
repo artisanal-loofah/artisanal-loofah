@@ -2,14 +2,14 @@
 
 <!-- BEGIN: Applicaiton Backlog STAGE -->
 <div class='col-md-2 col-md-offset-1 stage' ng-controller='BacklogController'>
-  <div class="stagename">
+  <div class="stageinfo">
     <h1 class='stage-heading'>Application Backlog</h1>
+    <label for="sort">Sort By: </label>
+    <select ng-model="sort" ng-change="getBacklogs(sort)">
+      <option value="created">Created</option>
+      <option value="pending">Pending</option>
+    </select>
   </div>
-  <label for="sort">Sort By: </label>
-  <select ng-model="sort" ng-change="getBacklogs(sort)">
-    <option value="created">Created</option>
-    <option value="pending">Pending</option>
-  </select>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
     <li ng-class="{ 'accepted' : backlog.status === 'Accepted' , 'rejected' : backlog.status === 'Rejected', 'pending' : backlog.status === 'Pending'} ">
       <a href="javascript:void(0)" ng-click="removeBacklog(backlog, $index)">
@@ -60,14 +60,14 @@
 
 <!-- BEGIN: Application Submitted STAGE -->
 <div class='col-md-2 stage' ng-controller='AppSubmitController'>
-  <div class="stagename">
+  <div class="stageinfo">
     <h1 class='stage-heading'>Submitted Apps</h1>
+    <label for="sort">Sort By: </label>
+    <select ng-model="sort" ng-change="getAppSubmits(sort)">
+      <option value="created">Created</option>
+      <option value="pending">Pending</option>
+    </select>
   </div>
-  <label for="sort">Sort By: </label>
-  <select ng-model="sort" ng-change="getAppSubmits(sort)">
-    <option value="created">Created</option>
-    <option value="pending">Pending</option>
-  </select>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
    <li ng-class="{ 'accepted' : appSubmit.status === 'Accepted' , 'rejected' : appSubmit.status === 'Rejected', 'pending' : appSubmit.status === 'Pending'} ">
       <a ng-click="removeAppSubmit(appSubmit, $index)" href="javascript:void(0)">
@@ -121,15 +121,15 @@
 <!-- END: Application Submitted STAGE -->
 
 <div class='col-md-2 stage' ng-controller='PhoneScreenController'>
-  <div class="stagename">
+  <div class="stageinfo">
     <h1 class='stage-heading'>Upcoming Phone Screens</h1>
+    <label for="sort">Sort By: </label>
+    <select ng-model="sort" ng-change="getPhoneScreens(sort)">
+      <option value="created">Created</option>
+      <option value="date">Date</option>
+      <option value="pending">Pending</option>
+    </select>
   </div>
-  <label for="sort">Sort By: </label>
-  <select ng-model="sort" ng-change="getPhoneScreens(sort)">
-    <option value="created">Created</option>
-    <option value="date">Date</option>
-    <option value="pending">Pending</option>
-  </select>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
     <li ng-class="{ 'accepted' : phoneScreen.status === 'Accepted' , 'rejected' : phoneScreen.status === 'Rejected', 'pending' : phoneScreen.status === 'Pending'} ">
@@ -191,15 +191,15 @@
 </div>
 
 <div class='col-md-2 stage' ng-controller='OnSiteController'>
-  <div class="stagename">
+  <div class="stageinfo">
     <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
+    <label for="sort">Sort By: </label>
+    <select ng-model="sort" ng-change="getOnSites(sort)">
+      <option value="created">Created</option>
+      <option value="date">Date</option>
+      <option value="pending">Pending</option>
+    </select>
   </div>
-  <label for="sort">Sort By: </label>
-  <select ng-model="sort" ng-change="getOnSites(sort)">
-    <option value="created">Created</option>
-    <option value="date">Date</option>
-    <option value="pending">Pending</option>
-  </select>
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
     <li ng-class="{ 'accepted' : onSite.status === 'Accepted' , 'rejected' : onSite.status === 'Rejected', 'pending' : onSite.status === 'Pending'} ">
       <a ng-click="removeOnSite(onSite, $index)" href="javascript:void(0)">
@@ -268,16 +268,16 @@
 </div>
 
 <div class='col-md-2 stage' ng-controller='OfferController'>
-  <div class="stagename">
+  <div class="stageinfo">
     <h1 class='stage-heading'>Offers</h1>
+    <label for="sort">Sort By: </label>
+    <select ng-model="sort" ng-change="getOffers(sort)">
+      <option value="created">Created</option>
+      <option value="salary">Salary</option>
+      <option value="deadline">Deadline</option>
+      <option value="pending">Pending</option>
+    </select>
   </div>
-  <label for="sort">Sort By: </label>
-  <select ng-model="sort" ng-change="getOffers(sort)">
-    <option value="created">Created</option>
-    <option value="salary">Salary</option>
-    <option value="deadline">Deadline</option>
-    <option value="pending">Pending</option>
-  </select>
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
     <li ng-class="{ 'accepted' : offer.status === 'Accepted' , 'rejected' : offer.status === 'Rejected', 'pending' : offer.status === 'Pending'} ">     
       <a ng-click="removeOffer(offer, $index)" href="javascript:void(0)">
