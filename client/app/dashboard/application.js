@@ -3,7 +3,7 @@ angular.module('hunt.application', ['hunt.users'])
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
 
   $scope.addApplication = function () {
-    console.log('jobtitle: ', $scope.jobTitle)
+    console.log('am i even getting here?!?!');
     // only create application if job title and company name are not empty or whitespace
     if ($scope.jobTitle.trim().length && $scope.company.trim().length) {
       // user id is added on the backend
@@ -11,6 +11,9 @@ angular.module('hunt.application', ['hunt.users'])
         jobTitle: $scope.jobTitle,
         company: $scope.company
       };
+
+      console.log('applicationdata: ', applicationData);
+
       Application.createApplication(applicationData)
       .then(function(application) {
         var newBacklog = {
@@ -23,6 +26,8 @@ angular.module('hunt.application', ['hunt.users'])
         });
       });
     }
+    $scope.jobTitle = '';
+    $scope.company = '';
   };
 })
 
