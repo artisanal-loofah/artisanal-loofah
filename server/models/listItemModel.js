@@ -13,7 +13,7 @@ var extendListItem = function(listItem, callback) {
   })
   .then(function(company) {
     listItem.dataValues = _.extend(listItem.dataValues, {'company': company.name});
-    callback();
+    callback(listItem);
   })
 };
 
@@ -44,28 +44,18 @@ module.exports = {
     // After creating the new list item, the job title and company name are added to the list item response object
     req.body.user_id = req.user.id;
     listItemModel.create(req.body, function (listItem) {
-      Application.getByAppId(listItem.application_id)
-        .then(function(application) {
-          extendListItem(listItem, application, function(listItem) {
-            res.statusCode = 201;
-            res.json(listItem);
-          });
-        })
-        .catch(function (error) {
-          console.log('Error in addListItem function in listItemModel: ', error);
-        });
+      extendListItem(listItem, function(item) {
+        res.statusCode = 201;
+        res.json(item);
+      });
     });
   },
   updateListItem: function (req, res, listItemModel) {
     // After update, job title and company name are added to the list item response object
     listItemModel.update(req.body, function (listItem) {
-      Application.getByAppId(listItem.application_id)
-        .then(function(application) {
-          extendListItem(listItem, application, function(listItem) {
-            res.statusCode = 201;
-            res.json(listItem);
-          });
-        });
+      extendListItem(listItem, function(item) {
+        res.json(item);
+      });
     });
   }
 };
