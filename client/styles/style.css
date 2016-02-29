@@ -119,6 +119,15 @@ h1 {
   display: block;
 }
 
+.modal-title {
+  word-wrap:break-word;
+  font-weight: bold;
+  font-family: 'Enriqueta', arial, serif; 
+  line-height: 1.25; 
+  margin: 0 0 10px; 
+  font-size: 21px;
+}
+
 a .remove {
 	color: red;
   float: right;
