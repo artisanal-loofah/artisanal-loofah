@@ -22,20 +22,13 @@ With Hunt, you can:
 2. [Requirements](#requirements)
 3. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
+    2. [Tasks](#tasks)
 4. [Team](#team)
 5. [Contributing](#contributing)
 
 ## Usage
 
-Fork the repo to your local branch. When you've cloned down to your local machine, install the dependencies by following the instructions [here](#installing-dependencies), and verify you have all the required software listed [here](#requirements).
-
-Open Postgres in your terminal and create databases named 'hunt' and 'hunttest'. The 'hunt' db is the real db, while 'hunttest' is used during testing.
-
-Run `grunt start` or `nodemon app.js` in the root folder to start the app. You may need to run it a couple times at first so that all the db tables are created with the correct relations.
-
-To run tests, run `grunt test` or `npm test`. Again, you may need to run it a couple times at first so that the db tables in the test db are created properly.
-
-If you make changes to client side code in the app folder, run `grunt build` to re-run the build processes. The changes will then show up in your app. You can also run `grunt watch` to have Grunt watch for changes automatically.
+This project was built as part of Hack Reactor 39, and the codebase is open source (with attribution) under the ISC license. To get started, take a look at [Development](#development).
 
 ## Requirements
 
@@ -53,6 +46,17 @@ sudo npm install -g bower
 npm install
 bower install
 ```
+
+### Tasks
+Fork the repo to your local branch. When you've cloned down to your local machine, install the dependencies by following the instructions [here](#installing-dependencies), and verify you have all the required software listed [here](#requirements).
+
+Open Postgres in your terminal and create databases named 'hunt' and 'hunttest'. The 'hunt' db is the real db, while 'hunttest' is used during testing.
+
+Run `grunt start` or `nodemon app.js` in the root folder to start the app. You may need to run it a couple times at first so that all the db tables are created with the correct relations.
+
+To run tests, run `grunt test` or `npm test`. Again, you may need to run it a couple times at first so that the db tables in the test db are created properly.
+
+If you make changes to client side code in the app folder, run `grunt build` to re-run the build processes. The changes will then show up in your app. You can also run `grunt watch` to have Grunt watch for changes automatically.
 
 ### Roadmap
 
