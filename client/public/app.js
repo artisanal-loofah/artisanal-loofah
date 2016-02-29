@@ -83,8 +83,11 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     // user id is added on the backend
     var newPhoneScreen = {
       application_id: $rootScope.selectedAppSubmit.application_id,
-      status: 'Pending'
-    }
+      status: 'Pending',
+      interviewer: $scope.newPhoneScreen.interviewer,
+      date_time: $scope.newPhoneScreen.date_time,
+      notes: $scope.newPhoneScreen.notes
+    };
 
     PhoneScreen.addPhoneScreen(newPhoneScreen)
       .then(function (phoneScreen) {
@@ -93,6 +96,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       .catch(function (error) {
         console.log("Error creating PhoneScreen list item on AppSubmit status change : ", error);
       });
+
+    $scope.newPhoneScreen.interviewer = '';
+    $scope.newPhoneScreen.date_time = '';
+    $scope.newPhoneScreen.notes = '';
   };
 
   // Function that sets the appSubmitID when user clicks on appSubmit
@@ -267,9 +274,9 @@ angular.module('hunt.backlog', [])
     // user id is added on the backend
     var newAppSubmit = {
       application_id: $rootScope.selectedBacklog.application_id,
-      status: 'Pending' 
-    }
-
+      status: 'Pending',
+      notes: $scope.newAppSubmit.notes
+    };
     AppSubmit.addAppSubmit(newAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.push(appSubmit);
@@ -277,6 +284,8 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log("Error creating AppSubmit list item on backlog status change: ", error);
       });
+
+    $scope.newAppSubmit.notes = '';
   };
 
   // Function that sets the selectedBacklog to backlog user clicked on
@@ -484,7 +493,10 @@ angular.module('hunt.onSite', [])
     // user id is added on the backend
     var newOffer = {
       application_id: $rootScope.selectedOnSite.application_id,
-      status: 'Pending'
+      status: 'Pending',
+      salary: $scope.newOffer.salary,
+      deadline: $scope.newOffer.deadline,
+      notes: $scope.newOffer.notes
     };
 
     Offer.addOffer(newOffer)
@@ -494,6 +506,10 @@ angular.module('hunt.onSite', [])
       .catch(function (error) {
         console.log("Error creating Offer list item on OnSite status change : ", error);
       });
+
+    $scope.newOffer.salary = '';
+    $scope.newOffer.deadline = '';
+    $scope.newOffer.notes = '';
   };
 
   $scope.clickedOnSite = function(onSite, index) {
@@ -601,8 +617,12 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     // user id is added on the backend
     var newOnSite = {
       application_id: $rootScope.selectedPhoneScreen.application_id,
-      status: 'Pending'
-    }
+      status: 'Pending',
+      interviewer: $scope.newOnSite.interviewer,
+      date_time: $scope.newOnSite.date_time,
+      location: $scope.newOnSite.location,
+      notes: $scope.newOnSite.notes
+    };
 
     OnSite.addOnSite(newOnSite)
       .then(function (onSite) {
@@ -611,6 +631,11 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
       .catch(function (error) {
         console.log("Error creating OnSite list item on phoneScreen status change: ", error);
       });
+
+    $scope.newOnSite.interviewer = '';
+    $scope.newOnSite.date_time = '';
+    $scope.newOnSite.location = '';
+    $scope.newOnSite.notes = '';
   };
 
   // Function that sets the phoneScreenID when user clicks on phoneScreen
