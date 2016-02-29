@@ -3,22 +3,25 @@ angular.module('hunt.application', ['hunt.users'])
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
 
   $scope.addApplication = function (){
-    // user id is added on the backend
-    var applicationData = {
-      jobTitle: $scope.jobTitle,
-      company: $scope.company
-    };
-    Application.createApplication(applicationData)
-    .then(function(application) {
-      var newBacklog = {
-        application_id: application.id,
-        status: 'Pending'
+    // only create application if job title and company name are not empty or whitespace
+    if ($scope.jobTitle.trim().length && $scope.company.trim().length) {
+      // user id is added on the backend
+      var applicationData = {
+        jobTitle: $scope.jobTitle,
+        company: $scope.company
       };
-      Backlog.addBacklog(newBacklog)
-      .then(function(backlog) {
-        $rootScope.backlogs.push(backlog);
+      Application.createApplication(applicationData)
+      .then(function(application) {
+        var newBacklog = {
+          application_id: application.id,
+          status: 'Pending'
+        };
+        Backlog.addBacklog(newBacklog)
+        .then(function(backlog) {
+          $rootScope.backlogs.push(backlog);
+        });
       });
-    });
+    }
   };
 })
 
