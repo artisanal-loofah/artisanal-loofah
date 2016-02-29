@@ -45,7 +45,6 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
   $scope.getPhoneScreens = function () {
     PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
->>>>>>> Styled out the borders, made it sexy
     .then(function (data) {
       $rootScope.phoneScreens = data;
     }).catch(function (error) {

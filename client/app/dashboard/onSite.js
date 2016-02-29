@@ -45,7 +45,6 @@ angular.module('hunt.onSite', [])
 
   $scope.getOnSites = function () {
     OnSite.getOnSites($window.localStorage.getItem('user_id'))
->>>>>>> Added the border styling feature to offers/onsite
     .then(function (data) {
       $rootScope.onSites = data;
     }).catch(function (error) {
