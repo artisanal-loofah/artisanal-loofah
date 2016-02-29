@@ -32,10 +32,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     var newOnSite = {
       application_id: $rootScope.selectedPhoneScreen.application_id,
       status: 'Pending',
-      interviewer: $scope.newOnSite.interviewer,
-      date_time: $scope.newOnSite.date_time,
-      location: $scope.newOnSite.location,
-      notes: $scope.newOnSite.notes
+      interviewer: $scope.newOnSiteInterviewer,
+      date_time: $scope.newOnSiteDate_time,
+      location: $scope.newOnSiteLocation,
+      notes: $scope.newOnSiteNotes
     };
 
     OnSite.addOnSite(newOnSite)
@@ -46,10 +46,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
         console.log("Error creating OnSite list item on phoneScreen status change: ", error);
       });
 
-    $scope.newOnSite.interviewer = '';
-    $scope.newOnSite.date_time = '';
-    $scope.newOnSite.location = '';
-    $scope.newOnSite.notes = '';
+    $scope.newOnSiteInterviewer = null;
+    $scope.newOnSiteDate_time = null;
+    $scope.newOnSiteLocation = null;
+    $scope.newOnSiteNotes = null;
   };
 
   // Function that sets the phoneScreenID when user clicks on phoneScreen
