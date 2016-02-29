@@ -118,6 +118,24 @@
               </select>
           </div>
 
+          <div class="acceptedStage" ng-show="selectedAppSubmit.status === 'Accepted'">
+            <div class="modal-header">
+              <h2 class="modal-title">Phone Screen Info: {{selectedAppSubmit.job_title}} - {{selectedAppSubmit.company}}</h2>
+            </div>
+            <div class="form-group">
+              <label for="interviewer">Interviewer:</label>
+              <input class="form-control" type="text" ng-model="newPhoneScreen.interviewer" />
+            </div>
+            <div class="form-group">
+              <label for="date_time">Interview Time:</label>
+              <input class="form-control" type="datetime-local" ng-model="newPhoneScreen.date_time" />
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes:</label>
+              <input class="form-control" type="text" ng-model="newPhoneScreen.notes" />
+            </div>
+          </div>
+
           <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
 
         </form>

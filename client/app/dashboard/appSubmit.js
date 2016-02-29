@@ -31,8 +31,11 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     // user id is added on the backend
     var newPhoneScreen = {
       application_id: $rootScope.selectedAppSubmit.application_id,
-      status: 'Pending'
-    }
+      status: 'Pending',
+      interviewer: $scope.newPhoneScreen.interviewer,
+      date_time: $scope.newPhoneScreen.date_time,
+      notes: $scope.newPhoneScreen.notes
+    };
 
     PhoneScreen.addPhoneScreen(newPhoneScreen)
       .then(function (phoneScreen) {
@@ -41,6 +44,10 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
       .catch(function (error) {
         console.log("Error creating PhoneScreen list item on AppSubmit status change : ", error);
       });
+
+    $scope.newPhoneScreen.interviewer = '';
+    $scope.newPhoneScreen.date_time = '';
+    $scope.newPhoneScreen.notes = '';
   };
 
   // Function that sets the appSubmitID when user clicks on appSubmit
