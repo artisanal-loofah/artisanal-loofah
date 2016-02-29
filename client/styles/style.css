@@ -29,7 +29,7 @@ h1 {
 }
 
 .login-info-container div {
-    display: inline-block;
+  display: inline-block;
 }
 
 .stage-heading {
@@ -40,6 +40,10 @@ h1 {
   word-wrap:break-word;
   list-style-type: none;
   padding-left: 0px;
+}
+
+.stagename {
+  word-wrap:break-word;
 }
 
 .jobbar {
