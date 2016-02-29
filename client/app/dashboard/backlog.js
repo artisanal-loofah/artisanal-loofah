@@ -47,8 +47,9 @@ angular.module('hunt.backlog', [])
     var newAppSubmit = {
       application_id: $rootScope.selectedBacklog.application_id,
       status: 'Pending',
-      notes: $scope.newAppSubmit.notes
+      notes: $scope.appSubmitNotes
     };
+
     AppSubmit.addAppSubmit(newAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.push(appSubmit);
@@ -57,7 +58,7 @@ angular.module('hunt.backlog', [])
         console.log("Error creating AppSubmit list item on backlog status change: ", error);
       });
 
-    $scope.newAppSubmit.notes = '';
+    $scope.appSubmitNotes = null;
   };
 
   // Function that sets the selectedBacklog to backlog user clicked on
