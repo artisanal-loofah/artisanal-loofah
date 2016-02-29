@@ -495,9 +495,9 @@ angular.module('hunt.onSite', [])
     var newOffer = {
       application_id: $rootScope.selectedOnSite.application_id,
       status: 'Pending',
-      salary: $scope.newOffer.salary,
-      deadline: $scope.newOffer.deadline,
-      notes: $scope.newOffer.notes
+      salary: $scope.newOfferSalary,
+      deadline: $scope.newOfferDeadline,
+      notes: $scope.newOfferNotes
     };
 
     Offer.addOffer(newOffer)
@@ -508,9 +508,9 @@ angular.module('hunt.onSite', [])
         console.log("Error creating Offer list item on OnSite status change : ", error);
       });
 
-    $scope.newOffer.salary = '';
-    $scope.newOffer.deadline = '';
-    $scope.newOffer.notes = '';
+    $scope.newOfferSalary = null;
+    $scope.newOfferDeadline = null;
+    $scope.newOfferNotes = null;
   };
 
   $scope.clickedOnSite = function(onSite, index) {
