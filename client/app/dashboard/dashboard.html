@@ -13,12 +13,14 @@
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <p>Notes: {{ backlog.notes }}<p>
+      <div class="checker">
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a href="javascript:void(0)" ng-click="removeBacklog(backlog, $index)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
+      <div>
     </li>
   </ul>
 </div>
@@ -37,12 +39,14 @@
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
       <p>Notes: {{ appSubmit.notes }}<p>
+      <div class='checker'>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a ng-click="removeAppSubmit(appSubmit, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
+      </div>
     </li>
   </ul>
 </div>
@@ -64,12 +68,14 @@
       <p>Interviewer: {{ phoneScreen.interviewer }}<p>
       <p>Interview Time: {{ phoneScreen.date_time | date:"h:mma 'on' MM/dd/yyyy" }}<p>
       <p>Notes: {{ phoneScreen.notes }}<p>
+      <div class='checker'>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a ng-click="removePhoneScreen(phoneScreen, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
+    </div>
     </li>
 <!--     END OF NG REPEAT -->
   </ul>
@@ -91,12 +97,14 @@
       <p>Location: {{ onSite.location }}<p>
       <p>Interview Time: {{ onSite.date_time | date:"h:mma 'on' MM/dd/yyyy" }}<p>
       <p>Notes: {{ onSite.notes }}<p>
+      <div class='checker'>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a ng-click="removeOnSite(onSite, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
+    </div>
     </li>
   </ul>
 <!--     END OF NG REPEAT -->
@@ -119,12 +127,14 @@
       <p>Salary: {{ offer.salary }}<p>
       <p>Deadline: {{ offer.deadline | date:"MM/dd/yyyy" }}<p>
       <p>Notes: {{ offer.notes }}<p>
+      <div class='checker'>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
       <a ng-click="removeOffer(offer, $index)" href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
+      </div>
     </li>
   </ul>
 <!--     END OF NG REPEAT -->
