@@ -1,7 +1,7 @@
 {
-  "name": "techDaddy",
+  "name": "hunt",
   "version": "1.0.0",
-  "description": "App to organize job hunt",
+  "description": "Organize your job search",
   "main": "server/app.js",
   "scripts": {
     "test": "test"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/artisanal-loofah/artisanal-loofah.git"
   },
-  "author": "Albert",
+  "author": "Albert Huynh, Alex Chou, Gar Lee, Akshay Buddiga",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/artisanal-loofah/artisanal-loofah/issues"
