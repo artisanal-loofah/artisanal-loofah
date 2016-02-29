@@ -9,6 +9,32 @@ angular.module('hunt.onSite', [])
   $scope.getOnSites = function (sort) {
     // user id is added on the backend
     OnSite.getOnSites(sort)
+  };
+    $scope.set_color = function (onSite) {
+    if (onSite.status === "Accepted") {
+      return { 'background-color': "#7CFC00" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#4C924C'}
+    }
+    if (onSite.status === "Rejected") {
+      return { 'background-color': "#FF3232",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#990000'}
+    }
+    if (onSite.status === "Pending") {
+      return { 'background-color': "#D3D3D3",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#A8A8A8' }
+    }
+  };
+
+
+  $scope.getOnSites = function () {
+    OnSite.getOnSites($window.localStorage.getItem('user_id'))
+>>>>>>> Added the border styling feature to offers/onsite
     .then(function (data) {
       $rootScope.onSites = data;
     }).catch(function (error) {

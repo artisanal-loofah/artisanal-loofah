@@ -9,6 +9,33 @@ angular.module('hunt.offer', [])
   $scope.getOffers = function (sort) {
     // user id is added on the backend
     Offer.getOffers(sort)
+  };
+
+  $scope.set_color = function (offer) {
+    if (offer.status === "Accepted") {
+      return { 'background-color': "#7CFC00" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#4C924C'}
+    }
+    if (offer.status === "Rejected") {
+      return { 'background-color': "#FF3232",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#990000'}
+    }
+    if (offer.status === "Pending") {
+      return { 'background-color': "#D3D3D3",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#A8A8A8' }
+    }
+  };
+
+
+  $scope.getOffers = function () {
+    Offer.getOffers($window.localStorage.getItem('user_id'))
+>>>>>>> Added the border styling feature to offers/onsite
     .then(function (data) {
       $rootScope.offers = data;
     }).catch(function (error) {

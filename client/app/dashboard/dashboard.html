@@ -84,7 +84,7 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
-    <li>
+    <li class='onsites' ng-style="set_color(onSite)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#onSiteModal' ng-click="clickedOnSite(onSite, $index)">{{onSite.job_title}} - {{onSite.company}}</a>
       <p>Status: {{ onSite.status }}<p>
       <p>Interviewer: {{ onSite.interviewer }}<p>
@@ -113,7 +113,7 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
-    <li>
+    <li class='offers' ng-style="set_color(offer)">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
       <p>Status: {{ offer.status }}<p>
       <p>Salary: {{ offer.salary }}<p>
