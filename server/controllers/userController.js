@@ -36,6 +36,7 @@ module.exports = {
         };
 
         User.post(newUser, function (user) {
+          var token = jwt.encode(user, 'secret');
           var responseData = {
             user: user,
             token: token
