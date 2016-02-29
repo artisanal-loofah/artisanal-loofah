@@ -5,9 +5,6 @@ h1 {
 
 .stage-list{
   word-wrap:break-word;
-  border-style: groove;
-  border-color: #d3d3d3;
-  border-width: 10px;
 }
 /*
 .accepted{

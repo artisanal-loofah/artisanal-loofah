@@ -15,7 +15,7 @@ angular.module('hunt.backlog', [])
       return { 'background-color': "#FF3232" }
     }
     if (backlog.status === "Pending") {
-      return { 'background-color': "gray" }
+      return { 'background-color': "#D3D3D3" }
     }
   };
 

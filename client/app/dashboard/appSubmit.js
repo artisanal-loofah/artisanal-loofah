@@ -9,6 +9,24 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
     AppSubmit.getAppSubmits(sort)
+
+  };  
+
+  $scope.set_color = function (appSubmit) {
+    if (appSubmit.status === "Accepted") {
+      return { 'background-color': "#7CFC00" }
+    }
+    if (appSubmit.status === "Rejected") {
+      return { 'background-color': "#FF3232" }
+    }
+    if (appSubmit.status === "Pending") {
+      return { 'background-color': "#D3D3D3" }
+    }
+  };
+
+
+  $scope.getAppSubmits = function () {
+    AppSubmit.getAppSubmits($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $rootScope.appSubmits = data;
     }).catch(function (error) {
