@@ -9,6 +9,34 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend
     PhoneScreen.getPhoneScreens(sort)
+  };
+
+  $scope.set_color = function (phoneScreen) {
+    if (phoneScreen.status === "Accepted") {
+      return { 'background-color': "#7CFC00" ,
+                'border-style': 'solid', 
+                'border-width': '5px',
+                'border-color': '#4C924C'}
+    }
+    if (phoneScreen.status === "Rejected") {
+      return { 'background-color': "#FF3232",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#990000'}
+    }
+    if (phoneScreen.status === "Pending") {
+      return { 'background-color': "#D3D3D3",
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': '#A8A8A8' }
+    }
+  };
+
+
+
+  $scope.getPhoneScreens = function () {
+    PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
+>>>>>>> Styled out the borders, made it sexy
     .then(function (data) {
       $rootScope.phoneScreens = data;
     }).catch(function (error) {
