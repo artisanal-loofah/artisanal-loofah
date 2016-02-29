@@ -57,6 +57,8 @@ angular.module('hunt.backlog', [])
       .catch(function (error) {
         console.log("Error creating AppSubmit list item on backlog status change: ", error);
       });
+
+    $scope.newAppSubmit.notes = '';
   };
 
   // Function that sets the selectedBacklog to backlog user clicked on
