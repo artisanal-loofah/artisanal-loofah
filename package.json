@@ -4,7 +4,7 @@
   "description": "App to organize job hunt",
   "main": "server/app.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha spec/models/userModelTest.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,10 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
     "express": "^4.13.4",
     "jwt-simple": "^0.4.1",
+    "mocha": "^2.4.5",
     "morgan": "^1.6.1",
     "mysql": "^2.10.2",
     "nodemon": "^1.8.1",
