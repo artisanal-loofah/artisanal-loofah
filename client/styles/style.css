@@ -26,6 +26,10 @@ h1 {
     display: inline-block;
 }
 
+.stage-heading {
+  text-align: center;
+}
+
 .stage-list {
   word-wrap:break-word;
   list-style-type: none;
@@ -51,9 +55,18 @@ h1 {
 }
 
 .mainlogo {
-  height: 40%;
-  width: 40%;
+  height: 30%;
+  width: 30%;
   display: inline-block;
+}
+
+.list-item-heading {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.list-item-heading:hover {
+  text-decoration: none;
 }
 
 .accepted {
@@ -75,7 +88,7 @@ h1 {
 }
 
 .pending {
-  background-color: #DADFE1;
+  background-color: #ebebeb;
   border-style: solid;
   border-width: 2px;
   border-color: #A9A9A9;
@@ -83,12 +96,10 @@ h1 {
   padding: 0px 5px;
 }
 
-.checker {
-  text-align: right;
-}
-
 a .remove {
 	color: red;
+  float: right;
+  padding-top:3px;
 }
 
 a .accept {
