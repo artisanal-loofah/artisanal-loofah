@@ -46,8 +46,9 @@ angular.module('hunt.backlog', [])
     // user id is added on the backend
     var newAppSubmit = {
       application_id: $rootScope.selectedBacklog.application_id,
-      status: 'Pending' 
-    }
+      status: 'Pending',
+      notes: $scope.newAppSubmit.notes
+    };
 
     AppSubmit.addAppSubmit(newAppSubmit)
       .then(function (appSubmit) {
