@@ -9,14 +9,14 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
-    <li>
+    <li ng-class="{ 'accepted' : backlog.status === 'Accepted' , 'rejected' : backlog.status === 'Rejected', 'pending' : backlog.status === 'Pending'} ">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#backlogModal' ng-click="clickedBacklog(backlog, $index)">{{backlog.job_title}} - {{backlog.company}}</a>
       <p>Status: {{ backlog.status }}<p>
       <p>Notes: {{ backlog.notes }}<p>
       <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-ok accept"></span>
       </a>
-      <a href="javascript:void(0)" ng-click="removeBacklog(backlog, $index)">
+      <a href="javascript:void(0)">
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
@@ -33,7 +33,7 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
-    <li>
+   <li ng-class="{ 'accepted' : appSubmit.status === 'Accepted' , 'rejected' : appSubmit.status === 'Rejected', 'pending' : appSubmit.status === 'Pending'} ">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#appSubmitModal' ng-click="clickedAppSubmit(appSubmit, $index)">{{appSubmit.job_title}} - {{appSubmit.company}}</a>
       <p>Status: {{ appSubmit.status }}<p>
       <p>Notes: {{ appSubmit.notes }}<p>
@@ -58,7 +58,7 @@
   </select>
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
    <!--     NG-Repeat should look something like this --> 
-    <li>
+    <li ng-class="{ 'accepted' : phoneScreen.status === 'Accepted' , 'rejected' : phoneScreen.status === 'Rejected', 'pending' : phoneScreen.status === 'Pending'} ">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#phoneScreenModal' ng-click="clickedPhoneScreen(phoneScreen, $index)">{{phoneScreen.job_title}} - {{phoneScreen.company}}</a>
       <p>Status: {{ phoneScreen.status }}<p>
       <p>Interviewer: {{ phoneScreen.interviewer }}<p>
@@ -84,7 +84,7 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
-    <li>
+    <li ng-class="{ 'accepted' : onSite.status === 'Accepted' , 'rejected' : onSite.status === 'Rejected', 'pending' : onSite.status === 'Pending'} ">
       <a href="javascript:void(0)" data-toggle='modal' data-target='#onSiteModal' ng-click="clickedOnSite(onSite, $index)">{{onSite.job_title}} - {{onSite.company}}</a>
       <p>Status: {{ onSite.status }}<p>
       <p>Interviewer: {{ onSite.interviewer }}<p>
@@ -113,8 +113,8 @@
     <option value="pending">Pending</option>
   </select>
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
-    <li>
-      <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
+    <li ng-class="{ 'accepted' : offer.status === 'Accepted' , 'rejected' : offer.status === 'Rejected', 'pending' : offer.status === 'Pending'} ">     
+     <a href="javascript:void(0)" data-toggle='modal' data-target='#offerModal' ng-click="clickedOffer(offer, $index)">{{offer.job_title}} - {{offer.company}}</a>
       <p>Status: {{ offer.status }}<p>
       <p>Salary: {{ offer.salary }}<p>
       <p>Deadline: {{ offer.deadline | date:"MM/dd/yyyy" }}<p>

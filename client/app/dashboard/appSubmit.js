@@ -9,6 +9,11 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
   $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
     AppSubmit.getAppSubmits(sort)
+
+  };  
+
+  $scope.getAppSubmits = function () {
+    AppSubmit.getAppSubmits($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $rootScope.appSubmits = data;
     }).catch(function (error) {

@@ -9,6 +9,11 @@ angular.module('hunt.onSite', [])
   $scope.getOnSites = function (sort) {
     // user id is added on the backend
     OnSite.getOnSites(sort)
+  };
+  
+
+  $scope.getOnSites = function () {
+    OnSite.getOnSites($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $rootScope.onSites = data;
     }).catch(function (error) {

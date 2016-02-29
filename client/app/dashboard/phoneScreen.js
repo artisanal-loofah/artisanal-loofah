@@ -9,6 +9,10 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
   $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend
     PhoneScreen.getPhoneScreens(sort)
+  };
+
+  $scope.getPhoneScreens = function () {
+    PhoneScreen.getPhoneScreens($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $rootScope.phoneScreens = data;
     }).catch(function (error) {

@@ -9,6 +9,10 @@ angular.module('hunt.offer', [])
   $scope.getOffers = function (sort) {
     // user id is added on the backend
     Offer.getOffers(sort)
+  };
+
+  $scope.getOffers = function () {
+    Offer.getOffers($window.localStorage.getItem('user_id'))
     .then(function (data) {
       $rootScope.offers = data;
     }).catch(function (error) {
