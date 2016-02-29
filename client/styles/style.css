@@ -14,6 +14,12 @@ h1 {
   display: inline-block;
 }
 
+.topnavibar .mainlogo {
+  height: 100px;
+  width: 150px;
+  display: inline-block;
+}
+
 .login-info-container {
   float: right;
 }
@@ -23,17 +29,30 @@ h1 {
 }
 
 .login-info-container div {
-    display: inline-block;
+  display: inline-block;
 }
 
 .stage-heading {
   text-align: center;
+  word-wrap:break-word;
+  font-weight: bold;
+  font-family: 'Enriqueta', arial, serif; 
+  line-height: 1.25; 
+  margin: 0 0 10px; 
+  font-size: 19px; 
+  padding: 15px 0px 12px 0px;
+  height: 80px;
 }
 
 .stage-list {
   word-wrap:break-word;
   list-style-type: none;
   padding-left: 0px;
+}
+
+.stageinfo {
+  word-wrap:break-word;
+  padding: 0px 0px 20px 0px;
 }
 
 .jobbar {
@@ -52,12 +71,7 @@ h1 {
 
 .jobbar input {
   width: 100%;
-}
-
-.mainlogo {
-  height: 30%;
-  width: 30%;
-  display: inline-block;
+  padding: 0px 20px;
 }
 
 .list-item-heading {
@@ -124,5 +138,11 @@ a .accept {
   }
   .jobbar button {
     text-align: center;
+  }
+  .topnavibar .mainlogo {
+  height: 100px;
+  width: 150px;
+  display: inline-block;
+  margin: 0px 0px 0px 70px;
   }
 }
