@@ -7,36 +7,6 @@ angular.module('hunt.backlog', [])
   $scope.sort = 'created';
   $scope.accepted = false;
 
-  $scope.set_color = function (backlog) {
-    if (backlog.status === "Accepted") {
-      return { 'background-color': "#DFF0D8" ,
-                'border-style': 'solid', 
-                'border-width': '5px',
-                'border-color': '#CFCFC4',
-                'border-radius': '5px',
-                'padding': '0px 5px'
-              }
-    }
-    if (backlog.status === "Rejected") {
-      return { 'background-color': "#F2DEDE",
-                'border-style': 'solid',
-                'border-width': '5px',
-                'border-color': '#CFCFC4',
-                'border-radius': '5px',
-                'padding': '0px 5px'
-              }
-    }
-    if (backlog.status === "Pending") {
-      return { 'background-color': "#DADFE1",
-                'border-style': 'solid',
-                'border-width': '5px',
-                'border-color': '#CFCFC4',
-                'border-radius': '5px',
-                'padding': '0px 5px'
-              }
-    }
-  };
-
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function (sort) {
     // user id is added on the backend
