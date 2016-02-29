@@ -4,7 +4,7 @@
   "description": "App to organize job hunt",
   "main": "server/app.js",
   "scripts": {
-    "test": "mocha spec/models/userModelTest.js spec/controllers/userControllerTest.js"
+    "test": "mocha spec/models/userModelTest.js"
   },
   "repository": {
     "type": "git",
