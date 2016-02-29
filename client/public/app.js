@@ -84,9 +84,9 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     var newPhoneScreen = {
       application_id: $rootScope.selectedAppSubmit.application_id,
       status: 'Pending',
-      interviewer: $scope.newPhoneScreen.interviewer,
-      date_time: $scope.newPhoneScreen.date_time,
-      notes: $scope.newPhoneScreen.notes
+      interviewer: $scope.newPhoneScreenInterviewer,
+      date_time: $scope.newPhoneScreenDate_time,
+      notes: $scope.newPhoneScreenNotes
     };
 
     PhoneScreen.addPhoneScreen(newPhoneScreen)
@@ -97,9 +97,9 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
         console.log("Error creating PhoneScreen list item on AppSubmit status change : ", error);
       });
 
-    $scope.newPhoneScreen.interviewer = '';
-    $scope.newPhoneScreen.date_time = '';
-    $scope.newPhoneScreen.notes = '';
+    $scope.newPhoneScreenInterviewer = null;
+    $scope.newPhoneScreenDate_time = null;
+    $scope.newPhoneScreenNotes = null;
   };
 
   // Function that sets the appSubmitID when user clicks on appSubmit
