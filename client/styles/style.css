@@ -110,6 +110,14 @@ h1 {
   padding: 0px 5px;
 }
 
+.form-group {
+  padding: 5px 20px 5px 20px;
+}
+
+.modal-footer {
+  display: block;
+}
+
 a .remove {
 	color: red;
   float: right;
