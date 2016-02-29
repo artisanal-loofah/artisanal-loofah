@@ -1,10 +1,8 @@
 var expect = require('chai').expect;
 
-// This db will need to be created in postgres before you can run tests
-var connectionString = 'postgres://localhost:5432/hunttest';
-var Sequelize = require('sequelize');
-var dbConnection = new Sequelize(connectionString);
-
+// Set TEST variable to true so that test DB is used in server/db/db.js
+process.env.TEST = true;
+var db = require('../../server/db/db');
 // Load schemas & relations
 var relations = require('../../server/db/relations');
 var userSchema = relations.User;
@@ -15,52 +13,60 @@ var userModel = require('../../server/models/user');
 
 describe('User Model', function() {
 
-  before(function(done) {
-    // create some users
-    var users = [
-    {
-      first_name: 'Akshay',
-      last_name: 'Buddiga',
-      headline: 'Guard at Chicago Bulls',
-      linkedin_id: 'gr4-Hr3-Mcw',
-      picture_url: 'myPicture.jpg'
-    },
-    {
-      first_name: 'Alex',
-      last_name: 'Chou',
-      headline: 'Performer at Dancing with the Stars',
-      linkedin_id: 'le6-ds1-BJ9',
-      picture_url: 'myPicture2.jpg'
-    },
-    {
-      first_name: 'Albert',
-      last_name: 'Huynh',
-      headline: 'CEO at WheelChimp',
-      linkedin_id: '9kM-We4-qa2',
-      picture_url: 'myPicture3.jpg'
-    },
-    {
-      first_name: 'Gar',
-      last_name: 'Lee',
-      headline: 'General Manager at Seattle Seahawks',
-      linkedin_id: 'lB3-Yt9-p2p',
-      picture_url: 'myPicture4.jpg'
-    }];
-    users.forEach(function(user, index) {
-      userSchema.create(user)
-      .then(function() {
-        if (index === users.length - 1) {
-          done();
-        }
+  beforeEach(function(done) {
+    // clear user table
+    db.query('TRUNCATE TABLE "Users" CASCADE;')
+    .then(function() {
+      // create some users
+      var users = [
+      {
+        first_name: 'Akshay',
+        last_name: 'Buddiga',
+        headline: 'Guard at Chicago Bulls',
+        linkedin_id: 'gr4-Hr3-Mcw',
+        picture_url: 'myPicture.jpg'
+      },
+      {
+        first_name: 'Alex',
+        last_name: 'Chou',
+        headline: 'Performer at Dancing with the Stars',
+        linkedin_id: 'le6-ds1-BJ9',
+        picture_url: 'myPicture2.jpg'
+      },
+      {
+        first_name: 'Albert',
+        last_name: 'Huynh',
+        headline: 'CEO at WheelChimp',
+        linkedin_id: '9kM-We4-qa2',
+        picture_url: 'myPicture3.jpg'
+      },
+      {
+        first_name: 'Gar',
+        last_name: 'Lee',
+        headline: 'General Manager at Seattle Seahawks',
+        linkedin_id: 'lB3-Yt9-p2p',
+        picture_url: 'myPicture4.jpg'
+      }];
+      users.forEach(function(user, index) {
+        userSchema.create(user)
+        .then(function() {
+          if (index === users.length - 1) {
+            done();
+          }
+        });
       });
     });
   });
 
-  after(function(done) {
-    dbConnection.query('TRUNCATE TABLE "Users"')
-    .then(function() {
-      done();
-    });
+  // afterEach(function(done) {
+  //   db.query('TRUNCATE TABLE "Users" CASCADE;')
+  //   .then(function() {
+  //     done();
+  //   });
+  // });
+
+  after(function() {
+    process.env.TEST = false;
   });
 
   it('Should get a user by LinkedIn id', function(done) {
