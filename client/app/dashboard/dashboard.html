@@ -207,6 +207,29 @@
                 <option value="Pending">Pending</option>
               </select>
           </div>
+
+          <div class="acceptedStage" ng-show="selectedPhoneScreen.status === 'Accepted'">
+            <div class="modal-header">
+              <h2 class="modal-title">Phone Screen Info: {{selectedPhoneScreen.job_title}} - {{selectedPhoneScreen.company}}</h2>
+            </div>
+            <div class="form-group">
+              <label for="interviewer">Interviewer:</label>
+              <input class="form-control" type="text" ng-model="newOnSite.interviewer" />
+            </div>
+            <div class="form-group">
+              <label for="date_time">Interview Time:</label>
+              <input class="form-control" type="datetime-local" ng-model="newOnSite.date_time" />
+            </div>
+            <div class="form-group">
+              <label for="location">Location:</label>
+              <input class="form-control" type="text" ng-model="newOnSite.location" />
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes:</label>
+              <input class="form-control" type="text" ng-model="newOnSite.notes" />
+            </div>
+          </div>
+
           <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
         </form>
 
