@@ -21,6 +21,39 @@
       </a>
     </li>
   </ul>
+<!-- Backlog Modal -->
+  <div id="backlogModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Edit Backlog: {{selectedBacklog.job_title}} - {{selectedBacklog.company}}</h2>
+        </div>
+
+        <form novalidate class="simple-form">
+          <div class="form-group">
+            <label for="notes">Notes:</label>
+            <input class="form-control" type="text" ng-model="selectedBacklog.notes" />
+          </div>
+          <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" name="backlogStatus" ng-model="selectedBacklog.status">
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
+          </div>
+          <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- END: Applicaiton Backlog STAGE -->
 
@@ -45,6 +78,43 @@
       </a>
     </li>
   </ul>
+<!-- AppSubmit Modal -->
+  <div id="appSubmitModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Edit Submitted App: {{selectedAppSubmit.job_title}} - {{selectedAppSubmit.company}}</h2>
+        </div>
+
+        <form novalidate class="simple-form">
+          <div class="form-group">
+
+            <label for="notes">Notes:</label>
+            <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
+          </div>
+          <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
+          </div>
+
+          <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- END: Application Submitted STAGE -->
 
@@ -73,6 +143,48 @@
     </li>
 <!--     END OF NG REPEAT -->
   </ul>
+  <!-- PhoneScreen Modal -->
+  <div id="phoneScreenModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Edit Phone Screen: {{selectedPhoneScreen.job_title}} - {{selectedPhoneScreen.company}}</h2>
+        </div>
+
+        <form novalidate class="simple-form">
+          <div class="form-group">
+            <label for="interviewer">Interviewer:</label>
+            <input class="form-control" type="text" ng-model="selectedPhoneScreen.interviewer" />
+          </div>
+          <div class="form-group">
+            <label for="date_time">Interview Time:</label>
+            <input class="form-control" type="datetime-local" ng-model="selectedPhoneScreen.date_time" />
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes:</label>
+            <input class="form-control" type="text" ng-model="selectedPhoneScreen.notes" />
+          </div>
+          <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" name="backlogStatus" ng-model="selectedPhoneScreen.status">
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
+          </div>
+          <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <div class='col-sm-3 stage' ng-controller='OnSiteController'>
@@ -98,8 +210,56 @@
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
-  </ul>
 <!--     END OF NG REPEAT -->
+  </ul>
+<!-- OnSite Modal -->
+  <div id="onSiteModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Edit On-Site Interview: {{selectedOnSite.job_title}} - {{selectedOnSite.company}}</h2>
+        </div>
+
+        <form novalidate class="simple-form">
+          <div class="form-group">
+            <label for="interviewer">Interviewer:</label>
+            <input class="form-control" type="text" ng-model="selectedOnSite.interviewer" />
+          </div>
+          <div class="form-group">
+            <label for="interviewer">Interview Time:</label>
+            <input class="form-control" type="datetime-local" ng-model="selectedOnSite.date_time" />
+          </div>
+          <div class="form-group">
+            <label for="location">Location:</label>
+            <input class="form-control" type="text" ng-model="selectedOnSite.location" />
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes:</label>
+            <input class="form-control" type="text" ng-model="selectedOnSite.notes" />
+          </div>
+          <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" name="status" ng-model="selectedOnSite.status">
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
+          </div>
+
+          <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -126,220 +286,51 @@
           <span class="glyphicon glyphicon-remove remove"></span>
       </a>
     </li>
-  </ul>
 <!--     END OF NG REPEAT -->
-  </div>
-</div>
-
-<!-- Backlog Modal -->
-<div id="backlogModal" class="modal fade" role="dialog" ng-controller='BacklogController'>
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit Backlog: {{selectedBacklog.job_title}} - {{selectedBacklog.company}}</h2>
-      </div>
-
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedBacklog.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="backlogStatus" ng-model="selectedBacklog.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- AppSubmit Modal -->
-<div id="appSubmitModal" class="modal fade" role="dialog" ng-controller='AppSubmitController'>
-
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit Submitted App: {{selectedAppSubmit.job_title}} - {{selectedAppSubmit.company}}</h2>
-      </div>
-
-      <form novalidate class="simple-form">
-        <div class="form-group">
-
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedAppSubmit.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="appSubmitStatus" ng-model="selectedAppSubmit.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- PhoneScreen Modal -->
-<div id="phoneScreenModal" class="modal fade" role="dialog" ng-controller='PhoneScreenController'>
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit Phone Screen: {{selectedPhoneScreen.job_title}} - {{selectedPhoneScreen.company}}</h2>
-      </div>
-
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <label for="interviewer">Interviewer:</label>
-          <input class="form-control" type="text" ng-model="selectedPhoneScreen.interviewer" />
-        </div>
-        <div class="form-group">
-          <label for="date_time">Interview Time:</label>
-          <input class="form-control" type="datetime-local" ng-model="selectedPhoneScreen.date_time" />
-        </div>
-        <div class="form-group">
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedPhoneScreen.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="backlogStatus" ng-model="selectedPhoneScreen.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- OnSite Modal -->
-<div id="onSiteModal" class="modal fade" role="dialog" ng-controller='OnSiteController'>
-
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit On-Site Interview: {{selectedOnSite.job_title}} - {{selectedOnSite.company}}</h2>
-      </div>
-
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <label for="interviewer">Interviewer:</label>
-          <input class="form-control" type="text" ng-model="selectedOnSite.interviewer" />
-        </div>
-        <div class="form-group">
-          <label for="interviewer">Interview Time:</label>
-          <input class="form-control" type="datetime-local" ng-model="selectedOnSite.date_time" />
-        </div>
-        <div class="form-group">
-          <label for="location">Location:</label>
-          <input class="form-control" type="text" ng-model="selectedOnSite.location" />
-        </div>
-        <div class="form-group">
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedOnSite.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="status" ng-model="selectedOnSite.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
+  </ul>
 <!-- Offer Modal -->
-<div id="offerModal" class="modal fade" role="dialog" ng-controller='OfferController'>
+  <div id="offerModal" class="modal fade" role="dialog">
 
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Edit Offer: {{selectedOffer.job_title}} - {{selectedOffer.company}}</h2>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Edit Offer: {{selectedOffer.job_title}} - {{selectedOffer.company}}</h2>
+        </div>
+
+        <form novalidate class="simple-form">
+          <div class="form-group">
+            <label for="Salary">Salary:</label>
+            <input class="form-control" type="number" ng-model="selectedOffer.salary" />
+          </div>
+          <div class="form-group">
+            <label for="deadline">Deadline:</label>
+            <input class="form-control" type="date" ng-model="selectedOffer.deadline" />
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes:</label>
+            <input class="form-control" type="text" ng-model="selectedOffer.notes" />
+          </div>
+          <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" name="status" ng-model="selectedOffer.status">
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
+          </div>
+
+          <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
+
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
 
-      <form novalidate class="simple-form">
-        <div class="form-group">
-          <label for="Salary">Salary:</label>
-          <input class="form-control" type="number" ng-model="selectedOffer.salary" />
-        </div>
-        <div class="form-group">
-          <label for="deadline">Deadline:</label>
-          <input class="form-control" type="date" ng-model="selectedOffer.deadline" />
-        </div>
-        <div class="form-group">
-          <label for="notes">Notes:</label>
-          <input class="form-control" type="text" ng-model="selectedOffer.notes" />
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" name="status" ng-model="selectedOffer.status">
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Pending">Pending</option>
-            </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit" ng-click="submitChanges()" value="Save" data-dismiss="modal">Save Changes</button>
-
-      </form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
     </div>
-
   </div>
-</div>
+</div>  
