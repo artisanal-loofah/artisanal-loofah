@@ -8,6 +8,7 @@ angular.module('hunt.backlog', [])
 
   // Function that retrieves all backlogs for given user
   $scope.getBacklogs = function (sort) {
+    console.log('hi')
     // user id is added on the backend
     Backlog.getBacklogs(sort)
       .then(function (data) {
@@ -44,12 +45,13 @@ angular.module('hunt.backlog', [])
   // Function that moves backlog to application submitted state
   $scope.moveToAppSubmitted = function () {
     // user id is added on the backend
+    console.log('hi');
     var newAppSubmit = {
       application_id: $rootScope.selectedBacklog.application_id,
       status: 'Pending',
       notes: $scope.newAppSubmit.notes
     };
-
+    console.log(newAppSubmit);
     AppSubmit.addAppSubmit(newAppSubmit)
       .then(function (appSubmit) {
         $rootScope.appSubmits.push(appSubmit);
@@ -58,7 +60,7 @@ angular.module('hunt.backlog', [])
         console.log("Error creating AppSubmit list item on backlog status change: ", error);
       });
 
-    $scope.newAppSubmit.notes = '';
+    // $scope.newAppSubmit.notes = '';
   };
 
   // Function that sets the selectedBacklog to backlog user clicked on
