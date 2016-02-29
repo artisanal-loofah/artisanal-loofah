@@ -30,7 +30,8 @@ module.exports = {
             });
         });
       } else {
-        res.end();
+        // return an empty array if there are no listItems
+        res.json([]);
       }
     });
   },
