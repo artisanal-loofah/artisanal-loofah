@@ -14,6 +14,12 @@ h1 {
   display: inline-block;
 }
 
+.topnavibar .mainlogo {
+  height: 100px;
+  width: 150px;
+  display: inline-block;
+}
+
 .login-info-container {
   float: right;
 }
@@ -52,12 +58,6 @@ h1 {
 
 .jobbar input {
   width: 100%;
-}
-
-.mainlogo {
-  height: 30%;
-  width: 30%;
-  display: inline-block;
 }
 
 .list-item-heading {
@@ -124,5 +124,12 @@ a .accept {
   }
   .jobbar button {
     text-align: center;
+  }
+  .topnavibar .mainlogo {
+  height: 100px;
+  width: 150px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
   }
 }
