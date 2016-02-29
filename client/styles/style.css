@@ -2,9 +2,79 @@
 h1 {
 	font-size: 150%;
 }
+.container {
+  width: 100%;
+}
 
-.stage-list{
+.topnavibar {
+  padding: 20px 20px 0px 20px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.login-info-container {
+  float: right;
+}
+
+.login-info-container img {
+    border-radius: 50%;
+}
+
+.login-info-container div {
+    display: inline-block;
+}
+
+.stage-list {
   word-wrap:break-word;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.jobbar {
+  margin: 0% 20%;
+  border: 3px solid #CFCFC4;
+  padding: 10px 20px 10px 20px;
+  line-height: 50px;
+  border-radius: 10px;
+}
+
+.jobbar button {
+  float: right;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.jobbar input {
+  width: 80%;
+}
+
+.accepted {
+  background-color: #DFF0D8;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CFCFC4;
+  border-radius: 5px;
+  padding: 0px 5px;
+}
+
+.rejected {
+  background-color: #F2DEDE;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CFCFC4;
+  border-radius: 5px;
+  padding: 0px 5px;
+}
+
+.pending {
+  background-color: #DADFE1;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CFCFC4;
+  border-radius: 5px;
+  padding: 0px 5px;
 }
 
 a .remove {
@@ -25,4 +95,10 @@ a .accept {
 	color: green;
 	float: right;
 	margin-right: 8%;
+}
+
+@media (max-width: 767px) {
+  .jobbar input {
+    width: 100%;
+  }
 }
