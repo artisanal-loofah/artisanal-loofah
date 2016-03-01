@@ -1,6 +1,8 @@
 angular.module('hunt.users', [])
 
 .controller('UserController', function huntUsers($scope, $location, $rootScope, $http, $window, User) {
+  // Authenticates through LinkedIn if token not in local storage
+  // If in local storage, get user and route to main page.
   $scope.initializeApp = function() {
     if (!User.isAuth()) {
       $scope.getLinkedInData(function() {
@@ -19,6 +21,9 @@ angular.module('hunt.users', [])
     }
   };
 
+  // Get the user from the db using the LinkedIn id provided by the LinkedIn Auth call.
+  // If user does not exist, create user with LI data. Set token and LI id in local storage
+  // and call callback (callback above is reroute to main page).
   $scope.getLinkedInData = function (callback) {
     IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
     .result(function(result) {
