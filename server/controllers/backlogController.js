@@ -9,9 +9,6 @@ module.exports = {
   addBacklog: function(req, res) {
     ListItem.addListItem(req, res, Backlog);
   },
-  removeBacklog: function () {
-
-  },
   updateBacklog: function(req, res) {
     ListItem.updateListItem(req, res, Backlog);
   }
