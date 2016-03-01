@@ -160,7 +160,7 @@
       <option value="pending">Pending</option>
     </select>
   </div>
-  <!--     NG-Repeat -->
+  <!--  NG-Repeat -->
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
     <li ng-class="{ 'accepted' : phoneScreen.status === 'Accepted' , 'rejected' : phoneScreen.status === 'Rejected', 'pending' : phoneScreen.status === 'Pending'} ">
       <a ng-click="removePhoneScreen(phoneScreen, $index)" href="javascript:void(0)">
@@ -239,7 +239,9 @@
     </div>
   </div>
 </div>
+<!-- END: Phone Screen STAGE -->
 
+<!-- BEGIN: On Site STAGE -->
 <div class='col-md-2 stage' ng-controller='OnSiteController'>
   <div class="stageinfo">
     <h1 class='stage-heading'>Upcoming On-Site Interviews</h1>
@@ -250,6 +252,7 @@
       <option value="pending">Pending</option>
     </select>
   </div>
+  <!--  NG-Repeat -->
   <ul class="stage-list" ng-repeat='onSite in onSites track by $index'>
     <li ng-class="{ 'accepted' : onSite.status === 'Accepted' , 'rejected' : onSite.status === 'Rejected', 'pending' : onSite.status === 'Pending'} ">
       <a ng-click="removeOnSite(onSite, $index)" href="javascript:void(0)">
@@ -265,7 +268,7 @@
       <p>Notes: {{ onSite.notes }}<p>
     </li>
   </ul>
-<!--     END OF NG REPEAT -->
+<!-- END OF NG REPEAT -->
 <!-- OnSite Modal -->
   <div id="onSiteModal" class="modal fade" role="dialog">
 
@@ -331,7 +334,9 @@
     </div>
   </div>
 </div>
+<!-- END: On Site STAGE -->
 
+<!-- BEGIN: Offers STAGE -->
 <div class='col-md-2 stage' ng-controller='OfferController'>
   <div class="stageinfo">
     <h1 class='stage-heading'>Offers</h1>
@@ -343,6 +348,7 @@
       <option value="pending">Pending</option>
     </select>
   </div>
+  <!--  NG-Repeat -->
   <ul class="stage-list" ng-repeat='offer in offers track by $index'>
     <li ng-class="{ 'accepted' : offer.status === 'Accepted' , 'rejected' : offer.status === 'Rejected', 'pending' : offer.status === 'Pending'} ">     
       <a ng-click="removeOffer(offer, $index)" href="javascript:void(0)">
