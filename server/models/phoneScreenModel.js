@@ -1,6 +1,7 @@
 var PhoneScreen = require('../db/schemas/phonescreen');
 
 module.exports = {
+  // Returns all list items. Order is determined by sort variable.
   get: function (user_id, sort, callback) {
     switch(sort) {
       case undefined:
@@ -63,7 +64,6 @@ module.exports = {
         if (phoneScreen) {
           phoneScreen.update(newProps)
             .then(function (phoneScreen) {
-              console.log('phoneScreen update function ran in phoneScreen models, successfully updated phoneScreen!');
               callback(phoneScreen);
             });
         }

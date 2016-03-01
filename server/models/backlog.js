@@ -2,6 +2,7 @@ var Backlog = require('../db/schemas/backlog');
 
 
 module.exports = {
+  // Returns all list items. Order is determined by sort variable.
   get: function (user_id, sort, callback) {
     switch(sort) {
       case undefined:
@@ -49,7 +50,6 @@ module.exports = {
         if (backlog) {
           backlog.update(newProps)
             .then(function (backlog) {
-              console.log('Backlog update function ran in backlog models, successfully updated backlog!');
               callback(backlog);
             });
         }

@@ -1,6 +1,7 @@
 var AppSubmit = require('../db/schemas/appsubmit');
 
 module.exports = {
+  // Returns all list items. Order is determined by sort variable.
   get: function (user_id, sort, callback) {
     switch(sort) {
       case undefined:
@@ -48,7 +49,6 @@ module.exports = {
       if (appSubmit) {
         appSubmit.update(newProps)
           .then(function (appSubmit) {
-            console.log("appsubmit successfully updated");
             callback(appSubmit);
           });
       }
