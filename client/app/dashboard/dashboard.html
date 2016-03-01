@@ -10,6 +10,7 @@
       <option value="pending">Pending</option>
     </select>
   </div>
+  <!-- NG-Repeat -->
   <ul class="stage-list" ng-repeat='backlog in backlogs track by $index'>
     <li ng-class="{ 'accepted' : backlog.status === 'Accepted' , 'rejected' : backlog.status === 'Rejected', 'pending' : backlog.status === 'Pending'} ">
       <a href="javascript:void(0)" ng-click="removeBacklog(backlog, $index)">
@@ -22,7 +23,8 @@
       <p>Notes: {{ backlog.notes }}<p>
     </li>
   </ul>
-<!-- Backlog Modal -->
+  <!--     END OF NG REPEAT -->
+  <!-- Backlog Modal -->
   <div id="backlogModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -65,7 +67,7 @@
     </div>
   </div>
 </div>
-<!-- END: Applicaiton Backlog STAGE -->
+<!-- END: Application Backlog STAGE -->
 
 <!-- BEGIN: Application Submitted STAGE -->
 <div class='col-md-2 stage' ng-controller='AppSubmitController'>
@@ -77,6 +79,7 @@
       <option value="pending">Pending</option>
     </select>
   </div>
+  <!-- NG-Repeat -->
   <ul class="stage-list" ng-repeat='appSubmit in appSubmits track by $index'>
    <li ng-class="{ 'accepted' : appSubmit.status === 'Accepted' , 'rejected' : appSubmit.status === 'Rejected', 'pending' : appSubmit.status === 'Pending'} ">
       <a ng-click="removeAppSubmit(appSubmit, $index)" href="javascript:void(0)">
@@ -89,7 +92,8 @@
       <p>Notes: {{ appSubmit.notes }}<p>
     </li>
   </ul>
-<!-- AppSubmit Modal -->
+  <!--     END OF NG REPEAT -->
+  <!-- AppSubmit Modal -->
   <div id="appSubmitModal" class="modal fade" role="dialog">
 
     <div class="modal-dialog">
@@ -145,6 +149,7 @@
 </div>
 <!-- END: Application Submitted STAGE -->
 
+<!-- BEGIN: Phone Screen STAGE -->
 <div class='col-md-2 stage' ng-controller='PhoneScreenController'>
   <div class="stageinfo">
     <h1 class='stage-heading'>Upcoming Phone Screens</h1>
@@ -155,8 +160,8 @@
       <option value="pending">Pending</option>
     </select>
   </div>
+  <!--     NG-Repeat -->
   <ul class="stage-list" ng-repeat='phoneScreen in phoneScreens track by $index'>
-   <!--     NG-Repeat should look something like this --> 
     <li ng-class="{ 'accepted' : phoneScreen.status === 'Accepted' , 'rejected' : phoneScreen.status === 'Rejected', 'pending' : phoneScreen.status === 'Pending'} ">
       <a ng-click="removePhoneScreen(phoneScreen, $index)" href="javascript:void(0)">
         <span class="glyphicon glyphicon-remove remove"></span>
@@ -170,7 +175,7 @@
       <p>Notes: {{ phoneScreen.notes }}<p>
     </li>
   </ul>
-<!--     END OF NG REPEAT -->
+  <!--     END OF NG REPEAT -->
   <!-- PhoneScreen Modal -->
   <div id="phoneScreenModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
