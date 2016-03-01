@@ -1,6 +1,7 @@
 angular.module('hunt.services', [])
 
 .factory('User', function($http, $window) {
+  // returns data object with user and token
   var getUserByLinkedInId = function(linkedInId) {
     return $http({
       method: 'GET',
@@ -14,7 +15,7 @@ angular.module('hunt.services', [])
       console.error(error);
     });
   };
-
+  // returns data object with user and token
   var createUser = function(userData) {
     return $http({
       method: 'POST',
@@ -39,7 +40,8 @@ angular.module('hunt.services', [])
 })
 
 .factory('Helpers', function() {
-  // check if a list item with this application id already exists
+  // check if a list item with this application id already exists;
+  // if so, do not create a new one
   var isNotDuplicate = function(nextStageListItems, application_id) {
     for (var i = 0; i < nextStageListItems.length; i++) {
       if (nextStageListItems[i].application_id === application_id) {

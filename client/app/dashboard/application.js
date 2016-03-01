@@ -1,7 +1,7 @@
 angular.module('hunt.application', ['hunt.users'])
 
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
-
+  // called when 'submit' is clicked after job title & company are entered in search
   $scope.addApplication = function () {
     // only create application if job title and company name are not empty or whitespace
     if ($scope.jobTitle.trim().length && $scope.company.trim().length) {
@@ -29,6 +29,8 @@ angular.module('hunt.application', ['hunt.users'])
 })
 
 .factory('Application', function ($http) {
+  // returns the application object, including id. The id is used
+  // when creating the backlog object (see above).
   var createApplication = function(application) {
     return $http({
       method: 'POST',

@@ -53,11 +53,14 @@ angular.module('huntApp', [
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
   $scope.sort = 'created';
 
+  // Get all backlogs for given user, called when page loads
   $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
     AppSubmit.getAppSubmits(sort)
@@ -79,6 +82,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     }
   };
 
+  // Create new phoneScreen on status==="Accepted"
   $scope.moveToPhoneScreen = function () {
     // user id is added on the backend
     var newPhoneScreen = {
@@ -102,13 +106,14 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     $scope.newPhoneScreenNotes = null;
   };
 
-  // Function that sets the appSubmitID when user clicks on appSubmit
+  // Assigns rootScope variables to clicked appSubmit, so they can be
+  // used elsewhere
   $scope.clickedAppSubmit = function (appSubmit, index) {
     $rootScope.selectedAppSubmit = appSubmit;
     $rootScope.selectedAppSubmitIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific appSubmit
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedAppSubmit = $rootScope.selectedAppSubmit;
     AppSubmit.editAppSubmit(selectedAppSubmit)
@@ -181,7 +186,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 angular.module('hunt.application', ['hunt.users'])
 
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
-
+  // called when 'submit' is clicked after job title & company are entered in search
   $scope.addApplication = function () {
     // only create application if job title and company name are not empty or whitespace
     if ($scope.jobTitle.trim().length && $scope.company.trim().length) {
@@ -209,6 +214,8 @@ angular.module('hunt.application', ['hunt.users'])
 })
 
 .factory('Application', function ($http) {
+  // returns the application object, including id. The id is used
+  // when creating the backlog object (see above).
   var createApplication = function(application) {
     return $http({
       method: 'POST',
@@ -229,12 +236,14 @@ angular.module('hunt.application', ['hunt.users'])
 angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmit, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
   $scope.sort = 'created';
 
-  // Function that retrieves all backlogs for given user
+  // Get all backlogs for given user, called when page loads
   $scope.getBacklogs = function (sort) {
     // user id is added on the backend
     Backlog.getBacklogs(sort)
@@ -246,7 +255,6 @@ angular.module('hunt.backlog', [])
       });
   };
 
-  // Function that removes backlog
   $scope.removeBacklog = function (backlog, index) {
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       backlog.status = 'Removed';
@@ -258,18 +266,7 @@ angular.module('hunt.backlog', [])
     }
   };
 
-  // Function that edits an existing backlog
-  $scope.editBacklog = function (backlog) {
-    Backlog.editBacklog(backlog)
-      .then(function (backlog) {
-        $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
-      })
-      .catch(function (error) {
-        console.log("Error editing backlog: ", error);
-      });
-  };
-
-  // Function that moves backlog to application submitted state
+  // Create new appSubmit on status==="Accepted"
   $scope.moveToAppSubmitted = function () {
     // user id is added on the backend
     var newAppSubmit = {
@@ -289,13 +286,14 @@ angular.module('hunt.backlog', [])
     $scope.appSubmitNotes = null;
   };
 
-  // Function that sets the selectedBacklog to backlog user clicked on
+  // Assigns rootScope variables to clicked backlog, so they can be
+  // used elsewhere
   $scope.clickedBacklog = function (backlog, index) {
     $rootScope.selectedBacklog = backlog;
     $rootScope.selectedBacklogIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific backlog
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedBacklog = $rootScope.selectedBacklog;
     Backlog.editBacklog(selectedBacklog)
@@ -368,11 +366,14 @@ angular.module('hunt.backlog', [])
 angular.module('hunt.offer', [])
 
 .controller('OfferController', function ($scope, $rootScope, $window, Offer) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.offers = [];
   $rootScope.selectedOffer;
   $rootScope.selectedOfferIndex;
   $scope.sort = 'created';
 
+  // Get all offers for given user, called when page loads
   $scope.getOffers = function (sort) {
     // user id is added on the backend
     Offer.getOffers(sort)
@@ -394,6 +395,8 @@ angular.module('hunt.offer', [])
     }
   };
 
+  // Assigns rootScope variables to clicked offer, so they can be
+  // used elsewhere
   $scope.clickedOffer = function(offer, index) {
     $rootScope.selectedOffer = offer;
     // convert string (if it exists) to Date object
@@ -402,7 +405,8 @@ angular.module('hunt.offer', [])
     }
     $rootScope.selectedOfferIndex = index;
   };
-
+  
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function() {
     Offer.editOffer($rootScope.selectedOffer)
       .then(function (offer) {
@@ -464,11 +468,14 @@ angular.module('hunt.offer', [])
 angular.module('hunt.onSite', [])
 
 .controller('OnSiteController', function ($scope, $rootScope, $window, OnSite, Offer, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.onSites = [];
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
   $scope.sort = 'created';
 
+  // Get all onSites for given user, called when page loads
   $scope.getOnSites = function (sort) {
     // user id is added on the backend
     OnSite.getOnSites(sort)
@@ -490,6 +497,7 @@ angular.module('hunt.onSite', [])
     }
   };
 
+  // Create new offer on status==="Accepted"
   $scope.moveToOffer = function() {
     // user id is added on the backend
     var newOffer = {
@@ -513,6 +521,8 @@ angular.module('hunt.onSite', [])
     $scope.newOfferNotes = null;
   };
 
+  // Assigns rootScope variables to clicked onSite, so they can be
+  // used elsewhere
   $scope.clickedOnSite = function(onSite, index) {
     $rootScope.selectedOnSite = onSite;
     // convert string (if it exists) to Date object
@@ -522,6 +532,7 @@ angular.module('hunt.onSite', [])
     $rootScope.selectedOnSiteIndex = index;
   };
 
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function() {
     var selectedOnSite = $rootScope.selectedOnSite;
     OnSite.editOnSite(selectedOnSite)
@@ -588,11 +599,14 @@ angular.module('hunt.onSite', [])
 angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
 .controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen, OnSite, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
   $scope.sort = 'created'
 
+  // Get all phoneScreens for given user, called when page loads
   $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend
     PhoneScreen.getPhoneScreens(sort)
@@ -614,6 +628,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     }
   };
 
+  // Create new onSite on status==="Accepted"
   $scope.moveToOnSite = function () {
     // user id is added on the backend
     var newOnSite = {
@@ -639,7 +654,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     $scope.newOnSiteNotes = null;
   };
 
-  // Function that sets the phoneScreenID when user clicks on phoneScreen
+  // Assigns rootScope variables to clicked phoneScreen, so they can be
+  // used elsewhere
   $scope.clickedPhoneScreen = function (phoneScreen, index) {
     $rootScope.selectedPhoneScreen = phoneScreen;
     // convert string (if it exists) to Date object
@@ -649,7 +665,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     $rootScope.selectedPhoneScreenIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific phoneScreen
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedPhoneScreen = $rootScope.selectedPhoneScreen;
     PhoneScreen.editPhoneScreen(selectedPhoneScreen)
@@ -722,6 +738,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 angular.module('hunt.services', [])
 
 .factory('User', function($http, $window) {
+  // returns data object with user and token
   var getUserByLinkedInId = function(linkedInId) {
     return $http({
       method: 'GET',
@@ -735,7 +752,7 @@ angular.module('hunt.services', [])
       console.error(error);
     });
   };
-
+  // returns data object with user and token
   var createUser = function(userData) {
     return $http({
       method: 'POST',
@@ -760,7 +777,8 @@ angular.module('hunt.services', [])
 })
 
 .factory('Helpers', function() {
-  // check if a list item with this application id already exists
+  // check if a list item with this application id already exists;
+  // if so, do not create a new one
   var isNotDuplicate = function(nextStageListItems, application_id) {
     for (var i = 0; i < nextStageListItems.length; i++) {
       if (nextStageListItems[i].application_id === application_id) {
@@ -778,6 +796,8 @@ angular.module('hunt.services', [])
 angular.module('hunt.users', [])
 
 .controller('UserController', function huntUsers($scope, $location, $rootScope, $http, $window, User) {
+  // Authenticates through LinkedIn if token not in local storage
+  // If in local storage, get user and route to main page.
   $scope.initializeApp = function() {
     if (!User.isAuth()) {
       $scope.getLinkedInData(function() {
@@ -796,6 +816,9 @@ angular.module('hunt.users', [])
     }
   };
 
+  // Get the user from the db using the LinkedIn id provided by the LinkedIn Auth call.
+  // If user does not exist, create user with LI data. Set token and LI id in local storage
+  // and call callback (callback above is reroute to main page).
   $scope.getLinkedInData = function (callback) {
     IN.API.Profile("me").fields([ "id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline" ])
     .result(function(result) {
@@ -835,10 +858,11 @@ angular.module('hunt.users', [])
   };
 });
 
+// callback called after LinkedIn script returns
 function onLinkedInLoad() {
   $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}) 
   .html('<img src="../assets/Sign-In-Large---Default.png" height="50" width="250" border="0" />');
-  console.log('loading linkedin');
+
   IN.Event.on(IN, "auth", function() {
     onLinkedInLogin();
   });
@@ -851,6 +875,7 @@ function onLinkedInLogout() {
   location.reload(true);
 };
 
+// initializes user info and sets token (see initializeApp)
 function onLinkedInLogin() {
   angular.element(document.getElementById("userBody")).scope().$apply(
     function($scope) {

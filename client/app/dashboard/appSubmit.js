@@ -1,11 +1,14 @@
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
   $scope.sort = 'created';
 
+  // Get all backlogs for given user, called when page loads
   $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
     AppSubmit.getAppSubmits(sort)
@@ -27,6 +30,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     }
   };
 
+  // Create new phoneScreen on status==="Accepted"
   $scope.moveToPhoneScreen = function () {
     // user id is added on the backend
     var newPhoneScreen = {
@@ -50,13 +54,14 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     $scope.newPhoneScreenNotes = null;
   };
 
-  // Function that sets the appSubmitID when user clicks on appSubmit
+  // Assigns rootScope variables to clicked appSubmit, so they can be
+  // used elsewhere
   $scope.clickedAppSubmit = function (appSubmit, index) {
     $rootScope.selectedAppSubmit = appSubmit;
     $rootScope.selectedAppSubmitIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific appSubmit
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedAppSubmit = $rootScope.selectedAppSubmit;
     AppSubmit.editAppSubmit(selectedAppSubmit)

@@ -1,11 +1,14 @@
 angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
 
 .controller('PhoneScreenController', function ($scope, $rootScope, $window, PhoneScreen, OnSite, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.phoneScreens = [];
   $rootScope.selectedPhoneScreen;
   $rootScope.selectedPhoneScreenIndex;
   $scope.sort = 'created'
 
+  // Get all phoneScreens for given user, called when page loads
   $scope.getPhoneScreens = function (sort) {
     // user id is added on the backend
     PhoneScreen.getPhoneScreens(sort)
@@ -27,6 +30,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     }
   };
 
+  // Create new onSite on status==="Accepted"
   $scope.moveToOnSite = function () {
     // user id is added on the backend
     var newOnSite = {
@@ -52,7 +56,8 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     $scope.newOnSiteNotes = null;
   };
 
-  // Function that sets the phoneScreenID when user clicks on phoneScreen
+  // Assigns rootScope variables to clicked phoneScreen, so they can be
+  // used elsewhere
   $scope.clickedPhoneScreen = function (phoneScreen, index) {
     $rootScope.selectedPhoneScreen = phoneScreen;
     // convert string (if it exists) to Date object
@@ -62,7 +67,7 @@ angular.module('hunt.phoneScreen', ['hunt.appSubmit'])
     $rootScope.selectedPhoneScreenIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific phoneScreen
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedPhoneScreen = $rootScope.selectedPhoneScreen;
     PhoneScreen.editPhoneScreen(selectedPhoneScreen)
