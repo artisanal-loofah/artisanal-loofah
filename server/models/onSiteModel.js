@@ -1,6 +1,7 @@
 var OnSite = require('../db/schemas/onsite');
 
 module.exports = {
+  // Returns all list items. Order is determined by sort variable.
   get: function (user_id, sort, callback) {
     switch (sort) {
       case undefined:
@@ -63,7 +64,6 @@ module.exports = {
         if (onSite) {
           onSite.update(newProps)
           .then(function (onSite) {
-            console.log("onsite successfully updated");
             callback(onSite);
           });
         }

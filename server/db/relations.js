@@ -7,6 +7,7 @@ var PhoneScreen = require('./schemas/phonescreen');
 var OnSite = require('./schemas/onsite');
 var Offer = require('./schemas/offer');
 
+// set up User hasMany relations
 User.hasMany(Application, {
   foreignKey: 'user_id'
 });
@@ -26,12 +27,12 @@ User.hasMany(Offer, {
   foreignKey: 'user_id'
 });
 
-
+// set up Company hasMany relations
 Company.hasMany(Application, {
   foreignKey: 'company_id'
 });
 
-
+// set up belongsTo User & Company relation
 Application.belongsTo(User, {
   foreignKey: 'user_id'
 });
@@ -56,6 +57,7 @@ Application.hasMany(PhoneScreen, {
   foreignKey: 'application_id'
 });
 
+//set up belongsTo User relation
 Backlog.belongsTo(User, {
   foreignKey: 'user_id',
   constraints: false
@@ -77,7 +79,7 @@ Offer.belongsTo(User, {
   constraints: false
 });
 
-
+// set up belongsTo Application relation
 Backlog.belongsTo(Application, {
   foreignKey: 'application_id',
   constraints: false

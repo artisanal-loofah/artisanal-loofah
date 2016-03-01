@@ -2,6 +2,7 @@ var Offer = require('../db/schemas/offer');
 
 
 module.exports = {
+  // Returns all list items. Order is determined by sort variable.
   get: function (user_id, sort, callback) {
     switch(sort) {
       case undefined:
@@ -79,7 +80,6 @@ module.exports = {
         if (offer) {
           offer.update(newProps)
             .then(function (offer) {
-              console.log('Offer update function ran in Offer models, successfully updated Offer!');
               callback(offer);
             });
         }
