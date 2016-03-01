@@ -53,11 +53,14 @@ angular.module('huntApp', [
 angular.module('hunt.appSubmit', ['hunt.backlog'])
 
 .controller('AppSubmitController', function ($scope, $rootScope, $window, AppSubmit, PhoneScreen, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.appSubmits = [];
   $rootScope.selectedAppSubmit;
   $rootScope.selectedAppSubmitIndex;
   $scope.sort = 'created';
 
+  // Get all backlogs for given user, called when page loads
   $scope.getAppSubmits = function (sort) {
     // user id is added on the backend
     AppSubmit.getAppSubmits(sort)
@@ -79,6 +82,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     }
   };
 
+  // Create new phoneScreen on status==="Accepted"
   $scope.moveToPhoneScreen = function () {
     // user id is added on the backend
     var newPhoneScreen = {
@@ -102,13 +106,14 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
     $scope.newPhoneScreenNotes = null;
   };
 
-  // Function that sets the appSubmitID when user clicks on appSubmit
+  // Assigns rootScope variables to clicked appSubmit, so they can be
+  // used elsewhere
   $scope.clickedAppSubmit = function (appSubmit, index) {
     $rootScope.selectedAppSubmit = appSubmit;
     $rootScope.selectedAppSubmitIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific appSubmit
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedAppSubmit = $rootScope.selectedAppSubmit;
     AppSubmit.editAppSubmit(selectedAppSubmit)
@@ -181,7 +186,7 @@ angular.module('hunt.appSubmit', ['hunt.backlog'])
 angular.module('hunt.application', ['hunt.users'])
 
 .controller('ApplicationController', function ($scope, $rootScope, Application, Backlog) {
-
+  // called when 'submit' is clicked after job title & company are entered in search
   $scope.addApplication = function () {
     // only create application if job title and company name are not empty or whitespace
     if ($scope.jobTitle.trim().length && $scope.company.trim().length) {
@@ -209,6 +214,8 @@ angular.module('hunt.application', ['hunt.users'])
 })
 
 .factory('Application', function ($http) {
+  // returns the application object, including id. The id is used
+  // when creating the backlog object (see above).
   var createApplication = function(application) {
     return $http({
       method: 'POST',
@@ -229,12 +236,14 @@ angular.module('hunt.application', ['hunt.users'])
 angular.module('hunt.backlog', [])
 
 .controller('BacklogController', function ($scope, $rootScope, $location, $window, Backlog, AppSubmit, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.backlogs = [];
   $rootScope.selectedBacklog;
   $rootScope.selectedBacklogIndex;
   $scope.sort = 'created';
 
-  // Function that retrieves all backlogs for given user
+  // Get all backlogs for given user, called when page loads
   $scope.getBacklogs = function (sort) {
     // user id is added on the backend
     Backlog.getBacklogs(sort)
@@ -246,7 +255,6 @@ angular.module('hunt.backlog', [])
       });
   };
 
-  // Function that removes backlog
   $scope.removeBacklog = function (backlog, index) {
     if (window.confirm("Are you sure you want to remove this item from this stage?")){
       backlog.status = 'Removed';
@@ -258,18 +266,7 @@ angular.module('hunt.backlog', [])
     }
   };
 
-  // Function that edits an existing backlog
-  $scope.editBacklog = function (backlog) {
-    Backlog.editBacklog(backlog)
-      .then(function (backlog) {
-        $rootScope.backlogs.splice($rootScope.selectedBacklogIndex, 1, backlog);
-      })
-      .catch(function (error) {
-        console.log("Error editing backlog: ", error);
-      });
-  };
-
-  // Function that moves backlog to application submitted state
+  // Create new appSubmit on status==="Accepted"
   $scope.moveToAppSubmitted = function () {
     // user id is added on the backend
     var newAppSubmit = {
@@ -289,13 +286,14 @@ angular.module('hunt.backlog', [])
     $scope.appSubmitNotes = null;
   };
 
-  // Function that sets the selectedBacklog to backlog user clicked on
+  // Assigns rootScope variables to clicked backlog, so they can be
+  // used elsewhere
   $scope.clickedBacklog = function (backlog, index) {
     $rootScope.selectedBacklog = backlog;
     $rootScope.selectedBacklogIndex = index;
   };
 
-  // Function for submitting any updated changes to a specific backlog
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function () {
     var selectedBacklog = $rootScope.selectedBacklog;
     Backlog.editBacklog(selectedBacklog)
