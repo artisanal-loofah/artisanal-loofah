@@ -1,11 +1,14 @@
 angular.module('hunt.onSite', [])
 
 .controller('OnSiteController', function ($scope, $rootScope, $window, OnSite, Offer, Helpers) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.onSites = [];
   $rootScope.selectedOnSite;
   $rootScope.selectedOnSiteIndex;
   $scope.sort = 'created';
 
+  // Get all onSites for given user, called when page loads
   $scope.getOnSites = function (sort) {
     // user id is added on the backend
     OnSite.getOnSites(sort)
@@ -27,6 +30,7 @@ angular.module('hunt.onSite', [])
     }
   };
 
+  // Create new offer on status==="Accepted"
   $scope.moveToOffer = function() {
     // user id is added on the backend
     var newOffer = {
@@ -50,6 +54,8 @@ angular.module('hunt.onSite', [])
     $scope.newOfferNotes = null;
   };
 
+  // Assigns rootScope variables to clicked onSite, so they can be
+  // used elsewhere
   $scope.clickedOnSite = function(onSite, index) {
     $rootScope.selectedOnSite = onSite;
     // convert string (if it exists) to Date object
@@ -59,6 +65,7 @@ angular.module('hunt.onSite', [])
     $rootScope.selectedOnSiteIndex = index;
   };
 
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function() {
     var selectedOnSite = $rootScope.selectedOnSite;
     OnSite.editOnSite(selectedOnSite)

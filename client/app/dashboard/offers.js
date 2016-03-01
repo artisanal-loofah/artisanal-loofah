@@ -1,11 +1,14 @@
 angular.module('hunt.offer', [])
 
 .controller('OfferController', function ($scope, $rootScope, $window, Offer) {
+  // Track list items on the rootScope so they are accessible
+  // in other list item controllers
   $rootScope.offers = [];
   $rootScope.selectedOffer;
   $rootScope.selectedOfferIndex;
   $scope.sort = 'created';
 
+  // Get all offers for given user, called when page loads
   $scope.getOffers = function (sort) {
     // user id is added on the backend
     Offer.getOffers(sort)
@@ -27,6 +30,8 @@ angular.module('hunt.offer', [])
     }
   };
 
+  // Assigns rootScope variables to clicked offer, so they can be
+  // used elsewhere
   $scope.clickedOffer = function(offer, index) {
     $rootScope.selectedOffer = offer;
     // convert string (if it exists) to Date object
@@ -35,7 +40,8 @@ angular.module('hunt.offer', [])
     }
     $rootScope.selectedOfferIndex = index;
   };
-
+  
+  // Submit changes on edit, move to next stage if status==='Accepted'
   $scope.submitChanges = function() {
     Offer.editOffer($rootScope.selectedOffer)
       .then(function (offer) {
